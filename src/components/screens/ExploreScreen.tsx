@@ -366,7 +366,7 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
         <div className="w-full flex flex-col gap-2 pt-2 border-t border-gray-100">
           <span className="text-[12px] font-semibold text-gray-400">Gợi ý từ khóa:</span>
           <div className="flex flex-wrap gap-2">
-            {['Cà phê ngắm hoàng hôn', 'Hải sản ngon Đà Nẵng', 'Chỗ check-in Hội An'].map(
+            {['Cà phê view Sài Gòn', 'Hải sản ngon Vũng Tàu', 'Check-in Bến Bạch Đằng'].map(
               (hint) => (
                 <button
                   key={hint}

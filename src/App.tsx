@@ -81,7 +81,7 @@ import { WizardSubscriptionScreen, isPlanAvailable, type TripAccessPlan } from '
 import { AIItineraryProposalScreen } from './components/screens/AIItineraryProposalScreen';
 
 import { Destination, NavTab, Place, ScreenId, TripWizardData, UserPreferences } from './types/travel';
-import { INITIAL_PREFERENCES, INITIAL_WIZARD_DATA, MOCK_DESTINATIONS, MOCK_PLACES } from './data/mockData';
+import { INITIAL_PREFERENCES, INITIAL_WIZARD_DATA, DEFAULT_SAIGON_WIZARD_DATA, MOCK_DESTINATIONS, MOCK_PLACES } from './data/mockData';
 
 // Route to ScreenId mapper for DeviceFrame header & simulation drawer
 const SCREEN_ROUTES: Record<ScreenId, string> = {
@@ -206,13 +206,13 @@ export default function App() {
   const [draftId,setDraftId]=useStored<string>('travaiy-draft-id-v1',`draft-${Date.now()}`);
   const [draftPending,setDraftPending]=useStored<boolean>('travaiy-draft-pending-v1',true);
   const [generationRequestId,setGenerationRequestId]=useStored<string>('travaiy-ai-request-v1','');
-  const [wizardData, setWizardData] = useStored<TripWizardData>('travaiy-wizard-data-v1',INITIAL_WIZARD_DATA);
+  const [wizardData, setWizardData] = useStored<TripWizardData>('travaiy-wizard-data-v2',DEFAULT_SAIGON_WIZARD_DATA);
   const {plan,setPlan,trips,accessFor,accessLimit,selectAccess,consumeAI} = useTravel();
   const wizardPlan = useMemo(() => ({...buildWizardPlan(wizardData),id:draftId}), [wizardData,draftId]);
   const approveWizardPlan = () => {if(wizardNeedsStay(wizardData)){navigate('/wizard/stay');return;}if(wizardDateError(wizardData)){navigate('/wizard/dates');return;}setPlan(wizardPlan);setDraftPending(false); navigate('/trip/overview');};
   const startNewTrip=()=>{
     const interests=userPreferences.interests.flatMap(value=>/Ăn|cà phê/i.test(value)?['Ẩm thực']:/Thiên nhiên/i.test(value)?['Thiên nhiên']:/Văn hóa/i.test(value)?['Văn hóa']:/Chụp ảnh/i.test(value)?['Chụp ảnh']:/Nghỉ dưỡng|thư giãn/i.test(value)?['Thư giãn']:[]);
-    setWizardData({...INITIAL_WIZARD_DATA,planningMode:undefined,interests:[...new Set(interests)],mustVisitPlaces:[]});setDraftId(`trip-${Date.now()}`);setDraftPending(true);setWizardAccessPlan(null);setConfirmedAccess(null);setAccessPurpose('create');setGenerationRequestId('');navigate('/wizard/destination');
+    setWizardData({...DEFAULT_SAIGON_WIZARD_DATA,planningMode:undefined,interests:[...new Set(interests)],mustVisitPlaces:[]});setDraftId(`trip-${Date.now()}`);setDraftPending(true);setWizardAccessPlan(null);setConfirmedAccess(null);setAccessPurpose('create');setGenerationRequestId('');navigate('/wizard/destination');
   };
   const startGeneration=(tier:TripAccessPlan)=>{
     const required=requiredWizardStep(wizardData);if(required){navigate(required);return;}

@@ -42,7 +42,7 @@ export const AddTravelDocumentScreen: React.FC<AddTravelDocumentScreenProps> = (
       label: 'Khách sạn / Chỗ ở',
       sub: 'Xác nhận đặt phòng',
       icon: '🏨',
-      defaultTitle: 'Xác nhận đặt phòng Pullman Danang Resort',
+      defaultTitle: 'Xác nhận đặt phòng Pullman Saigon Centre',
     },
     {
       id: 'id',
@@ -133,7 +133,7 @@ export const AddTravelDocumentScreen: React.FC<AddTravelDocumentScreenProps> = (
       <main className="flex-1 min-h-0 overflow-y-auto no-scrollbar px-5 pt-3 pb-24 space-y-4">
         <div className="flex items-center gap-1.5 text-xs text-[#3d5d9d] font-heading font-bold">
           <span>✈️</span>
-          <span>Đà Nẵng 3N2Đ • 14 - 16 Thg 6, 2025</span>
+          <span>TP. Hồ Chí Minh 3N2Đ • 14 - 16 Thg 6, 2026</span>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -384,7 +384,7 @@ export const AddTravelDocumentScreen: React.FC<AddTravelDocumentScreenProps> = (
                     </span>
                   </div>
                   <p className="text-[11px] text-slate-500 mt-0.5">
-                    Đoàn "Đà Nẵng 3N2Đ". Mọi người có thể đồng bộ giờ bay và mã đặt chỗ.
+                    Đoàn "TP. Hồ Chí Minh 3N2Đ". Mọi người có thể đồng bộ giờ khởi hành và mã vé.
                   </p>
                   <div className="mt-2 p-2 rounded-xl bg-white/80 border border-blue-100 flex items-center gap-1.5 text-[10px] text-slate-600">
                     <span>🛡️</span>

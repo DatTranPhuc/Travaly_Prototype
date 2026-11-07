@@ -61,7 +61,7 @@ export const TodayScheduleScreen: React.FC<TodayScheduleScreenProps> = ({
             <div>
               <div className="flex items-center gap-1">
                 <span className="font-heading font-bold text-[18px] text-[#191c1e] leading-tight">
-                  Đà Nẵng
+                  TP. Hồ Chí Minh
                 </span>
                 <span className="text-xs text-slate-400">▾</span>
               </div>
@@ -280,7 +280,7 @@ export const TodayScheduleScreen: React.FC<TodayScheduleScreenProps> = ({
                 <span className="font-bold text-[#0A1680] px-2 py-0.5 rounded-full bg-blue-100">12:30</span>
                 <div className="min-w-0 flex-1">
                   <p className="font-bold text-slate-800 truncate">Ăn trưa Bánh tráng thịt heo Đại Lộc</p>
-                  <p className="text-[11px] text-slate-400 truncate">Đặc sản Đà Nẵng</p>
+                  <p className="text-[11px] text-slate-400 truncate">Đặc sản Sài Gòn</p>
                 </div>
                 <span className="text-[10px] text-slate-400">Kế tiếp</span>
               </div>
@@ -375,7 +375,7 @@ export const TodayScheduleScreen: React.FC<TodayScheduleScreenProps> = ({
                 </div>
                 <div>
                   <h3 className="text-[16px] font-bold text-slate-900 font-heading">
-                    Thời tiết Đà Nẵng (mẫu)
+                    Thời tiết TP. Hồ Chí Minh (mẫu)
                   </h3>
                   <p className="text-[11px] text-slate-500">Dữ liệu minh họa · chưa nối dịch vụ thời tiết</p>
                 </div>
@@ -658,7 +658,7 @@ export const TodayScheduleScreen: React.FC<TodayScheduleScreenProps> = ({
                   </div>
                   <div>
                     <div className="flex items-center gap-1.5">
-                      <span className="font-bold text-[13px] text-slate-900 font-heading">Đà Nẵng (Hiện tại)</span>
+                      <span className="font-bold text-[13px] text-slate-900 font-heading">TP. Hồ Chí Minh (Hiện tại)</span>
                       <span className="px-2 py-0.2 rounded-full bg-[#0A1680] text-white text-[9px] font-bold">Đang đi</span>
                     </div>
                     <p className="text-[11px] text-slate-500">Lịch minh họa • 6 thành viên mẫu</p>

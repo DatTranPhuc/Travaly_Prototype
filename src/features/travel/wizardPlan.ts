@@ -1,15 +1,15 @@
 import {manualPlacesFor} from './manualPlaces';
 import { MOCK_PLACES } from '../../data/mockData';
 import type { TripWizardData } from '../../types/travel';
-import { INITIAL_PLAN, STAYS, images } from './fixtures';
+import { INITIAL_PLAN, SAIGON_PLAN, STAYS, images } from './fixtures';
 import { dayCount, isoDate, lodgingError, optimizePlan, type Stay, type ActivePlan } from './model';
 // Deterministic preview fixtures; no live AI request.
 export function buildWizardPlan(data:TripWizardData):ActivePlan{
  const start=isoDate(data.startDate),end=isoDate(data.endDate);const count=Math.max(1,Math.min(30,dayCount(start,end)||1));
  const stay=STAYS.find(s=>s.id===data.stayId&&s.area.includes(data.destination));
- const draft:ActivePlan={planningMode:'ai',companionType:data.companionType,companionCount:data.companionCount,departureTime:data.departureTime,returnTime:data.returnTime,budgetAmount:data.budgetAmount,id:`trip-${data.destination}-${start}`,destination:data.destination,stayRoomCount:lodgingBudget(data).rooms,hotelBudgetPerNight:lodgingBudget(data).nightly,title:`${data.destination} · ${count} ngày`,days:count,dates:`${start.split('-').reverse().join('/')} – ${end.split('-').reverse().join('/')}`,startDate:start,endDate:end,checkIn:stay?(data.stayDatesMode==='custom'?isoDate(data.checkIn):start):undefined,checkOut:stay?(data.stayDatesMode==='custom'?isoDate(data.checkOut):end):undefined,coverImage:data.destination==='Đà Nẵng'?images.bridge:data.destination==='Hội An'?images.town:images.hero,estimatedCostPerPerson:`${data.budgetAmount.toLocaleString('vi-VN')}đ`,daysSchedule:Array.from({length:count},(_,index)=>{
+ const draft:ActivePlan={planningMode:'ai',companionType:data.companionType,companionCount:data.companionCount,departureTime:data.departureTime,returnTime:data.returnTime,budgetAmount:data.budgetAmount,id:`trip-${data.destination}-${start}`,destination:data.destination,stayRoomCount:lodgingBudget(data).rooms,hotelBudgetPerNight:lodgingBudget(data).nightly,title:`${data.destination} · ${count} ngày`,days:count,dates:`${start.split('-').reverse().join('/')} – ${end.split('-').reverse().join('/')}`,startDate:start,endDate:end,checkIn:stay?(data.stayDatesMode==='custom'?isoDate(data.checkIn):start):undefined,checkOut:stay?(data.stayDatesMode==='custom'?isoDate(data.checkOut):end):undefined,coverImage:data.destination==='TP. Hồ Chí Minh'?images.town:data.destination==='Vũng Tàu'?images.beach:data.destination==='Đà Nẵng'?images.bridge:data.destination==='Hội An'?images.town:images.hero,estimatedCostPerPerson:`${data.budgetAmount.toLocaleString('vi-VN')}đ`,daysSchedule:Array.from({length:count},(_,index)=>{
  const date=new Date(start+'T12:00:00Z');date.setUTCDate(date.getUTCDate()+index);const dateText=Number.isNaN(date.getTime())?'':`${date.getUTCDate()}/${date.getUTCMonth()+1}`;
- const sample=data.destination==='Đà Nẵng'?INITIAL_PLAN.daysSchedule[index]:undefined;
+ const sample=data.destination==='TP. Hồ Chí Minh'?SAIGON_PLAN.daysSchedule[index]:data.destination==='Đà Nẵng'?INITIAL_PLAN.daysSchedule[index]:undefined;
  return {dayNumber:index+1,title:sample?.title||`Khám phá ${data.destination}`,dateText,dayCost:sample?.dayCost||'Chưa dự tính',items:sample?sample.items.map(i=>({...i})):[]};
  })};
  if(data.mustVisitPlaces.length){

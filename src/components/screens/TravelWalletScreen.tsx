@@ -32,36 +32,36 @@ export const TravelWalletScreen: React.FC<TravelWalletScreenProps> = ({
       type: 'ticket',
       category: 'HÀNG KHÔNG',
       subCode: 'VJ628',
-      title: 'Vé máy bay TP.HCM – Đà Nẵng',
-      provider: 'Vietjet Air',
+      title: 'Vé xe Limousine TP.HCM – Vũng Tàu',
+      provider: 'Hoa Mai Limousine',
       timeLabel: 'Thời gian khởi hành',
       timeValue: '12 Thg 6, 2025 · 06:15',
       codeLabel: 'Mã đặt chỗ (PNR)',
-      codeValue: 'VJ-88****',
+      codeValue: 'HM-88****',
       sharedTag: 'Đã chia sẻ với nhóm',
       isPrivate: false,
-      actionText: 'Xem thẻ lên máy bay',
-      icon: 'flight_takeoff',
+      actionText: 'Xem thẻ lên xe',
+      icon: 'directions_bus',
       iconBg: 'bg-[#dfe0ff] text-[#0A1680]',
-      searchKeywords: 'vé máy bay tphcm đà nẵng vietjet air vj628 vj-88',
+      searchKeywords: 'vé xe limousine tphcm vũng tàu hoa mai limousine hm-88',
     },
     {
-      id: 'hotel-tms',
+      id: 'hotel-vungtau',
       type: 'hotel',
       category: 'KHÁCH SẠN',
-      subCode: 'Bãi biển Mỹ Khê',
-      title: 'TMS Hotel Da Nang Beach',
+      subCode: 'Bãi Sau, Vũng Tàu',
+      title: 'Vũng Tàu Ocean Hotel & Suites',
       provider: 'Phòng Ocean King Suite · Tầng cao',
       timeLabel: 'Thời gian lưu trú',
       timeValue: '12 - 15 Thg 6 (3 đêm)',
       codeLabel: 'Mã xác nhận',
-      codeValue: 'TMS-91****',
+      codeValue: 'VTO-91****',
       sharedTag: 'Đã chia sẻ với nhóm',
       isPrivate: false,
       actionText: 'Xem Voucher',
       icon: 'apartment',
       iconBg: 'bg-[#d8e2ff] text-[#254786]',
-      searchKeywords: 'xác nhận đặt phòng khách sạn tms hotel da nang beach tms-91',
+      searchKeywords: 'xác nhận đặt phòng khách sạn vũng tàu ocean hotel suites vto-91',
     },
     {
       id: 'cccd-hoang',
@@ -163,7 +163,7 @@ export const TravelWalletScreen: React.FC<TravelWalletScreenProps> = ({
           <div className="flex items-center gap-2 min-w-0">
             <span className="text-[#0A1680] text-sm">🧭</span>
             <span className="font-heading font-semibold text-[13px] text-[#191c1e] truncate">
-              Đà Nẵng 3N2Đ (12 - 15 Thg 6)
+              TP. Hồ Chí Minh 3N2Đ (12 - 15 Thg 6)
             </span>
           </div>
           <span className="text-xs text-slate-500 font-bold">▾</span>

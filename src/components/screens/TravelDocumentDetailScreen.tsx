@@ -126,10 +126,10 @@ export const TravelDocumentDetailScreen: React.FC<TravelDocumentDetailScreenProp
               </div>
               <div className="flex flex-col items-end">
                 <span className="font-heading font-black text-[30px] text-[#000552] tracking-tight leading-none">
-                  DAD
+                  VTG
                 </span>
-                <span className="font-bold text-[15px] text-slate-800 mt-1">07:35</span>
-                <span className="text-[11px] text-slate-500">Đà Nẵng</span>
+                <span className="font-bold text-[15px] text-slate-800 mt-1">08:15</span>
+                <span className="text-[11px] text-slate-500">Vũng Tàu</span>
               </div>
             </div>
 

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { Expense } from './expenseModel';
-import { INITIAL_PLAN } from './fixtures';
+import { INITIAL_PLAN, SAIGON_PLAN } from './fixtures';
 import { usePhotoStore } from './usePhotoStore';
 import { createAdaptiveSuggestion, matchesPlan, type AdaptiveScenario, type AdaptiveSuggestion } from './adaptive';
 import type { LocalDocument, LocalPost } from './localFiles';
@@ -9,10 +9,10 @@ type SharedPlace={id:string;name:string;location:{lat:number;lng:number};sharedB
 export type GroupMessage={id:string;sender:string;text:string;sentAt:string;mine:boolean};
 export function useStored<T,>(key:string, initial:T) {const [value,setValue]=useState<T>(()=>{try{const saved=localStorage.getItem(key);return saved?JSON.parse(saved):initial;}catch{return initial;}});useEffect(()=>{try{localStorage.setItem(key,JSON.stringify(value));}catch{/* Storage denied: retain session state. */}},[key,value]);return [value,setValue] as const;}
 function useTravelValue(){
- const [plan,setPlan]=useStored<ActivePlan>('travaiy-reference-plan-v1',INITIAL_PLAN);
+ const [plan,setPlan]=useStored<ActivePlan>('travaiy-reference-plan-v2',SAIGON_PLAN);
  const [documents,setDocuments]=useStored<LocalDocument[]>('travaiy-doc-meta-v1',[]);
  const [localPosts,setLocalPosts]=useStored<LocalPost[]>('travaiy-local-posts-v1',[]);
- const [trips,setTrips]=useStored<ActivePlan[]>('travaiy-trips-v1',[INITIAL_PLAN]);
+ const [trips,setTrips]=useStored<ActivePlan[]>('travaiy-trips-v2',[SAIGON_PLAN]);
  const [tripStatuses,setTripStatuses]=useStored<Record<string,'planned'|'active'|'completed'>>('travaiy-trip-status-v1',{});
  const [entitlements,setEntitlements]=useStored<Record<string,{tier:'free'|'solo'|'group';used:number;requests:string[]}>>('travaiy-access-v1',{});
  const [expenses,setExpenses]=useStored<Expense[]>('travaiy-expenses-v2',[]);

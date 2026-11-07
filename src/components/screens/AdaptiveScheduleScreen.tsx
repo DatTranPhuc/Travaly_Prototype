@@ -580,7 +580,7 @@ export const AdaptiveScheduleScreen: React.FC<AdaptiveScheduleScreenProps> = ({
                   <h3 className="font-bold text-[16px] text-slate-900 font-heading">
                     Radar thời tiết trực tiếp
                   </h3>
-                  <p className="text-[11px] text-slate-500">Trạm khí tượng Bà Nà & Đà Nẵng</p>
+                  <p className="text-[11px] text-slate-500">Trạm khí tượng Vũng Tàu & TP.HCM</p>
                 </div>
               </div>
               <button

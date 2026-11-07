@@ -35,9 +35,9 @@ export const WizardStep1Destination: React.FC<WizardStep1DestinationProps> = ({
       img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB4S0_utHqNlrpQQ7NOJoc_3pjyBwLRbQOaqMbu9KLLsl5i2h5nctvEmVNayB_AdUQsown1Nf7PiWDjbY0J-ojdo0RVQZIkvRZiwYoNuCMN3PlAf9V-czMN1mScej99LJRwWnTpXeUfeQ6KOpGL6rHvf4Kxt9sTQofwhp8MyoKahhET2meg2CEfpAZfeqgNLcmBJMEgZ9JSIms4qY1dxY83wglILRNMW-4Tbx-2mBVijkXbdCObyg',
     },
     {
-      name: 'Đà Nẵng',
-      sub: 'Thành phố biển năng động',
-      img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCiSmA4xNta0kIzk3pYZKe1-m3nZW5qoFayLftmXyx-dmZKPR_lp_SG_SfVAw5lSqLnjyarQtND1fFHgoVaAXJAVlztBY0YMKFPt2j1EMtpycF7okytZIwH8EDevH6Op5nlLypkyIS4Tv5dVlnaYFOPtJtZ9R6KFMeZkm-Yvr0tAisJE3ttn5qo6rP2uUUrouHJUCczEbC50sqXnjxFDgiIXMVJSyKsqkaQBQVQ-Fnzk0Q-eVMCuw',
+      name: 'Phú Quốc',
+      sub: 'Thiên đường biển đảo & hoàng hôn',
+      img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDecTG-4n9bt-VSpUjV3PAexFYgCm853v1ly9ccXvaCHQebr-pUOIdbFnDBaJNjPtL1AmfBRs9GWpI5A2zxEEFn7X3AcEfxMjrnO-X8j2d5NsKCs-LwD98TUS_mYzsIVM9bxzYMjeBRWYrYYSakkIAO0oLcnlEkBSoqzntE1_Ciz_TkL1FaaS5u51fjnN1QzHZTRacVO8m3dNAagHI-pANKaUkJSoqeTYPMjAa29aUEgo6NR9nk5A',
     },
   ];
 

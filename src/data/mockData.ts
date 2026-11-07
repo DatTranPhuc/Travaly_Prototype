@@ -29,6 +29,27 @@ export const INITIAL_WIZARD_DATA: TripWizardData = {
   notes: 'Không có',
 };
 
+export const DEFAULT_SAIGON_WIZARD_DATA: TripWizardData = {
+  destination: 'TP. Hồ Chí Minh',
+  destinationTagline: 'Hòn ngọc Viễn Đông hiện đại & sầm uất',
+  destinationImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD4mM2mnWQ9jOm16yXo8Oi9mWSrpCmTDS0Q6gh0Hc_pe7BBoYZvoT_i7jsJWJM07bwIBcDHWXmZR_CZwaGUGVVTUWNJYOvPafTampf8-ZFVZ_t6hlilrxKiKTF1Of2B1KAFohBoqzIK7Hm8dt8xxjwlumWMw3OZVx-Tij5915YM0VtjeR7dUx7geaPs4A7kdSYnTvpA2AfgizrOFNpHOw3xxbZymb1TmZtiuYKIQnt1BloqfTwoBg',
+  startDate: '17/10/2026',
+  endDate: '19/10/2026',
+  durationText: '3 ngày 2 đêm',
+  departureTime: '08:00',
+  returnTime: '18:00',
+  companionType: 'group',
+  companionCount: 4,
+  inviteCode: 'TRAV123',
+  budgetTier: 'Vừa túi tiền',
+  budgetAmount: 2500000,
+  interests: ['Thư giãn', 'Văn hóa', 'Ẩm thực', 'Chụp ảnh'],
+  transport: 'Xe du lịch',
+  accommodation: 'Khách sạn',
+  mustVisitPlaces: ['Dinh Độc Lập', 'Phố đi bộ Nguyễn Huệ', 'Chợ Bến Thành'],
+  notes: 'Không có',
+};
+
 export const MOCK_NOTIFICATIONS: NotificationItem[] = [
   {
     id: 'n1',
@@ -80,18 +101,6 @@ export const MOCK_DESTINATIONS: Destination[] = [
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCiSmA4xNta0kIzk3pYZKe1-m3nZW5qoFayLftmXyx-dmZKPR_lp_SG_SfVAw5lSqLnjyarQtND1fFHgoVaAXJAVlztBY0YMKFPt2j1EMtpycF7okytZIwH8EDevH6Op5nlLypkyIS4Tv5dVlnaYFOPtJtZ9R6KFMeZkm-Yvr0tAisJE3ttn5qo6rP2uUUrouHJUCczEbC50sqXnjxFDgiIXMVJSyKsqkaQBQVQ-Fnzk0Q-eVMCuw',
     badge: 'Yêu thích số 1',
     placesCount: 45,
-  },
-  {
-    id: 'danang',
-    title: 'Đà Nẵng',
-    location: 'Miền Trung, Việt Nam',
-    region: 'Đà Nẵng • Thành phố biển',
-    tagline: 'Thành phố biển năng động',
-    rating: 4.9,
-    duration: '3 ngày 2 đêm lý tưởng',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCiSmA4xNta0kIzk3pYZKe1-m3nZW5qoFayLftmXyx-dmZKPR_lp_SG_SfVAw5lSqLnjyarQtND1fFHgoVaAXJAVlztBY0YMKFPt2j1EMtpycF7okytZIwH8EDevH6Op5nlLypkyIS4Tv5dVlnaYFOPtJtZ9R6KFMeZkm-Yvr0tAisJE3ttn5qo6rP2uUUrouHJUCczEbC50sqXnjxFDgiIXMVJSyKsqkaQBQVQ-Fnzk0Q-eVMCuw',
-    badge: 'Thành phố biển',
-    placesCount: 52,
   },
   {
     id: 'dalat',

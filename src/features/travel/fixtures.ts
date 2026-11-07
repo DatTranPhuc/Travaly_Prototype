@@ -24,6 +24,48 @@ export const STAYS:Stay[]=[
 ];
 const points:Record<string,GeoPoint>={ 'item-1':{lat:16.0606,lng:108.2202},'item-2':{lat:16.0544,lng:108.2471},'item-3':{lat:16.0815,lng:108.255},'item-4':{lat:16.1089,lng:108.2779},'item-5':{lat:16.0611,lng:108.2277},'item-2-1':{lat:15.9961,lng:107.9965},'item-2-2':{lat:15.9974,lng:107.989},'item-3-1':{lat:15.877,lng:108.326},'item-3-2':{lat:15.879,lng:108.33}};
 export const INITIAL_PLAN:ActivePlan={...MOCK_TRIP,coverImage:images.bridge,dates:'16–18/10/2026',daysSchedule:MOCK_TRIP.daysSchedule.map((d,index)=>({...d,dateText:`${16+index}/10`,items:d.items.map(i=>({...i,location:points[i.id],locked:/Ăn|Buffet|Cao Lầu/.test(i.placeName),image:/Bà Nà|Vàng/.test(i.placeName)?images.bridge:/biển/i.test(i.placeName)?images.beach:/Ăn|Buffet|Cao Lầu/.test(i.placeName)?images.food:/Hội An/.test(i.placeName)?images.town:images.bay}))}))};
+
+export const SAIGON_PLAN: ActivePlan = {
+  id: 'trip-tphcm-3n2d',
+  destination: 'TP. Hồ Chí Minh',
+  title: 'TP. Hồ Chí Minh 3N2Đ',
+  days: 3,
+  dates: '16–18/10/2026',
+  coverImage: images.town,
+  estimatedCostPerPerson: '2.500.000đ / người',
+  stayId: 'saigon-river-hotel',
+  daysSchedule: [
+    {
+      dayNumber: 1,
+      dateText: '16/10',
+      title: 'Trung tâm lịch sử & Phố đi bộ',
+      items: [
+        { id: 'sg-1', placeName: 'Ăn sáng - Cơm tấm Ba Ghiền', category: 'Ăn sáng', time: '07:30', duration: '1 giờ', cost: '65.000đ', note: 'Sườn nướng than hoa trứ danh Sài Gòn', location: { lat: 10.7932, lng: 106.6698 }, locked: true, image: images.food },
+        { id: 'sg-2', placeName: 'Dinh Độc Lập', category: 'Tham quan', time: '09:00', duration: '2 giờ', cost: '65.000đ', note: 'Di tích lịch sử và biểu tượng kiến trúc', location: { lat: 10.7769, lng: 106.6953 }, locked: false, image: images.town },
+        { id: 'sg-3', placeName: 'Bưu điện Trung tâm & Nhà thờ Đức Bà', category: 'Tham quan', time: '14:30', duration: '1.5 giờ', cost: 'Miễn phí', note: 'Check-in góc phố cổ kính phong cách Pháp', location: { lat: 10.7798, lng: 106.6999 }, locked: false, image: images.town },
+        { id: 'sg-4', placeName: 'Phố đi bộ Nguyễn Huệ & Bến Bạch Đằng', category: 'Buổi tối', time: '18:00', duration: '2 giờ', cost: 'Miễn phí', note: 'Dạo mát buổi tối, ngắm du thuyền lung linh', location: { lat: 10.7743, lng: 106.7032 }, locked: false, image: images.bridge }
+      ]
+    },
+    {
+      dayNumber: 2,
+      dateText: '17/10',
+      title: 'Hiện đại & Mua sắm check-in',
+      items: [
+        { id: 'sg-5', placeName: 'Landmark 81 Skyview', category: 'Tham quan', time: '09:00', duration: '2 giờ', cost: '300.000đ', note: 'Ngắm toàn cảnh thành phố từ tầng cao nhất', location: { lat: 10.795, lng: 106.7219 }, locked: false, image: images.bridge },
+        { id: 'sg-6', placeName: 'Chợ Bến Thành & Cà phê chung cư', category: 'Tham quan', time: '14:00', duration: '2.5 giờ', cost: '150.000đ', note: 'Dạo chợ lâu đời và cà phê ngắm phố', location: { lat: 10.7725, lng: 106.698 }, locked: false, image: images.room2 }
+      ]
+    },
+    {
+      dayNumber: 3,
+      dateText: '18/10',
+      title: 'Văn hóa Chợ Lớn & Sông Sài Gòn',
+      items: [
+        { id: 'sg-7', placeName: 'Chợ Lớn & Chùa Bà Thiên Hậu', category: 'Văn hóa', time: '08:30', duration: '2 giờ', cost: '120.000đ', note: 'Chiêm bái chùa cổ và thưởng thức điểm sấm', location: { lat: 10.7533, lng: 106.6601 }, locked: false, image: images.town },
+        { id: 'sg-8', placeName: 'Du thuyền buýt Saigon Waterbus', category: 'Tham quan', time: '16:00', duration: '1.5 giờ', cost: '30.000đ', note: 'Ngắm hoàng hôn trên sông lãng mạn', location: { lat: 10.7711, lng: 106.7061 }, locked: false, image: images.bay }
+      ]
+    }
+  ]
+};
 export const SAMPLE_PHOTOS:PhotoMoment[]=[
  {id:'p1',tripId:MOCK_TRIP.id,src:images.beach,title:'Một buổi chiều bên biển',region:'Đà Nẵng',date:'16/10/2026',location:points['item-2'],isSample:true},
  {id:'p2',tripId:MOCK_TRIP.id,src:images.bridge,title:'Giữa mây trời Bà Nà',region:'Đà Nẵng',date:'17/10/2026',location:points['item-2-1'],isSample:true},

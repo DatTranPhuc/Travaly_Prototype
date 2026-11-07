@@ -20,8 +20,8 @@ export const GroupPollScreen: React.FC<GroupPollScreenProps> = ({ onBack }) => {
   const [pollOptions, setPollOptions] = useState<PollOption[]>([
     {
       id: 1,
-      name: 'Hải sản Năm Đảnh',
-      tagline: 'Hải sản tươi sống • View biển',
+      name: 'Hải sản Gành Hào Vũng Tàu',
+      tagline: 'Hải sản tươi sống • View biển Bãi Trước',
       image: 'https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=700&q=80',
       votes: 3,
       totalVotes: 6,
@@ -32,8 +32,8 @@ export const GroupPollScreen: React.FC<GroupPollScreenProps> = ({ onBack }) => {
     },
     {
       id: 2,
-      name: 'Mì Quảng Bà Mua',
-      tagline: 'Đặc sản Đà Nẵng • Vị đậm đà',
+      name: 'Bánh khọt Gốc Vú Sữa',
+      tagline: 'Đặc sản Vũng Tàu • Giòn rụm tôm tươi',
       image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=700&q=80',
       votes: 2,
       totalVotes: 6,
@@ -44,8 +44,8 @@ export const GroupPollScreen: React.FC<GroupPollScreenProps> = ({ onBack }) => {
     },
     {
       id: 3,
-      name: 'Bánh xèo Bà Dưỡng',
-      tagline: 'Ngon - rẻ - giòn rụm',
+      name: 'Cơm tấm Ba Ghiền',
+      tagline: 'Đặc sản Sài Gòn • Sườn nướng than hoa',
       image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=700&q=80',
       votes: 1,
       totalVotes: 6,
