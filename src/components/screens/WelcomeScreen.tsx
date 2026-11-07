@@ -16,10 +16,10 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
 
   // Interactive Lumi greetings
   const LUMI_GREETINGS = [
-    'Chào bạn! Hôm nay mình đi đâu ta? 🌟',
-    'Mình đã sẵn sàng lên lịch cho bạn! ⚡',
-    'Khám phá các điểm check-in cực xịn! 📸',
-    'Cùng tạo một chuyến đi đáng nhớ nhé! 🎒'
+    'Chào bạn! Hôm nay mình đi đâu ta?',
+    'Mình đã sẵn sàng lên lịch cho bạn!',
+    'Khám phá các điểm check-in cực xịn!',
+    'Cùng tạo một chuyến đi đáng nhớ nhé!'
   ];
   const [greetingIndex, setGreetingIndex] = useState(0);
   const cycleGreeting = () => {
@@ -135,7 +135,6 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
             <span className="text-[12px] font-bold text-[#0F2C59] tracking-tight font-heading">
               {LUMI_GREETINGS[greetingIndex]}
             </span>
-            <span className="text-[11px] group-hover:rotate-12 transition-transform">✨</span>
             {/* Bubble Arrow */}
             <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-white border-b border-r border-amber-200/70 rotate-45" />
           </button>
