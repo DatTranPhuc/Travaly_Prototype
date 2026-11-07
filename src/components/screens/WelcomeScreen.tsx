@@ -106,13 +106,8 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
         <div className="absolute top-[45%] right-7 text-[#86C5FF]/40 text-xs">★</div>
       </div>
 
-      {/* iOS Status Bar */}
-      <div className="relative z-20 shrink-0">
-        <IOSStatusBar light={false} />
-      </div>
-
       {/* Brand Header - Centered & Clean */}
-      <header className="relative z-20 flex items-center justify-center pt-2 px-6 shrink-0">
+      <header className="relative z-20 flex items-center justify-center pt-6 px-6 shrink-0">
         <div className="flex items-center gap-2 bg-white/90 backdrop-blur-xl px-5 py-2 rounded-full border border-white/80 shadow-xs">
           <img src="/images/logo-full.png" alt="TravAly" className="h-[26px] w-auto object-contain" />
         </div>
