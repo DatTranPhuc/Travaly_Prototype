@@ -9,6 +9,15 @@ import './destination-social.css';
 type Review = { name: string; initials: string; rating: number; style: string; text: string };
 type Article = { id: string; title: string; author: string; category: string; image?: string; summary: string; paragraphs: string[]; sample: boolean };
 const reviewsByCity: Record<string, Review[]> = {
+  'TP. Hồ Chí Minh': [
+    { name: 'Minh Anh', initials: 'MA', rating: 5, style: 'Đi cùng bạn bè', text: 'Sài Gòn về đêm tuyệt đẹp! Nhóm mình đi dạo bến Bạch Đằng rồi ăn uống ở phố đi bộ Nguyễn Huệ, không khí rất sôi động.' },
+    { name: 'Quốc Bảo', initials: 'QB', rating: 5, style: 'Khám phá ẩm thực', text: 'Cơm tấm Ba Ghiền và cà phê chung cư Nguyễn Huệ cực ngon. Sáng đi Dinh Độc Lập, chiều cà phê chill là vừa vặn.' },
+    { name: 'Linh Chi', initials: 'LC', rating: 4, style: 'Đi cùng gia đình', text: 'Chuyến đi nhẹ nhàng, ghé Landmark 81 ngắm hoàng hôn rất đẹp. Các điểm gần nhau nên di chuyển rất tiện.' },
+  ],
+  'Vũng Tàu': [
+    { name: 'Hoàng Nam', initials: 'HN', rating: 5, style: 'Nghỉ dưỡng cuối tuần', text: 'Vũng Tàu gần TP.HCM nên đi xe 2 tiếng là tới. Sáng dậy tắm Bãi Sau biển êm, chiều leo ngọn hải đăng đón gió mát rượi.' },
+    { name: 'Thanh Thảo', initials: 'TT', rating: 5, style: 'Đi cùng nhóm', text: 'Bánh khọt Gốc Vú Sữa và hải sản Bãi Trước tươi ngon ngập tràn. Lịch trình 2N1Đ vừa vặn thư giãn trước tuần làm việc mới.' },
+  ],
   'Đà Nẵng': [
     { name: 'Minh Anh', initials: 'MA', rating: 5, style: 'Đi cùng bạn bè', text: 'Mình thích dành buổi sáng đi biển, chiều ghé quán cà phê. Lịch có khoảng nghỉ nên cả nhóm không bị mệt.' },
     { name: 'Hoàng Nam', initials: 'HN', rating: 4, style: 'Đi một mình', text: 'Mình muốn gom các điểm gần nhau trong một ngày hơn. Nếu đi lại, mình sẽ để thêm thời gian cho việc di chuyển.' },

@@ -20,12 +20,12 @@ export const SearchFilterScreen: React.FC<SearchFilterScreenProps> = ({
   // Screen mode: 'results' or 'filter-sheet'
   const [screenMode, setScreenMode] = useState<'results' | 'filter-sheet'>('results');
   const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
-  const [searchQuery, setSearchQuery] = useState('cà phê Đà Lạt');
+  const [searchQuery, setSearchQuery] = useState('cà phê Sài Gòn');
   const [selectedCategory, setSelectedCategory] = useState('Cà phê (24)');
   const [selectedSort, setSelectedSort] = useState('Đánh giá cao nhất');
 
   // Filter sheet states
-  const [selectedCity, setSelectedCity] = useState('Đà Lạt, Lâm Đồng');
+  const [selectedCity, setSelectedCity] = useState('TP. Hồ Chí Minh');
   const [showCityPicker, setShowCityPicker] = useState(false);
   const [selectedFilterCategories, setSelectedFilterCategories] = useState<string[]>(['Ăn uống', 'Cà phê']);
   const [priceRange, setPriceRange] = useState<[number, number]>([100000, 500000]);
@@ -52,7 +52,7 @@ export const SearchFilterScreen: React.FC<SearchFilterScreenProps> = ({
   };
 
   const handleResetFilter = () => {
-    setSelectedCity('Đà Lạt, Lâm Đồng');
+    setSelectedCity('TP. Hồ Chí Minh');
     setSelectedFilterCategories(['Ăn uống']);
     setPriceRange([100000, 500000]);
     setOpenNowOnly(true);
@@ -655,8 +655,9 @@ export const SearchFilterScreen: React.FC<SearchFilterScreenProps> = ({
 
             <div className="p-4 space-y-1.5 overflow-y-auto">
               {[
+                'TP. Hồ Chí Minh',
+                'Vũng Tàu',
                 'Đà Lạt, Lâm Đồng',
-                'TP.HCM',
                 'Phú Quốc, Kiên Giang',
                 'Hội An, Quảng Nam',
                 'Nha Trang, Khánh Hòa',

@@ -20,6 +20,16 @@ export const WizardStep1Destination: React.FC<WizardStep1DestinationProps> = ({
 
   const popular = [
     {
+      name: 'TP. Hồ Chí Minh',
+      sub: 'Hòn ngọc Viễn Đông sôi động & sầm uất',
+      img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD4mM2mnWQ9jOm16yXo8Oi9mWSrpCmTDS0Q6gh0Hc_pe7BBoYZvoT_i7jsJWJM07bwIBcDHWXmZR_CZwaGUGVVTUWNJYOvPafTampf8-ZFVZ_t6hlilrxKiKTF1Of2B1KAFohBoqzIK7Hm8dt8xxjwlumWMw3OZVx-Tij5915YM0VtjeR7dUx7geaPs4A7kdSYnTvpA2AfgizrOFNpHOw3xxbZymb1TmZtiuYKIQnt1BloqfTwoBg',
+    },
+    {
+      name: 'Vũng Tàu',
+      sub: 'Thiên đường biển xanh nghỉ dưỡng cuối tuần',
+      img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCiSmA4xNta0kIzk3pYZKe1-m3nZW5qoFayLftmXyx-dmZKPR_lp_SG_SfVAw5lSqLnjyarQtND1fFHgoVaAXJAVlztBY0YMKFPt2j1EMtpycF7okytZIwH8EDevH6Op5nlLypkyIS4Tv5dVlnaYFOPtJtZ9R6KFMeZkm-Yvr0tAisJE3ttn5qo6rP2uUUrouHJUCczEbC50sqXnjxFDgiIXMVJSyKsqkaQBQVQ-Fnzk0Q-eVMCuw',
+    },
+    {
       name: 'Đà Lạt',
       sub: 'Thành phố ngàn hoa',
       img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB4S0_utHqNlrpQQ7NOJoc_3pjyBwLRbQOaqMbu9KLLsl5i2h5nctvEmVNayB_AdUQsown1Nf7PiWDjbY0J-ojdo0RVQZIkvRZiwYoNuCMN3PlAf9V-czMN1mScej99LJRwWnTpXeUfeQ6KOpGL6rHvf4Kxt9sTQofwhp8MyoKahhET2meg2CEfpAZfeqgNLcmBJMEgZ9JSIms4qY1dxY83wglILRNMW-4Tbx-2mBVijkXbdCObyg',
@@ -28,16 +38,6 @@ export const WizardStep1Destination: React.FC<WizardStep1DestinationProps> = ({
       name: 'Đà Nẵng',
       sub: 'Thành phố biển năng động',
       img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCiSmA4xNta0kIzk3pYZKe1-m3nZW5qoFayLftmXyx-dmZKPR_lp_SG_SfVAw5lSqLnjyarQtND1fFHgoVaAXJAVlztBY0YMKFPt2j1EMtpycF7okytZIwH8EDevH6Op5nlLypkyIS4Tv5dVlnaYFOPtJtZ9R6KFMeZkm-Yvr0tAisJE3ttn5qo6rP2uUUrouHJUCczEbC50sqXnjxFDgiIXMVJSyKsqkaQBQVQ-Fnzk0Q-eVMCuw',
-    },
-    {
-      name: 'Nha Trang',
-      sub: 'Biển xanh, nắng vàng',
-      img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA_bvmMFUQ9cp-wQYl1RBqbujEXNUE2wWnk-nqZg-usbCWhJRmrAQoCnxK2Il0IiJimAJXGdXHRxjVsc_3uGf6URTJREo2u-8Hn8VabuV4tBp4Wq9Yi8JKuW18P_ucrapOamlYrxqMWjSLqenjfWNe7UWm30s2TmgxqBQ6vVs9gXv1MW86GM4uwcOIWdlJFJUr_yLRluPjIAp8Uh0WGqHVRUNbYBYmmS3vfwnF-JMA-W7jZSTnU6g',
-    },
-    {
-      name: 'Hội An',
-      sub: 'Nét đẹp cổ kính',
-      img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD4mM2mnWQ9jOm16yXo8Oi9mWSrpCmTDS0Q6gh0Hc_pe7BBoYZvoT_i7jsJWJM07bwIBcDHWXmZR_CZwaGUGVVTUWNJYOvPafTampf8-ZFVZ_t6hlilrxKiKTF1Of2B1KAFohBoqzIK7Hm8dt8xxjwlumWMw3OZVx-Tij5915YM0VtjeR7dUx7geaPs4A7kdSYnTvpA2AfgizrOFNpHOw3xxbZymb1TmZtiuYKIQnt1BloqfTwoBg',
     },
   ];
 
