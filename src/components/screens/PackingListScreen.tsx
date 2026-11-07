@@ -222,11 +222,16 @@ export const PackingListScreen: React.FC<PackingListScreenProps> = ({
                 className="flex items-center gap-3 flex-1 min-w-0 cursor-pointer"
               >
                 <div
-                  className={`w-5 h-5 rounded-lg border flex items-center justify-center text-xs transition-colors shrink-0 ${
+                  className={`w-5 h-5 rounded-lg flex items-center justify-center text-xs transition-colors shrink-0 ${
                     item.isChecked
-                      ? 'bg-emerald-500 border-emerald-500 text-white font-bold'
-                      : 'border-slate-300 bg-white'
+                      ? 'bg-emerald-500 text-white font-bold shadow-xs'
+                      : 'bg-white hover:border-slate-400'
                   }`}
+                  style={{
+                    border: item.isChecked ? '2px solid #10B981' : '2px solid #94A3B8',
+                    backgroundColor: item.isChecked ? '#10B981' : '#FFFFFF',
+                    color: '#FFFFFF',
+                  }}
                 >
                   {item.isChecked && '✓'}
                 </div>

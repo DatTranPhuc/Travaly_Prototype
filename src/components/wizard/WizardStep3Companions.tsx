@@ -132,14 +132,15 @@ export const WizardStep3Companions: React.FC<WizardStep3CompanionsProps> = ({
               </div>
             </div>
             <div
-              className={`w-5 h-5 rounded-full flex items-center justify-center ${
-                type === 'solo'
-                  ? 'bg-[#0A1680] text-white'
-                  : 'border-2 border-slate-300'
-              }`}
+              className="w-5 h-5 rounded-full flex items-center justify-center transition-colors"
+              style={{
+                border: type === 'solo' ? '2px solid #0F2C59' : '2px solid #94A3B8',
+                backgroundColor: type === 'solo' ? '#0F2C59' : '#FFFFFF',
+                color: '#FFFFFF',
+              }}
             >
               {type === 'solo' && (
-                <svg className="w-3 h-3 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-3 h-3 stroke-white stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ stroke: '#ffffff' }}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
               )}
@@ -173,14 +174,15 @@ export const WizardStep3Companions: React.FC<WizardStep3CompanionsProps> = ({
               </div>
             </div>
             <div
-              className={`w-5 h-5 rounded-full flex items-center justify-center ${
-                type === 'group'
-                  ? 'bg-[#0A1680] text-white'
-                  : 'border-2 border-slate-300'
-              }`}
+              className="w-5 h-5 rounded-full flex items-center justify-center transition-colors"
+              style={{
+                border: type === 'group' ? '2px solid #0F2C59' : '2px solid #94A3B8',
+                backgroundColor: type === 'group' ? '#0F2C59' : '#FFFFFF',
+                color: '#FFFFFF',
+              }}
             >
               {type === 'group' && (
-                <svg className="w-3 h-3 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-3 h-3 stroke-white stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ stroke: '#ffffff' }}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
               )}

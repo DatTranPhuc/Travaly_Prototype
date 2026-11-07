@@ -142,13 +142,19 @@ export const OnboardingStep4: React.FC<OnboardingStep4Props> = ({
                     </span>
                   </div>
                   {isSelected ? (
-                    <div className="w-5 h-5 rounded-full bg-[#0A1680] flex items-center justify-center flex-shrink-0 mt-0.5 shadow-xs">
-                      <svg className="w-3 h-3 text-white stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div
+                      className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 shadow-xs"
+                      style={{ backgroundColor: '#0F2C59', border: '2px solid #0F2C59' }}
+                    >
+                      <svg className="w-3 h-3 text-white stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ stroke: '#ffffff' }}>
                         <path d="M4.5 12.75l6 6 9-13.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </div>
                   ) : (
-                    <div className="w-5 h-5 rounded-full border-[1.5px] border-slate-300 flex-shrink-0 mt-0.5" />
+                    <div
+                      className="w-5 h-5 rounded-full flex-shrink-0 mt-0.5"
+                      style={{ border: '2px solid #94A3B8', backgroundColor: '#FFFFFF' }}
+                    />
                   )}
                 </div>
               </article>

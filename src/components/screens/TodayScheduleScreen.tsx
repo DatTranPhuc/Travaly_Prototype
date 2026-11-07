@@ -204,10 +204,10 @@ export const TodayScheduleScreen: React.FC<TodayScheduleScreenProps> = ({
                 </span>
               </div>
               <p className="text-[14px] font-bold text-slate-900 font-heading truncate mt-0.5">
-                Bãi biển Mỹ Khê
+                Bến Bạch Đằng & Sông Sài Gòn
               </p>
               <p className="text-[11px] text-slate-500 truncate">
-                Tắm biển, lướt ván & ngắm hoàng hôn
+                Dạo mát bờ sông & ngắm hoàng hôn thành phố
               </p>
             </div>
           </div>
@@ -242,7 +242,7 @@ export const TodayScheduleScreen: React.FC<TodayScheduleScreenProps> = ({
                 Ăn tối cùng nhóm
               </p>
               <p className="text-[11px] text-slate-500 truncate">
-                Hải sản Năm Đảnh & ngắm Cầu Rồng phun lửa
+                Cơm niêu & dạo phố đi bộ Nguyễn Huệ
               </p>
             </div>
           </div>
@@ -263,24 +263,24 @@ export const TodayScheduleScreen: React.FC<TodayScheduleScreenProps> = ({
               <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 flex items-center gap-3 text-xs">
                 <span className="font-bold text-[#0A1680] px-2 py-0.5 rounded-full bg-blue-100">08:00</span>
                 <div className="min-w-0 flex-1">
-                  <p className="font-bold text-slate-800 truncate">Cà phê sáng & điểm tâm Cầu Rồng</p>
-                  <p className="text-[11px] text-slate-400 truncate">Bún chả cá & Cà phê muối</p>
+                  <p className="font-bold text-slate-800 truncate">Cà phê sáng & điểm tâm Sài Gòn</p>
+                  <p className="text-[11px] text-slate-400 truncate">Cơm tấm Ba Ghiền & Cà phê vợt</p>
                 </div>
                 <span className="text-[10px] text-slate-400">Đã qua</span>
               </div>
               <div className="p-3 rounded-xl bg-blue-50/60 border border-[#0A1680]/20 flex items-center gap-3 text-xs">
                 <span className="font-bold text-white px-2 py-0.5 rounded-full bg-[#0A1680]">10:30</span>
                 <div className="min-w-0 flex-1">
-                  <p className="font-bold text-[#0A1680] truncate">Bán đảo Sơn Trà & Chùa Linh Ứng</p>
-                  <p className="text-[11px] text-slate-500 truncate">Đang diễn ra • Đỉnh Bàn Cờ</p>
+                  <p className="font-bold text-[#0A1680] truncate">Dinh Độc Lập & Bảo tàng Lịch sử</p>
+                  <p className="text-[11px] text-slate-500 truncate">Đang diễn ra • Tham quan di tích</p>
                 </div>
                 <span className="text-[10px] font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full">Hiện tại</span>
               </div>
               <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 flex items-center gap-3 text-xs">
                 <span className="font-bold text-[#0A1680] px-2 py-0.5 rounded-full bg-blue-100">12:30</span>
                 <div className="min-w-0 flex-1">
-                  <p className="font-bold text-slate-800 truncate">Ăn trưa Bánh tráng thịt heo Đại Lộc</p>
-                  <p className="text-[11px] text-slate-400 truncate">Đặc sản Sài Gòn</p>
+                  <p className="font-bold text-slate-800 truncate">Ăn trưa Hủ tiếu Nam Vang</p>
+                  <p className="text-[11px] text-slate-400 truncate">Đặc sản TP. Hồ Chí Minh</p>
                 </div>
                 <span className="text-[10px] text-slate-400">Kế tiếp</span>
               </div>

@@ -165,13 +165,19 @@ export const OnboardingStep3: React.FC<OnboardingStep3Props> = ({
 
                 {/* Selected Indicator Pill */}
                 {isSelected ? (
-                  <div className="flex items-center justify-center w-5 h-5 rounded-full bg-[#0A1680] text-white mr-1 shadow-xs">
-                    <svg className="w-3 h-3 stroke-current stroke-[3] fill-none" viewBox="0 0 24 24">
+                  <div
+                    className="flex items-center justify-center w-5 h-5 rounded-full bg-[#0F2C59] text-white mr-1 shadow-xs"
+                    style={{ backgroundColor: '#0F2C59', border: '2px solid #0F2C59' }}
+                  >
+                    <svg className="w-3 h-3 stroke-white stroke-[3] fill-none" viewBox="0 0 24 24" style={{ stroke: '#ffffff' }}>
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                   </div>
                 ) : (
-                  <div className="w-5 h-5 rounded-full border border-slate-200 mr-1" />
+                  <div
+                    className="w-5 h-5 rounded-full mr-1"
+                    style={{ border: '2px solid #94A3B8', backgroundColor: '#FFFFFF' }}
+                  />
                 )}
               </div>
             );

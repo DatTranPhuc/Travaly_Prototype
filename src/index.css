@@ -255,37 +255,52 @@ div[class*="min-h-"][class*="bg-[#F4F8FD]"] {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
 }
 
-/* 2. Triệt tiêu 100% viền của mọi nút, thẻ, header, input toàn app (BỎ VIỀN) */
-.travel-device button,
-.travel-device a,
-.travel-device input,
-.travel-device select,
-.travel-device textarea,
-.travel-device section,
-.travel-device article,
-.travel-device nav,
-.travel-device header,
-.travel-device div:not(.leaflet-pane):not(.leaflet-tile-container),
-.travel-screen:not(.photobooth-screen):not(.booth-screen) button,
-.travel-screen:not(.photobooth-screen):not(.booth-screen) a,
-.travel-screen:not(.photobooth-screen):not(.booth-screen) input,
-.travel-screen:not(.photobooth-screen):not(.booth-screen) select,
-.travel-screen:not(.photobooth-screen):not(.booth-screen) textarea,
-.travel-screen:not(.photobooth-screen):not(.booth-screen) section,
-.travel-screen:not(.photobooth-screen):not(.booth-screen) article,
-.travel-screen:not(.photobooth-screen):not(.booth-screen) nav,
-.travel-screen:not(.photobooth-screen):not(.booth-screen) header,
-.travel-screen:not(.photobooth-screen):not(.booth-screen) div:not(.leaflet-pane):not(.leaflet-tile-container),
-.home-reference button,
-.home-reference a,
-.home-reference input,
-.home-reference section,
-.home-reference article,
-.home-reference nav,
-.home-reference header,
-.home-reference div {
+/* 2. Bỏ viền các khối bọc lớn nhưng GIỮ NGUYÊN viền của nút, ô tick chọn (checkbox), radio, input và thẻ được chọn */
+.travel-device header:not(.bordered),
+.travel-device nav:not(.bordered),
+.travel-screen:not(.photobooth-screen):not(.booth-screen) header:not(.bordered),
+.travel-screen:not(.photobooth-screen):not(.booth-screen) nav:not(.bordered) {
   border: none !important;
   outline: none !important;
+}
+
+/* Hỗ trợ ô tick chọn (Checkbox / Radio / Selection Indicator) rõ ràng, bấm được và đổi trạng thái chuẩn */
+.travel-device input[type="checkbox"],
+.travel-screen input[type="checkbox"],
+.travel-device input[type="radio"],
+.travel-screen input[type="radio"] {
+  accent-color: #0F2C59 !important;
+  cursor: pointer !important;
+}
+
+/* Ô tick chọn checkbox & radio div tùy biến */
+[role="checkbox"],
+[role="radio"],
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+/* Bảo toàn viền cho các ô tick, radio và thẻ khi được click chọn */
+[class*="border-2"],
+[class*="border-slate-"],
+[class*="border-[#"],
+[class*="border-emerald-"],
+.place-check-circle,
+.planning-method-option {
+  border-style: solid !important;
+}
+
+/* Màu biểu tượng tick kiểm tra trắng nổi bật trên nền xanh */
+[role="checkbox"][aria-checked="true"] svg,
+[aria-pressed="true"] svg.lucide-check,
+.place-check-circle svg,
+div[class*="bg-[#0A1680]"] svg,
+div[class*="bg-[#0F2C59]"] svg,
+div[class*="bg-emerald-"] svg,
+button[class*="bg-[#0A1680]"] svg.lucide-check,
+button[class*="bg-[#0F2C59]"] svg.lucide-check {
+  color: #FFFFFF !important;
+  stroke: #FFFFFF !important;
 }
 
 /* 3. Toàn bộ UI icon (Lucide & Action SVG): Màu Vàng Citrus Zest (#FFA62B) */

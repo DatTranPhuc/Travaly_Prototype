@@ -109,11 +109,13 @@ export const OnboardingStep2: React.FC<OnboardingStep2Props> = ({
 
                 {/* Radio Indicator */}
                 <div
-                  className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 mr-1 ${
-                    isSelected ? 'border-[#0A1680]' : 'border-slate-300'
-                  }`}
+                  className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mr-1"
+                  style={{
+                    border: isSelected ? '2px solid #0F2C59' : '2px solid #94A3B8',
+                    backgroundColor: '#FFFFFF',
+                  }}
                 >
-                  {isSelected && <div className="w-2.5 h-2.5 rounded-full bg-[#0A1680]" />}
+                  {isSelected && <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#0F2C59' }} />}
                 </div>
               </div>
             );

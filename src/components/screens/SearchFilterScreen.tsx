@@ -468,12 +468,14 @@ export const SearchFilterScreen: React.FC<SearchFilterScreenProps> = ({
                       key={cat}
                       type="button"
                       onClick={() => toggleCategory(cat)}
-                      className={`py-2.5 px-3 rounded-xl flex items-center justify-center gap-2 text-[13px] font-semibold transition-all cursor-pointer font-heading ${
+                      className={`py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 text-[13px] font-semibold transition-all cursor-pointer font-heading ${
                         isChecked
-                          ? 'bg-[#0A1680] text-white shadow-xs'
+                          ? 'bg-[#0F2C59] text-white shadow-xs'
                           : 'bg-[#f8f9fb] text-slate-700 hover:bg-slate-100'
                       }`}
+                      style={{ border: isChecked ? '2px solid #0F2C59' : '1.5px solid #e2e8f0' }}
                     >
+                      {isChecked && <span className="text-white text-xs font-black">✓</span>}
                       <span>{cat}</span>
                     </button>
                   );
@@ -580,16 +582,22 @@ export const SearchFilterScreen: React.FC<SearchFilterScreenProps> = ({
                       key={am.name}
                       type="button"
                       onClick={() => toggleAmenity(am.name)}
-                      className={`flex flex-col items-center justify-center p-3 rounded-xl transition-all cursor-pointer ${
+                      className={`relative flex flex-col items-center justify-center p-3 rounded-xl transition-all cursor-pointer ${
                         isChecked
-                          ? 'bg-[#93B2F8]/20 border border-[#93B2F8]'
-                          : 'bg-[#f8f9fb] hover:bg-slate-100'
+                          ? 'bg-[#0F2C59] text-white shadow-xs'
+                          : 'bg-[#f8f9fb] text-slate-700 hover:bg-slate-100'
                       }`}
+                      style={{ border: isChecked ? '2px solid #0F2C59' : '1.5px solid #e2e8f0' }}
                     >
-                      <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-[#0A1680] font-bold mb-1 shadow-2xs">
+                      {isChecked && (
+                        <div className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-white text-[#0F2C59] flex items-center justify-center text-[10px] font-black">
+                          ✓
+                        </div>
+                      )}
+                      <div className="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-[#0F2C59] font-bold mb-1 shadow-2xs">
                         {am.icon}
                       </div>
-                      <span className="text-[11px] font-semibold text-slate-800 text-center font-heading">
+                      <span className={`text-[11px] font-semibold text-center font-heading ${isChecked ? 'text-white' : 'text-slate-800'}`}>
                         {am.name}
                       </span>
                     </button>

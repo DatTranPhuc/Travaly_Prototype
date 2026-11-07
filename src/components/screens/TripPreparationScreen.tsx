@@ -166,11 +166,16 @@ export const TripPreparationScreen: React.FC<TripPreparationScreenProps> = ({
                 }`}
               >
                 <div
-                  className={`w-5 h-5 rounded-lg border flex items-center justify-center text-xs transition-colors shrink-0 ${
+                  className={`w-5 h-5 rounded-lg flex items-center justify-center text-xs transition-colors shrink-0 ${
                     item.checked
-                      ? 'bg-[#0A1680] border-[#0A1680] text-white'
-                      : 'border-slate-300 bg-white'
+                      ? 'bg-[#0F2C59] text-white font-bold shadow-xs'
+                      : 'bg-white hover:border-slate-400'
                   }`}
+                  style={{
+                    border: item.checked ? '2px solid #0F2C59' : '2px solid #94A3B8',
+                    backgroundColor: item.checked ? '#0F2C59' : '#FFFFFF',
+                    color: '#FFFFFF',
+                  }}
                 >
                   {item.checked && '✓'}
                 </div>

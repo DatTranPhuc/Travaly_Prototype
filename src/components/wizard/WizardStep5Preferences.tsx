@@ -154,13 +154,15 @@ export const WizardStep5Preferences: React.FC<WizardStep5PreferencesProps> = ({
                     key={vibe}
                     type="button"
                     onClick={() => toggleInterest(vibe)}
-                    className={`flex items-center justify-center min-h-[44px] px-4 rounded-2xl border text-[14px] transition-all cursor-pointer font-heading ${
+                    className={`flex items-center justify-center gap-1.5 min-h-[44px] px-4 rounded-2xl border text-[14px] transition-all cursor-pointer font-heading ${
                       isSelected
-                        ? 'bg-[#0A1680] text-white border-[#0A1680] font-bold shadow-xs'
-                        : 'bg-white text-slate-700 border-slate-200 hover:border-[#93B2F8] font-medium'
+                        ? 'bg-[#0F2C59] text-white border-[#0F2C59] font-bold shadow-xs'
+                        : 'bg-white text-slate-700 border-slate-300 hover:border-[#93B2F8] font-medium'
                     }`}
+                    style={{ border: isSelected ? '2px solid #0F2C59' : '1.5px solid #cbd5e1' }}
                   >
-                    {vibe}
+                    {isSelected && <span className="text-white text-xs font-black">✓</span>}
+                    <span>{vibe}</span>
                   </button>
                 );
               }
@@ -182,13 +184,15 @@ export const WizardStep5Preferences: React.FC<WizardStep5PreferencesProps> = ({
                   key={trans}
                   type="button"
                   onClick={() => selectTrans(trans)}
-                  className={`min-h-[44px] flex items-center justify-center px-1 rounded-xl border text-[13px] transition-all cursor-pointer font-heading ${
+                  className={`min-h-[44px] flex items-center justify-center gap-1 px-1 rounded-xl border text-[13px] transition-all cursor-pointer font-heading ${
                     isSelected
-                      ? 'bg-[#0A1680] text-white border-[#0A1680] font-bold shadow-xs'
-                      : 'bg-white text-slate-700 border-slate-200 hover:border-[#93B2F8]'
+                      ? 'bg-[#0F2C59] text-white border-[#0F2C59] font-bold shadow-xs'
+                      : 'bg-white text-slate-700 border-slate-300 hover:border-[#93B2F8]'
                   }`}
+                  style={{ border: isSelected ? '2px solid #0F2C59' : '1.5px solid #cbd5e1' }}
                 >
-                  {trans}
+                  {isSelected && <span className="text-white text-[11px] font-black">✓</span>}
+                  <span>{trans}</span>
                 </button>
               );
             })}
@@ -210,13 +214,15 @@ export const WizardStep5Preferences: React.FC<WizardStep5PreferencesProps> = ({
                   key={stay}
                   type="button"
                   onClick={() => selectAcc(stay)}
-                  className={`min-h-[44px] flex items-center justify-center px-1 rounded-xl border text-[13px] transition-all cursor-pointer font-heading ${
+                  className={`min-h-[44px] flex items-center justify-center gap-1 px-1 rounded-xl border text-[13px] transition-all cursor-pointer font-heading ${
                     isSelected
-                      ? 'bg-[#0A1680] text-white border-[#0A1680] font-bold shadow-xs'
-                      : 'bg-white text-slate-700 border-slate-200 hover:border-[#93B2F8]'
+                      ? 'bg-[#0F2C59] text-white border-[#0F2C59] font-bold shadow-xs'
+                      : 'bg-white text-slate-700 border-slate-300 hover:border-[#93B2F8]'
                   }`}
+                  style={{ border: isSelected ? '2px solid #0F2C59' : '1.5px solid #cbd5e1' }}
                 >
-                  {stay}
+                  {isSelected && <span className="text-white text-[11px] font-black">✓</span>}
+                  <span>{stay}</span>
                 </button>
               );
             })}
