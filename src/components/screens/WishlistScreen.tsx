@@ -243,9 +243,9 @@ export const WishlistScreen: React.FC<WishlistScreenProps> = ({
           {collections.length === 0 && (
             <div className="py-16 text-center flex flex-col items-center justify-center gap-3">
               <img
-                src="/images/mascot-map.png"
+                src="/images/mascot-thinking.png"
                 alt="Bé Sao Lumi"
-                className="w-16 h-16 object-contain animate-mascot-float"
+                className="w-11 h-11 object-contain animate-mascot-float"
               />
               <h3 className="text-base font-bold text-[#0A1680] font-heading">Chưa có bộ sưu tập nào</h3>
               <p className="text-xs text-slate-500 max-w-[240px]">Cùng Bé Sao Lumi tạo bộ sưu tập đầu tiên để gom các điểm đến yêu thích nhé!</p>
@@ -290,9 +290,9 @@ export const WishlistScreen: React.FC<WishlistScreenProps> = ({
           {places.filter((p) => p.isSaved).length === 0 && (
             <div className="py-16 text-center flex flex-col items-center justify-center gap-3">
               <img
-                src="/images/mascot-cool.png"
+                src="/images/mascot-working.png"
                 alt="Bé Sao Lumi"
-                className="w-16 h-16 object-contain animate-mascot-float"
+                className="w-11 h-11 object-contain animate-mascot-float"
               />
               <h3 className="text-base font-bold text-[#0A1680] font-heading">Chưa có địa điểm đã lưu</h3>
               <p className="text-xs text-slate-500 max-w-[240px]">Khám phá thêm các điểm đến thú vị và thả tim để lưu lại cùng Bé Sao nhé!</p>

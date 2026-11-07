@@ -87,11 +87,11 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
       <section className="relative z-20 px-6 pb-6 pt-2 flex flex-col justify-end text-center">
         {/* Mascot Greeting with Brand Aura */}
         <div className="relative flex justify-center mb-1.5">
-          <div className="absolute w-36 h-36 rounded-full mascot-halo pointer-events-none -top-2" />
+          <div className="absolute w-24 h-24 rounded-full mascot-halo pointer-events-none -top-1" />
           <img
             src="/images/mascot-hero.png"
             alt="Bé Sao Lumi - Bạn đồng hành TravAly"
-            className="relative w-32 h-auto object-contain drop-shadow-md animate-mascot-float"
+            className="relative w-20 h-20 object-contain drop-shadow-md animate-mascot-float"
           />
         </div>
 
@@ -192,7 +192,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
                   Đăng nhập để tiếp tục hành trình cùng TravAly
                 </p>
               </div>
-              <img src="/images/mascot-cool.png" alt="TravAly Mascot" className="w-12 h-12 object-contain shrink-0 ml-2" />
+              <img src="/images/mascot-waving.png" alt="TravAly Mascot" className="w-9 h-9 object-contain shrink-0 ml-2" />
             </div>
 
             <form onSubmit={handleLoginSubmit} className="space-y-3.5 text-left">
@@ -351,7 +351,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
                   Cùng bé Sao Lumi kiến tạo những chuyến du lịch đáng nhớ
                 </p>
               </div>
-              <img src="/images/mascot-suitcase.png" alt="TravAly Mascot" className="w-12 h-12 object-contain shrink-0 ml-2" />
+              <img src="/images/mascot-laptop-happy.png" alt="TravAly Mascot" className="w-9 h-9 object-contain shrink-0 ml-2" />
             </div>
 
             <form onSubmit={handleSignupSubmit} className="space-y-3 text-left">

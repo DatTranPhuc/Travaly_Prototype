@@ -153,7 +153,7 @@ export const PackingListScreen: React.FC<PackingListScreenProps> = ({
               <img
                 src="/images/mascot-suitcase.png"
                 alt="Bé Sao Lumi kéo vali"
-                className="w-12 h-12 object-contain animate-mascot-float drop-shadow-xs shrink-0"
+                className="w-9 h-9 object-contain animate-mascot-float drop-shadow-xs shrink-0"
               />
               <div>
                 <span className="text-[11px] text-[#454652] block font-medium">Bé Sao Lumi đồng hành</span>
@@ -252,9 +252,9 @@ export const PackingListScreen: React.FC<PackingListScreenProps> = ({
           {filteredItems.length === 0 && (
             <div className="py-10 text-center flex flex-col items-center justify-center gap-2">
               <img
-                src="/images/mascot-cool.png"
+                src="/images/mascot-thinking.png"
                 alt="Bé Sao Lumi"
-                className="w-14 h-14 object-contain animate-mascot-float opacity-80"
+                className="w-11 h-11 object-contain animate-mascot-float opacity-80"
               />
               <p className="text-slate-600 text-xs font-semibold">Chưa có món đồ nào trong danh mục này</p>
               <span className="text-[11px] text-slate-400">Bấm nút bên dưới để thêm món đồ cùng Bé Sao nhé!</span>

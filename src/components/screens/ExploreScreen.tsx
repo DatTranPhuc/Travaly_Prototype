@@ -210,7 +210,7 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
 
         {activeTab === 'ai' && (
           <div className="bg-gradient-to-r from-[#FFFDF2] via-[#FFF9E6] to-[#EFF3FF] border border-[#F1B94C]/45 rounded-2xl p-3.5 flex items-center gap-3.5 shadow-xs">
-            <img src="/images/mascot-map.png" alt="Bé Sao Lumi" className="w-13 h-13 object-contain animate-mascot-float shrink-0 drop-shadow-xs" />
+            <img src="/images/mascot-working.png" alt="Bé Sao Lumi" className="w-10 h-10 object-contain animate-mascot-float shrink-0 drop-shadow-xs" />
             <div className="text-left flex-1 min-w-0">
               <span className="text-[10px] font-bold tracking-wider uppercase text-[#D97706] font-heading flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#F1B94C] animate-pulse" /> GỢI Ý TỪ BÉ SAO LUMI

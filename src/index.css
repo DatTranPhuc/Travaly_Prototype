@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300..1000;1,300..1000&family=Be+Vietnam+Pro:ital,wght@0,500;0,600;0,700;0,800;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300..1000;1,300..1000&family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;0,700;0,800;1,700&display=swap');
 @import "tailwindcss";
 
 @font-face {
@@ -11,35 +11,35 @@
 }
 
 @theme {
-  --color-primary: #0A1680;
-  --color-secondary: #93B2F8;
-  --color-highlight: #FBEDB0;
-  --color-accent: #F1B94C;
-  --color-canvas: #FCFDFF;
+  --color-primary: #0F2C59;
+  --color-secondary: #86C5FF;
+  --color-highlight: #FFF8E6;
+  --color-accent: #FFA62B;
+  --color-canvas: #F4F8FD;
   --color-surface: #FFFFFF;
-  --color-border: #E8EEFB;
-  --color-text-primary: #191C1E;
-  --color-text-secondary: #454652;
+  --color-border: transparent;
+  --color-text-primary: #0F2C59;
+  --color-text-secondary: #4A5F7A;
   --color-destructive: #BA1A1A;
   --color-success: #16A34A;
 
-  --color-brand-primary: #0A1680;
-  --color-brand-ocean: #0A1680;
-  --color-brand-secondary: #93B2F8;
-  --color-brand-sky: #93B2F8;
-  --color-brand-butter: #FBEDB0;
-  --color-brand-accent: #F1B94C;
-  --color-brand-gold: #F1B94C;
-  --color-brand-canvas: #FCFDFF;
+  --color-brand-primary: #0F2C59;
+  --color-brand-ocean: #0F2C59;
+  --color-brand-secondary: #86C5FF;
+  --color-brand-sky: #86C5FF;
+  --color-brand-butter: #FFF8E6;
+  --color-brand-accent: #FFA62B;
+  --color-brand-gold: #FFA62B;
+  --color-brand-canvas: #F4F8FD;
   --color-brand-surface: #FFFFFF;
-  --color-brand-border: #E8EEFB;
-  --color-brand-text-primary: #191C1E;
-  --color-brand-text-secondary: #454652;
+  --color-brand-border: transparent;
+  --color-brand-text-primary: #0F2C59;
+  --color-brand-text-secondary: #4A5F7A;
   --color-brand-destructive: #BA1A1A;
   --color-brand-success: #16A34A;
   
-  --font-sans: 'Nunito Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-heading: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 @layer utilities {
@@ -52,9 +52,9 @@
   }
 
   .travaiy-card {
-    background-color: #FFFFFF;
-    border: 1px solid #E8EEFB;
-    box-shadow: 0 4px 20px -2px rgba(10, 22, 128, 0.06);
+    background-color: #FFFFFF !important;
+    border: none !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06) !important;
     border-radius: 1.25rem; /* 20px */
   }
 
@@ -65,22 +65,33 @@
     height: 50px;
     min-height: 48px;
     border-radius: 9999px;
-    font-family: 'Be Vietnam Pro', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 700;
     font-size: 0.9375rem;
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    background-color: #0F2C59;
+    color: #FFFFFF;
+    border: none !important;
+    box-shadow: 0 2px 8px rgba(15, 44, 89, 0.22);
+  }
+
+  .travaiy-pill-btn.secondary {
+    background-color: #FFFFFF;
+    color: #0F2C59;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   }
 
   .travaiy-scrim {
-    background-color: rgba(10, 22, 128, 0.45);
-    backdrop-filter: blur(3px);
+    background-color: rgba(15, 44, 89, 0.45);
+    backdrop-filter: blur(4px);
   }
 
   .travaiy-sheet {
     background-color: #FFFFFF;
     border-top-left-radius: 28px;
     border-top-right-radius: 28px;
-    box-shadow: 0 -8px 30px rgba(10, 22, 128, 0.12);
+    box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.08);
+    border: none !important;
   }
 }
 
@@ -97,20 +108,20 @@ body,
 .travel-screen small,
 .travel-screen b:not(h1 b):not(h2 b):not(h3 b),
 .travel-screen li {
-  font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: #FCFDFF;
-  color: #191C1E;
+  background-color: #F4F8FD;
+  color: #0F2C59;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6, .font-heading, .travaiy-pill-btn, .home-wordmark {
-  font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 @keyframes floatSlow {
@@ -141,165 +152,743 @@ h1, h2, h3, h4, h5, h6, .font-heading, .travaiy-pill-btn, .home-wordmark {
   background: radial-gradient(circle, rgba(251, 237, 176, 0.45) 0%, rgba(147, 178, 248, 0.15) 50%, transparent 75%);
 }
 
-/* Home Screen: Thẻ & Nút phối theo màu Bé Sao */
-.home-top {
-  background: linear-gradient(180deg, #FFFFFF 0%, rgba(252, 253, 255, 0.85) 100%);
+/* ==========================================================
+   TRAVALY APP-WIDE DESIGN SYSTEM SYNCHRONIZATION:
+   - NỀN TOÀN APP: Loang Xanh Biển (#86C5FF) & Trắng Tinh Khôi (#FFFFFF) trên nền #F4F8FD
+   - NÚT BẤM & THẺ: Màu Trắng Đơn Sắc Thuần Khiết (#FFFFFF) - KHÔNG LOANG
+   - NỔI TỰ NHIÊN: Nổi bật trên nền xanh bằng tương phản trắng phẳng + bóng nhẹ tự nhiên (0 2px 10px rgba(0,0,0,0.06))
+   - BỎ TOÀN BỘ VIỀN: (border: none !important; outline: none !important)
+   - KHÔNG BÓNG MỜ MÀU VÀNG
+   - CHỮ: Xanh Amalfi Navy Đậm (#0F2C59) Tương Phản Sắc Nét, phụ đề Slate Gray (#4A5F7A)
+   - ICONS: Màu Vàng Citrus Zest (#FFA62B) Nổi Bật & Tươi Tắn App-wide
+   - NGOẠI LỆ: Giữ nguyên chế độ phòng tối studio của Photobooth (#070D34) & tim đã thích (#E11D48)
+   ========================================================== */
+
+/* 1. Màn hình & Nền toàn ứng dụng: NỀN LOANG XANH TRẮNG MỊN MÀNG (Amalfi Coastal Gradient) */
+.travel-device,
+.travel-screen:not(.photobooth-screen):not(.booth-screen),
+.home-reference,
+.travel-screen:not(.photobooth-screen):not(.booth-screen) .travel-scroll,
+.travel-screen:not(.photobooth-screen):not(.booth-screen) .daily-scroll,
+.travel-screen:not(.photobooth-screen):not(.booth-screen) .wizard-body,
+.travel-screen:not(.photobooth-screen):not(.booth-screen) .polish-stack,
+.home-reference .home-scroll,
+.travel-device main:not(.photobooth-screen),
+div[class*="min-h-"][class*="bg-[#FCFDFF]"],
+div[class*="min-h-"][class*="bg-[#F4F8FD]"] {
+  --color-primary: #0F2C59;
+  --color-secondary: #86C5FF;
+  --color-accent: #FFA62B;
+  --color-cream: #FFFFFF;
+  --travel-primary: #0F2C59;
+  --travel-secondary: #86C5FF;
+  --travel-accent: #FFA62B;
+  --travel-canvas: #F4F8FD;
+  position: relative;
+  background:
+    radial-gradient(ellipse 75% 45% at 10% 28%, rgba(134, 197, 255, 0.45) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 45% at 92% 44%, rgba(255, 255, 255, 0.95) 0%, rgba(198, 229, 255, 0.35) 45%, transparent 65%),
+    radial-gradient(ellipse 80% 50% at 15% 72%, rgba(134, 197, 255, 0.4) 0%, transparent 60%),
+    radial-gradient(ellipse 75% 45% at 88% 88%, rgba(200, 230, 255, 0.5) 0%, transparent 60%),
+    linear-gradient(180deg, #FFFFFF 0%, #EEF6FF 50%, #F5F9FD 100%) !important;
+  background-attachment: local !important;
+  color: #0F2C59;
 }
 
-.home-search {
-  background: #FFFFFF !important;
-  border: 1.5px solid #DCE7FA !important;
-  box-shadow: 0 4px 18px -4px rgba(10, 22, 128, 0.05) !important;
-  transition: all 0.2s ease;
-}
-.home-search:hover {
-  border-color: #93B2F8 !important;
-  box-shadow: 0 6px 20px -4px rgba(10, 22, 128, 0.08) !important;
-}
-.home-search .home-search-arrow {
-  background: #FBEDB0 !important;
-  color: #0A1680 !important;
-  transition: transform 0.2s ease;
-}
-.home-search:hover .home-search-arrow {
-  transform: scale(1.05);
+/* Triệt tiêu 100% các lớp pseudo-element mờ đè lên bề mặt nội dung (ngăn chặn sương mờ che nút) */
+.travel-device::before,
+.travel-device::after,
+.travel-screen::before,
+.travel-screen::after,
+.home-reference::before,
+.home-reference::after {
+  display: none !important;
+  content: none !important;
 }
 
-/* Quick Links: Thiết kế đồng bộ, thanh lịch và sạch sẽ */
-.home-quick-links button {
-  background: #FFFFFF !important;
-  border: 1.5px solid #DCE7FA !important;
-  color: #0A1680 !important;
-  box-shadow: 0 3px 12px -3px rgba(10, 22, 128, 0.05);
-  transition: all 0.2s ease;
+/* Triệt tiêu 100% gradient / loang màu trên mọi nút bấm và thẻ */
+.travel-device button,
+.travel-screen button,
+.travel-device [role="button"],
+.travel-screen [role="button"] {
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
-.home-quick-links button:hover {
-  border-color: #93B2F8 !important;
+
+/* Nút được chọn (Active / Selected): Đơn sắc Xanh Amalfi Navy (#0F2C59) thuần khiết, TUYỆT ĐỐI KHÔNG LOANG */
+.travel-device button[class*="bg-[#0A1680]"],
+.travel-device button[class*="bg-[#0F2C59]"],
+.travel-device button.bg-primary,
+.travel-device .travel-pill:not(.secondary),
+.travel-device .travaiy-pill-btn:not(.secondary),
+.travel-device .travel-chips > button.active,
+.travel-device .daily-rail > button.active,
+.travel-device .map-layer-chips > button.active,
+.travel-device .camera-mode-tabs button[aria-pressed="true"],
+.travel-device .polish-segments button[aria-pressed="true"],
+.travel-device .wizard-calendar button.edge,
+.travel-device .selected .wizard-stay-price > button,
+.travel-screen button[class*="bg-[#0A1680]"],
+.travel-screen button[class*="bg-[#0F2C59]"],
+.travel-screen .travel-pill:not(.secondary),
+.travel-screen .travel-chips > button.active,
+.travel-screen .daily-rail > button.active {
+  background-color: #0F2C59 !important;
+  background-image: none !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  box-shadow: 0 2px 8px rgba(15, 44, 89, 0.22) !important;
+}
+
+/* Nút không chọn (Inactive / Unselected): Đơn sắc Trắng tinh khôi (#FFFFFF), KHÔNG LOANG, NỔI TỰ NHIÊN */
+.travel-device button[class*="bg-white"],
+.travel-device button.bg-white,
+.travel-screen button[class*="bg-white"],
+.travel-screen button.bg-white,
+.travel-device .travel-chips > button:not(.active),
+.travel-device .daily-rail > button:not(.active) {
+  background-color: #FFFFFF !important;
+  background-image: none !important;
+  color: #0F2C59 !important;
+  border: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* 2. Triệt tiêu 100% viền của mọi nút, thẻ, header, input toàn app (BỎ VIỀN) */
+.travel-device button,
+.travel-device a,
+.travel-device input,
+.travel-device select,
+.travel-device textarea,
+.travel-device section,
+.travel-device article,
+.travel-device nav,
+.travel-device header,
+.travel-device div:not(.leaflet-pane):not(.leaflet-tile-container),
+.travel-screen:not(.photobooth-screen):not(.booth-screen) button,
+.travel-screen:not(.photobooth-screen):not(.booth-screen) a,
+.travel-screen:not(.photobooth-screen):not(.booth-screen) input,
+.travel-screen:not(.photobooth-screen):not(.booth-screen) select,
+.travel-screen:not(.photobooth-screen):not(.booth-screen) textarea,
+.travel-screen:not(.photobooth-screen):not(.booth-screen) section,
+.travel-screen:not(.photobooth-screen):not(.booth-screen) article,
+.travel-screen:not(.photobooth-screen):not(.booth-screen) nav,
+.travel-screen:not(.photobooth-screen):not(.booth-screen) header,
+.travel-screen:not(.photobooth-screen):not(.booth-screen) div:not(.leaflet-pane):not(.leaflet-tile-container),
+.home-reference button,
+.home-reference a,
+.home-reference input,
+.home-reference section,
+.home-reference article,
+.home-reference nav,
+.home-reference header,
+.home-reference div {
+  border: none !important;
+  outline: none !important;
+}
+
+/* 3. Toàn bộ UI icon (Lucide & Action SVG): Màu Vàng Citrus Zest (#FFA62B) */
+.travel-device .lucide,
+.travel-device svg:not(.leaflet-zoom-animated),
+.travel-screen:not(.photobooth-screen):not(.booth-screen) .lucide,
+.travel-screen:not(.photobooth-screen):not(.booth-screen) svg:not(.leaflet-zoom-animated),
+.travel-screen:not(.photobooth-screen):not(.booth-screen) .travel-icon svg,
+.travel-screen:not(.photobooth-screen):not(.booth-screen) .travel-section-title svg,
+nav[aria-label="Thanh điều hướng"] svg {
+  color: #FFA62B !important;
+  stroke: #FFA62B !important;
+}
+
+/* Ngoại lệ biểu tượng đã bấm Like / Nguy hiểm / Cảnh báo: Màu Đỏ Hoa Hồng (#E11D48) */
+.travel-device [aria-pressed="true"] svg.lucide-heart,
+.travel-device [aria-pressed="true"] svg[class*="heart"],
+.travel-device .stay-save[aria-pressed="true"] svg,
+.travel-device .community-preview-actions > button[aria-pressed="true"] svg,
+.travel-device .text-red-500 svg,
+.travel-device .text-rose-500 svg,
+.travel-screen:not(.photobooth-screen) [aria-pressed="true"] svg.lucide-heart,
+.travel-screen:not(.photobooth-screen) .stay-save[aria-pressed="true"] svg,
+.travel-screen:not(.photobooth-screen) .community-preview-actions > button[aria-pressed="true"] svg {
+  color: #E11D48 !important;
+  stroke: #E11D48 !important;
+  fill: #E11D48 !important;
+}
+
+/* 4. Thẻ & Khối bề mặt: Trắng Đơn Sắc Thuần Khiết (#FFFFFF) - KHÔNG LOANG, NỔI TỰ NHIÊN */
+.travel-device .travaiy-card,
+.travel-device .stay-card,
+.travel-device .stay-card-body,
+.travel-device .stay-search,
+.travel-device .daily-activity-button,
+.travel-device .wizard-stay-card,
+.travel-device .wizard-date-card,
+.travel-device .wizard-info,
+.travel-device .wizard-lodging-dates,
+.travel-device .wizard-summary-stay,
+.travel-device .proposal-day,
+.travel-device .hotel-budget-card,
+.travel-device .hotel-period,
+.travel-device .polish-card,
+.travel-device .trip-progress-card,
+.travel-device .overview-stay-card,
+.travel-device .overview-hotel-compact,
+.travel-device .overview-day-card,
+.travel-device .overview-secondary-links,
+.travel-device .explore-hotel-card,
+.travel-device .community-preview,
+.travel-device .spend-summary,
+.travel-device .create-method-card,
+.travel-device .manual-intro,
+.travel-device .manual-trip-heading,
+.travel-device .profile-plan-card,
+.travel-device .map-search-overlay,
+.travel-device .home-active-trip > button,
+.travel-device .home-quick-links button,
+.travel-device .home-search,
+.travel-device .home-saved-link,
+.travel-device .adaptive-notice,
+.travel-device .home-notification,
+.travel-screen:not(.photobooth-screen) .stay-card,
+.travel-screen:not(.photobooth-screen) .stay-card-body,
+.travel-screen:not(.photobooth-screen) .daily-activity-button,
+.travel-screen:not(.photobooth-screen) .wizard-stay-card,
+.travel-screen:not(.photobooth-screen) .wizard-date-card,
+.travel-screen:not(.photobooth-screen) .proposal-day,
+.travel-screen:not(.photobooth-screen) .community-preview {
+  background: #FFFFFF !important;
+  border: none !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Hiệu ứng rê chuột thẻ bề mặt nhẹ nhàng */
+.travel-device .stay-card:hover,
+.travel-device .daily-activity-button:hover,
+.travel-device .wizard-stay-card:hover,
+.travel-device .explore-hotel-card:hover,
+.travel-device .home-active-trip > button:hover,
+.travel-device .home-quick-links button:hover,
+.travel-device .home-search:hover,
+.travel-device .home-saved-link:hover {
+  background: #FFFFFF !important;
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.09) !important;
   transform: translateY(-1px);
 }
-.home-quick-links button svg {
-  color: #0A1680 !important;
+
+/* 5. Nút bấm chính (Primary Action Buttons / Pills): Xanh Amalfi Navy Sang Trọng */
+.travel-device .travel-pill:not(.secondary),
+.travel-device .travaiy-pill-btn:not(.secondary),
+.travel-device button.bg-\[\#0A1680\],
+.travel-device button.bg-\[\#0F2C59\],
+.travel-screen:not(.photobooth-screen) .travel-pill:not(.secondary),
+.travel-screen:not(.photobooth-screen) .travaiy-pill-btn:not(.secondary) {
+  background: #0F2C59 !important;
+  color: #FFFFFF !important;
+  font-weight: 750 !important;
+  border: none !important;
+  box-shadow: 0 3px 10px rgba(15, 44, 89, 0.22) !important;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
 }
 
-/* Thẻ chuyến đi đang tiếp tục */
-.home-active-trip > button {
+.travel-device .travel-pill:not(.secondary):hover,
+.travel-device .travaiy-pill-btn:not(.secondary):hover,
+.travel-device button.bg-\[\#0A1680\]:hover,
+.travel-device button.bg-\[\#0F2C59\]:hover,
+.travel-screen:not(.photobooth-screen) .travel-pill:not(.secondary):hover {
+  background: #153B75 !important;
+  box-shadow: 0 5px 16px rgba(15, 44, 89, 0.28) !important;
+  transform: translateY(-1px);
+}
+
+.travel-device .travel-pill:not(.secondary):active,
+.travel-device .travaiy-pill-btn:not(.secondary):active,
+.travel-screen:not(.photobooth-screen) .travel-pill:not(.secondary):active {
+  transform: scale(0.98);
+}
+
+/* Huy hiệu tròn mũi tên hành động: Icon Vàng Citrus */
+.travel-device .travel-arrow,
+.travel-screen:not(.photobooth-screen) .travel-arrow {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #FFA62B !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 6. Nút bấm phụ (Secondary Action Buttons / Pills): Trắng Đơn Sắc */
+.travel-device .travel-pill.secondary,
+.travel-device .travaiy-pill-btn.secondary,
+.travel-screen:not(.photobooth-screen) .travel-pill.secondary,
+.travel-screen:not(.photobooth-screen) .travaiy-pill-btn.secondary {
   background: #FFFFFF !important;
-  border: 1.5px solid #DCE7FA !important;
-  box-shadow: 0 4px 18px -4px rgba(10, 22, 128, 0.05);
+  color: #0F2C59 !important;
+  font-weight: 750 !important;
+  border: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+}
+
+.travel-device .travel-pill.secondary:hover,
+.travel-device .travaiy-pill-btn.secondary:hover,
+.travel-screen:not(.photobooth-screen) .travel-pill.secondary:hover {
+  background: #F8FAFC !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.09) !important;
+  transform: translateY(-1px);
+}
+
+/* 7. Nút tròn Icon Hành Động (.travel-icon): Trắng Đơn Sắc - Icon Vàng Citrus */
+.travel-device .travel-icon,
+.travel-screen:not(.photobooth-screen) .travel-icon {
+  background: #FFFFFF !important;
+  border: none !important;
+  color: #FFA62B !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07) !important;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.travel-device .travel-icon:hover,
+.travel-screen:not(.photobooth-screen) .travel-icon:hover {
+  background: #F8FAFC !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  transform: translateY(-1px);
+}
+
+.travel-device .travel-icon:active,
+.travel-screen:not(.photobooth-screen) .travel-icon:active {
+  transform: scale(0.96);
+}
+
+.travel-device .travel-icon svg,
+.travel-screen:not(.photobooth-screen) .travel-icon svg {
+  color: #FFA62B !important;
+  stroke: #FFA62B !important;
+}
+
+.travel-device .travel-icon.chosen,
+.travel-screen:not(.photobooth-screen) .travel-icon.chosen {
+  background: #0F2C59 !important;
+  color: #FFA62B !important;
+}
+
+.travel-device .travel-icon i,
+.home-reference .home-top i {
+  background: #FFA62B !important;
+  box-shadow: 0 0 0 2px #FFFFFF !important;
+}
+
+/* 8. Header & Thanh tiêu đề trên cùng: Trắng Mờ Kính Cao Cấp */
+.travel-device .travel-header,
+.travel-device .wizard-header,
+.travel-device .home-top,
+.travel-device header:not(.booth-header):not(.photo-top),
+.travel-screen:not(.photobooth-screen) .travel-header,
+.travel-screen:not(.photobooth-screen) .wizard-header {
+  position: relative;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(18px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+  border: none !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04) !important;
+}
+
+.travel-device .wizard-footer,
+.travel-screen:not(.photobooth-screen) .wizard-footer {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(18px) !important;
+  border: none !important;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* 9. Thanh điều hướng dưới cùng (BottomNav): Trắng Kính Cao Cấp - Chữ Trắng, Icon Vàng */
+nav[aria-label="Thanh điều hướng"] {
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: none !important;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08) !important;
+}
+
+nav[aria-label="Thanh điều hướng"] svg {
+  color: #FFA62B !important;
+  stroke: #FFA62B !important;
+}
+
+nav[aria-label="Thanh điều hướng"] button.bg-\[\#0A1680\],
+nav[aria-label="Thanh điều hướng"] button.bg-\[\#0F2C59\] {
+  background: #0F2C59 !important;
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  border: none !important;
+  box-shadow: 0 2px 8px rgba(15, 44, 89, 0.25) !important;
+}
+
+nav[aria-label="Thanh điều hướng"] button.bg-\[\#0A1680\] span,
+nav[aria-label="Thanh điều hướng"] button.bg-\[\#0F2C59\] span {
+  color: #FFFFFF !important;
+}
+
+nav[aria-label="Thanh điều hướng"] button.bg-\[\#0A1680\] svg,
+nav[aria-label="Thanh điều hướng"] button.bg-\[\#0F2C59\] svg {
+  color: #FFA62B !important;
+  stroke: #FFA62B !important;
+}
+
+nav[aria-label="Thanh điều hướng"] span.bg-\[\#F1B94C\],
+nav[aria-label="Thanh điều hướng"] span.bg-\[\#FFA62B\] {
+  background: #FFA62B !important;
+  box-shadow: none !important;
+}
+
+/* Đồng bộ Quick Links trên Homescreen: Nền Trắng, Chữ Navy Sắc Nét, Icon Vàng */
+.travel-device .home-quick-links button,
+.travel-device .home-quick-links button:last-child {
+  background: #FFFFFF !important;
+  color: #0F2C59 !important;
+  border: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+}
+
+.travel-device .home-quick-links button span,
+.travel-device .home-quick-links button:last-child span {
+  color: #0F2C59 !important;
+  font-weight: 700 !important;
+}
+
+.travel-device .home-quick-links button svg,
+.travel-device .home-quick-links button:last-child svg {
+  color: #FFA62B !important;
+  stroke: #FFA62B !important;
+}
+
+/* 10. Chips & Nút lọc (Filter Pills) */
+.travel-device .travel-chips > button,
+.travel-device .map-layer-chips > button,
+.travel-device .camera-mode-tabs button,
+.travel-screen:not(.photobooth-screen) .travel-chips > button {
+  background: #FFFFFF !important;
+  border: none !important;
+  color: #4A5F7A !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05) !important;
   transition: all 0.2s ease;
 }
-.home-active-trip > button:hover {
-  border-color: #93B2F8 !important;
+
+.travel-device .travel-chips > button:hover,
+.travel-screen:not(.photobooth-screen) .travel-chips > button:hover {
+  background: #F8FAFC !important;
+  transform: translateY(-1px);
 }
-.home-active-trip .travel-eyebrow {
-  color: #0A1680 !important;
+
+.travel-device .travel-chips > button.active,
+.travel-device .map-layer-chips > button.active,
+.travel-device .camera-mode-tabs button[aria-pressed="true"],
+.travel-screen:not(.photobooth-screen) .travel-chips > button.active {
+  background: #0F2C59 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 3px 10px rgba(15, 44, 89, 0.22) !important;
+}
+
+/* 11. Hộp thoại & Bottom Sheets */
+.travel-device .travaiy-sheet,
+.travel-device .travel-modal-content,
+.travel-device .map-bottom-sheet,
+.travel-device .memory-bottom,
+.travel-screen:not(.photobooth-screen) .travaiy-sheet,
+.travel-screen:not(.photobooth-screen) .travel-modal-content {
+  background: #FFFFFF !important;
+  border: none !important;
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* 12. Chuẩn hóa toàn bộ THANH TÌM KIẾM toàn app: Trắng tinh, bo tròn, BỎ VIỀN, Nổi tự nhiên */
+.travel-device .home-search,
+.travel-device .stay-search,
+.travel-device .map-search-overlay,
+.travel-device div:has(> input[placeholder*="Tìm"]),
+.travel-device div:has(> input[placeholder*="thành phố"]),
+.travel-device div:has(> input[type="search"]),
+.travel-screen:not(.photobooth-screen) .home-search,
+.travel-screen:not(.photobooth-screen) .stay-search,
+.travel-screen:not(.photobooth-screen) .map-search-overlay {
+  background: #FFFFFF !important;
+  border: none !important;
+  outline: none !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06) !important;
+  transition: all 0.2s ease !important;
+}
+
+.travel-device .home-search:focus-within,
+.travel-device .stay-search:focus-within,
+.travel-device .map-search-overlay:focus-within,
+.travel-device div:has(> input[placeholder*="Tìm"]):focus-within,
+.travel-device div:has(> input[placeholder*="thành phố"]):focus-within {
+  box-shadow: 0 4px 16px rgba(15, 44, 89, 0.12) !important;
+  border: none !important;
+  outline: none !important;
+}
+
+/* Ô nhập chữ (Input) bên trong thanh tìm kiếm: TRONG SUỐT 100%, KHÔNG CÓ KHỐI XÁM, KHÔNG VIỀN, KHÔNG BÓNG CHÌM */
+.travel-device .home-search input,
+.travel-device .stay-search input,
+.travel-device .map-search-overlay input,
+.travel-device div:has(> input[placeholder*="Tìm"]) input,
+.travel-device div:has(> input[placeholder*="thành phố"]) input,
+.travel-device input[placeholder*="Tìm"],
+.travel-device input[placeholder*="thành phố"],
+.travel-device input[placeholder*="địa điểm"],
+.travel-device input[placeholder*="món ngon"],
+.travel-screen:not(.photobooth-screen) .stay-search input,
+.travel-screen:not(.photobooth-screen) input[placeholder*="Tìm"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  color: #0F2C59 !important;
+  font-size: 13.5px !important;
+  box-sizing: border-box !important;
+}
+
+/* Các ô nhập liệu form độc lập (Date, Number, Textarea, Select): Trắng tinh, Bỏ viền, Nổi nhẹ */
+.travel-device input:not([type="checkbox"]):not([type="radio"]):not([placeholder*="Tìm"]):not([placeholder*="thành phố"]):not([placeholder*="địa điểm"]),
+.travel-device textarea,
+.travel-device select,
+.travel-screen:not(.photobooth-screen) input:not([type="checkbox"]):not([type="radio"]):not([placeholder*="Tìm"]):not([placeholder*="thành phố"]):not([placeholder*="địa điểm"]),
+.travel-screen:not(.photobooth-screen) textarea,
+.travel-screen:not(.photobooth-screen) select {
+  background: #FFFFFF !important;
+  border: none !important;
+  outline: none !important;
+  color: #0F2C59 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+  border-radius: 14px !important;
+}
+
+.travel-device input::placeholder,
+.travel-device textarea::placeholder,
+.travel-screen input::placeholder,
+.travel-screen textarea::placeholder {
+  color: #8C9FB5 !important;
+  opacity: 1 !important;
+}
+
+.travel-device .stay-amenities span,
+.travel-device .stay-detail-amenities > div,
+.travel-device .daily-stay-anchor,
+.travel-device .overview-day-number,
+.travel-device .community-initial,
+.travel-device .adaptive-badge {
+  background: #F1F5F9 !important;
+  border: none !important;
+  color: #0F2C59 !important;
+}
+
+.travel-device .daily-activity-copy h3,
+.travel-device .wizard-stay-copy h3,
+.travel-device .proposal-day h2,
+.travel-device .hotel-budget-card h2,
+.travel-device .overview-hotel-compact b,
+.travel-device .overview-day-card strong,
+.travel-device .explore-hotel-card h3,
+.travel-device .create-method-card h2,
+.travel-device .polish-card h2 {
+  color: #0F2C59 !important;
+  font-weight: 750 !important;
+}
+
+.travel-device .daily-rail > button {
+  background: #FFFFFF !important;
+  border: none !important;
+  color: #4A5F7A !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+}
+
+.travel-device .daily-rail > button.active {
+  background: #0F2C59 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 3px 10px rgba(15, 44, 89, 0.25) !important;
+}
+
+.travel-device .daily-rail > button.active .day-rail-dot {
+  background: #FFA62B !important;
+}
+
+.travel-device .proposal-summary,
+.travel-device .hotel-budget-summary {
+  background: #0F2C59 !important;
+  border: none !important;
+  box-shadow: 0 4px 16px rgba(15, 44, 89, 0.2) !important;
+}
+
+/* 13. Toàn bộ chữ & Tiêu đề: Amalfi Navy (#0F2C59) & Slate Gray (#4A5F7A) */
+.travel-device h1:not([class*="text-white"]):not(.home-cinematic *):not(.today-hero *):not(.explore-stay-banner *):not(.journal-memory-card *):not(.overview-photo-hero *):not(.proposal-summary *):not(.hotel-budget-summary *):not(button:not(.secondary) *),
+.travel-device h2:not([class*="text-white"]):not(.home-cinematic *):not(.today-hero *):not(.explore-stay-banner *):not(.journal-memory-card *):not(.overview-photo-hero *):not(.proposal-summary *):not(.hotel-budget-summary *):not(button:not(.secondary) *),
+.travel-device h3:not([class*="text-white"]):not(.home-cinematic *):not(.today-hero *):not(.explore-stay-banner *):not(.journal-memory-card *):not(.overview-photo-hero *):not(.proposal-summary *):not(.hotel-budget-summary *):not(button:not(.secondary) *),
+.travel-device h4:not([class*="text-white"]):not(.home-cinematic *):not(.today-hero *):not(.explore-stay-banner *):not(.journal-memory-card *):not(.overview-photo-hero *):not(.proposal-summary *):not(.hotel-budget-summary *):not(button:not(.secondary) *),
+.travel-device h5:not([class*="text-white"]),
+.travel-device h6:not([class*="text-white"]),
+.travel-device b:not([class*="text-white"]):not([class*="text-slate-100"]):not(.home-cinematic *):not(.today-hero *):not(.explore-stay-banner *):not(.journal-memory-card *):not(.overview-photo-hero *):not(.proposal-summary *):not(.hotel-budget-summary *):not(button:not(.secondary) *),
+.travel-device strong:not([class*="text-white"]):not([class*="text-slate-100"]):not(.home-cinematic *):not(.today-hero *):not(.explore-stay-banner *):not(.journal-memory-card *):not(.overview-photo-hero *):not(.proposal-summary *):not(.hotel-budget-summary *):not(button:not(.secondary) *) {
+  color: #0F2C59;
+}
+
+.travel-device p:not([class*="text-white"]):not([class*="text-slate-100"]):not([class*="text-white/"]):not(.home-cinematic *):not(.today-hero *):not(.explore-stay-banner *):not(.journal-memory-card *):not(.overview-photo-hero *):not(.proposal-summary *):not(.hotel-budget-summary *):not(button:not(.secondary) *),
+.travel-device span:not(.font-heading):not([class*="text-white"]):not([class*="text-slate-100"]):not([class*="text-white/"]):not([class*="bg-"]):not(.travel-arrow):not(.home-cinematic *):not(.today-hero *):not(.explore-stay-banner *):not(.journal-memory-card *):not(.overview-photo-hero *):not(.proposal-summary *):not(.hotel-budget-summary *):not(button:not(.secondary) *),
+.travel-device small:not([class*="text-white"]):not([class*="text-slate-100"]):not([class*="text-white/"]):not(.home-cinematic *):not(.today-hero *):not(.explore-stay-banner *):not(.journal-memory-card *):not(.overview-photo-hero *):not(.proposal-summary *):not(.hotel-budget-summary *):not(button:not(.secondary) *) {
+  color: #4A5F7A;
+}
+
+.travel-device .travel-eyebrow {
+  color: #64748B !important;
   font-weight: 800 !important;
 }
 
-/* Thẻ Địa điểm bạn muốn ghé */
-.home-saved-link {
-  background: #FFFFFF !important;
-  border: 1.5px solid #DCE7FA !important;
-  color: #0A1680 !important;
-  font-weight: 650 !important;
-  box-shadow: 0 3px 14px -3px rgba(10, 22, 128, 0.05);
-  transition: all 0.2s ease;
-}
-.home-saved-link:hover {
-  border-color: #93B2F8 !important;
-  transform: translateY(-1px);
-}
-
-/* Nút Hero chính */
-.home-hero-copy button .travel-arrow {
-  background: #EFF3FF !important;
-  color: #0A1680 !important;
-}
-
-/* Thông báo hộp thoại */
-.home-notification {
-  background: #F0F5FF !important;
-  border: 1px solid rgba(147, 178, 248, 0.35) !important;
-}
-.home-notification b {
-  color: #0A1680 !important;
-}
-
-/* Chips du lịch có viền thương hiệu */
-.travel-chips > button {
-  background: #FFFFFF !important;
-  border: 1px solid #DDE7FA !important;
-  color: #454652 !important;
-}
-.travel-chips > button.active {
-  background: #0A1680 !important;
-  color: #FFFFFF !important;
-  border-color: #0A1680 !important;
-  box-shadow: 0 3px 10px rgba(10, 22, 128, 0.2);
-}
-
 /* ==========================================================
-   MASCOT GOLDEN ACCENTS & RADIANT TOUCHES
+   CHỐNG CHÌM CHỮ (EXPLICIT WHITE TEXT ON DARK SURFACES):
+   Mọi chữ, nhãn, số nằm trên nền tối hoặc nút chính đều hiển thị màu TRẮNG tinh khôi
    ========================================================== */
-
-/* 3. Ngôi sao đánh giá & chỉ số */
-.stay-title-row > span,
-.star-rating,
-.destination-stars,
-svg.lucide-star {
-  color: #F1B94C !important;
+.travel-device [class*="text-white"],
+.travel-device [class*="text-white/"],
+.travel-device .text-white,
+.travel-device [class*="text-slate-100"],
+.travel-device [class*="text-slate-200"],
+.travel-device [class*="text-[#fff]"],
+.travel-device [class*="text-gray-100"],
+.travel-device [class*="text-gray-200"],
+.travel-device [class*="bg-[#0A1680]"] *:not(svg):not(i):not(img):not(.travel-arrow *):not(button *),
+.travel-device [class*="bg-[#0F2C59]"] *:not(svg):not(i):not(img):not(.travel-arrow *):not(button *),
+.travel-device [class*="bg-slate-900"] *:not(svg):not(i):not(img):not(button *),
+.travel-device [class*="bg-slate-950"] *:not(svg):not(i):not(img):not(button *),
+.travel-device [class*="bg-black"] *:not(svg):not(i):not(img):not(button *),
+.travel-device .travel-pill:not(.secondary) *:not(svg):not(i):not(img):not(.travel-arrow *),
+.travel-device .travaiy-pill-btn:not(.secondary) *:not(svg):not(i):not(img),
+.travel-device .travel-chips > button.active,
+.travel-device .travel-chips > button.active *,
+.travel-device .map-layer-chips > button.active,
+.travel-device .map-layer-chips > button.active *,
+.travel-device .camera-mode-tabs button[aria-pressed="true"],
+.travel-device .camera-mode-tabs button[aria-pressed="true"] *,
+.travel-device .daily-rail > button.active,
+.travel-device .daily-rail > button.active *,
+.travel-device .polish-segments button[aria-pressed="true"],
+.travel-device .polish-segments button[aria-pressed="true"] *,
+.travel-device .wizard-calendar button.edge,
+.travel-device .wizard-calendar button.edge *,
+.travel-device .selected .wizard-stay-price > button,
+.travel-device .selected .wizard-stay-price > button *,
+.travel-device .home-cinematic h1,
+.travel-device .home-cinematic p,
+.travel-device .home-cinematic > span,
+.travel-device .home-hero-copy h1,
+.travel-device .home-hero-copy p,
+.travel-device .home-hero-copy > span,
+.travel-device .home-hero-caption,
+.travel-device .home-destination-strip span,
+.travel-device .explore-stay-banner h2,
+.travel-device .explore-stay-banner p,
+.travel-device .explore-stay-banner span,
+.travel-device .explore-stay-banner b,
+.travel-device .today-hero-info h2,
+.travel-device .today-hero-info p,
+.travel-device .today-hero-badges span,
+.travel-device .today-hero-status,
+.travel-device .today-hero-sample,
+.travel-device .today-checkin,
+.travel-device .today-checkin *,
+.travel-device .journal-memory-card h1,
+.travel-device .journal-memory-card h2,
+.travel-device .journal-memory-card p,
+.travel-device .journal-memory-card span,
+.travel-device .journal-memory-card b,
+.travel-device .overview-photo-hero h1,
+.travel-device .overview-photo-hero p,
+.travel-device .overview-photo-hero span,
+.travel-device .overview-photo-hero b,
+.travel-device .proposal-summary h1,
+.travel-device .proposal-summary h2,
+.travel-device .proposal-summary p,
+.travel-device .proposal-summary span,
+.travel-device .proposal-summary b,
+.travel-device .hotel-budget-summary strong,
+.travel-device .hotel-budget-summary span,
+.travel-device .hotel-budget-summary p,
+.travel-device .hotel-budget-summary small,
+.travel-device .hotel-budget-summary b,
+.travel-device .route-map-direct-link,
+.travel-device .route-map-direct-link * {
+  color: #FFFFFF !important;
 }
 
-/* 4. Timeline lộ trình ngày & tiến độ: Chấm tiến trình & thanh đo màu Bé Sao vàng ấm */
-.daily-timeline-dot {
-  background: #F1B94C !important;
-  border: 2px solid #FCFDFF !important;
-  box-shadow: 0 0 0 3px rgba(241, 185, 76, 0.3) !important;
+/* Nút trắng nằm bên trong vùng banner tối giữ màu chữ Navy sắc nét */
+.travel-device .home-hero-copy button,
+.travel-device .home-hero-copy button *,
+.travel-device .today-directions,
+.travel-device .today-directions * {
+  color: #0F2C59 !important;
+}
+.travel-device .home-hero-copy button .travel-arrow svg,
+.travel-device .today-directions svg {
+  color: #FFA62B !important;
+  stroke: #FFA62B !important;
 }
 
-.daily-rail > button.active .day-rail-dot {
-  background: #F1B94C !important;
-  box-shadow: 0 0 6px #F1B94C !important;
+/* 14. Đồng bộ màu thương hiệu qua tiện ích class cũ */
+[class*="bg-[#0A1680]"] {
+  background-color: #0F2C59 !important;
+}
+[class*="text-[#0A1680]"] {
+  color: #0F2C59 !important;
+}
+[class*="border-[#0A1680]"] {
+  border-color: #0F2C59 !important;
+}
+[class*="bg-[#F1B94C]"] {
+  background-color: #FFA62B !important;
+}
+[class*="text-[#F1B94C]"] {
+  color: #FFA62B !important;
+}
+[class*="bg-[#93B2F8]"] {
+  background-color: #86C5FF !important;
+}
+[class*="text-[#93B2F8]"] {
+  color: #86C5FF !important;
+}
+[class*="bg-[#FCFDFF]"],
+[class*="bg-[#f8f9fb]"],
+[class*="bg-[#f5faff]"] {
+  background-color: #F4F8FD !important;
 }
 
-.trip-progress-card [role=progressbar] > span {
-  background: linear-gradient(90deg, #F1B94C 0%, #E29B12 100%) !important;
-  box-shadow: 0 0 8px rgba(241, 185, 76, 0.3) !important;
+/* 15. Bảo toàn chế độ chụp ảnh Studio Photobooth (#070D34) */
+.photobooth-screen,
+.booth-screen {
+  background: #070D34 !important;
+  color: #EFF3FF !important;
 }
 
-/* 5. Thẻ Gợi ý AI & Thẻ nổi bật với viền ánh vàng */
-.ai-mascot-card,
-.mascot-gold-card {
-  background: linear-gradient(135deg, #FFFDF5 0%, #FFF9E6 60%, #F5F8FF 100%) !important;
-  border: 1.5px solid rgba(241, 185, 76, 0.45) !important;
-  box-shadow: 0 4px 18px -4px rgba(241, 185, 76, 0.12) !important;
+.photobooth-screen h1,
+.photobooth-screen h2,
+.photobooth-screen p,
+.booth-screen h1,
+.booth-screen h2,
+.booth-screen p {
+  color: #EFF3FF !important;
 }
 
-/* 6. Huy hiệu vàng ấm (Warm Gold Badge) */
-.badge-gold,
-.ai-companion-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 3px 8px;
-  border-radius: 9999px;
-  background: #FFF8E6;
-  border: 1px solid rgba(241, 185, 76, 0.6);
-  color: #8C5900;
-  font-size: 10px;
-  font-weight: 750;
+.photobooth-screen .travel-icon,
+.booth-screen .travel-icon {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #FFFFFF !important;
 }
 
-/* 7. Hào quang thương hiệu nhẹ nhàng phía sau Bé Sao */
-.mascot-halo {
-  background: radial-gradient(circle, rgba(251, 237, 176, 0.4) 0%, rgba(147, 178, 248, 0.15) 60%, transparent 80%);
-}
-
-/* 8. Focus & Active glow */
-.travel-screen button:focus-visible,
-.travel-screen a:focus-visible,
-.travel-screen [role=button]:focus-visible {
-  outline: 3px solid #F1B94C !important;
-  outline-offset: 3px;
+/* Focus viền vàng mỏng tiếp cận */
+.travel-device button:focus-visible,
+.travel-device a:focus-visible,
+.travel-device [role=button]:focus-visible {
+  outline: 2px solid #FFA62B !important;
+  outline-offset: 2px;
 }
 

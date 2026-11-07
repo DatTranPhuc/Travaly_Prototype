@@ -183,7 +183,7 @@ export const TripRecapFinalScreen: React.FC<TripRecapFinalScreenProps> = ({
             <img
               src="/images/mascot-waving.png"
               alt="TravAly Mascot"
-              className="w-10 h-10 object-contain drop-shadow-lg animate-mascot-float"
+              className="w-7 h-7 object-contain drop-shadow-lg animate-mascot-float"
             />
           </div>
         </div>
@@ -191,9 +191,9 @@ export const TripRecapFinalScreen: React.FC<TripRecapFinalScreenProps> = ({
         {/* Mascot Celebration Banner */}
         <div className="w-full mt-3 p-3 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-3">
           <img
-            src="/images/mascot-suitcase.png"
+            src="/images/mascot-camera.png"
             alt="Bé Sao Lumi chúc mừng"
-            className="w-10 h-10 object-contain shrink-0 drop-shadow-xs"
+            className="w-9 h-9 object-contain shrink-0 drop-shadow-xs"
           />
           <div className="min-w-0">
             <p className="text-[12px] font-bold text-white font-heading">Chuyến đi đáng nhớ cùng TravAly!</p>

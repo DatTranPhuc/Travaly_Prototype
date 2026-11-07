@@ -38,9 +38,9 @@ export function AlyAssistant(){
   setConversations(previous=>({...previous,[plan.id]:[...(previous[plan.id]||[]),{id:crypto.randomUUID(),role:'user',text:question},{id:crypto.randomUUID(),role:'assistant',...answer}]}));setDraft('');
  };
  return <>
-  <button type="button" className="aly-launcher" aria-label="Hỏi Lumi — trợ lý chuyến đi" aria-haspopup="dialog" aria-expanded={open} onClick={()=>setOpen(true)}><img src="/images/mascot-map.png" alt=""/><span>Hỏi Lumi</span><MessageCircle size={14}/></button>
+  <button type="button" className="aly-launcher" aria-label="Hỏi Lumi — trợ lý chuyến đi" aria-haspopup="dialog" aria-expanded={open} onClick={()=>setOpen(true)}><img src="/images/mascot-thinking.png" alt=""/><span>Hỏi Lumi</span><MessageCircle size={14}/></button>
   <ModalSheet isOpen={open} onClose={close} title="Lumi — trợ lý chuyến đi" className="aly-overlay" contentClassName="aly-panel" showHandleBar={false}>
-   <header className="aly-header"><img src="/images/mascot-map.png" alt=""/><div><h2>Lumi ở đây cùng bạn</h2><p>Trợ lý chuyến đi · Bản trải nghiệm</p></div><button type="button" aria-label="Thu gọn Lumi" onClick={close}><Minus size={21}/></button></header>
+   <header className="aly-header"><img src="/images/mascot-thinking.png" alt=""/><div><h2>Lumi ở đây cùng bạn</h2><p>Trợ lý chuyến đi · Bản trải nghiệm</p></div><button type="button" aria-label="Thu gọn Lumi" onClick={close}><Minus size={21}/></button></header>
    <div className="aly-context"><span/>{plan.destination} · {area}{['Lịch trình','Bản đồ'].includes(area)?` · Ngày ${dayNumber}`:''}</div>
    <div className="aly-messages" role="log" aria-label="Hội thoại với Lumi" aria-live="polite">
     {!messages.length&&<div className="aly-welcome"><Sparkles size={24}/><h3>Bạn muốn làm gì tiếp theo?</h3><p>Xem lịch, tra chi tiêu hay tìm đường — mình đã biết chuyến đi bạn đang xem.</p></div>}

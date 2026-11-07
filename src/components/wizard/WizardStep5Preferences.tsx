@@ -41,7 +41,7 @@ export const WizardStep5Preferences: React.FC<WizardStep5PreferencesProps> = ({
   );
   const [isAccordionOpen, setIsAccordionOpen] = useState<boolean>(true);
   const [placesList, setPlacesList] = useState<string[]>(
-    mustVisitPlaces || ['Cầu Vàng', 'Bán đảo Sơn Trà', 'Phố cổ Hội An']
+    mustVisitPlaces || ['Bưu điện Thành phố', 'Thảo Cầm Viên', 'Phố cổ Hội An']
   );
   const [noteText, setNoteText] = useState<string>(notes || '');
   const [showAddPlaceSheet, setShowAddPlaceSheet] = useState<boolean>(false);
@@ -112,11 +112,11 @@ export const WizardStep5Preferences: React.FC<WizardStep5PreferencesProps> = ({
   };
 
   return (
-    <div className="relative w-full h-full min-h-[844px] bg-[#FCFDFF] flex flex-col justify-between overflow-hidden select-none text-slate-800">
+    <div className="relative w-full h-full min-h-0 bg-[#FCFDFF] flex flex-col justify-between overflow-hidden select-none text-slate-800">
       {/* Top Header */}
       <header className="pt-2 px-5 shrink-0 bg-[#FCFDFF] z-20">
         <IOSStatusBar light={false} />
-        <div className="flex items-center justify-between pt-1 pb-2">
+        <div className="grid grid-cols-[36px_1fr_36px] items-center pt-1 pb-2">
           <button
             onClick={onBack}
             aria-label="Quay lại"
@@ -127,17 +127,18 @@ export const WizardStep5Preferences: React.FC<WizardStep5PreferencesProps> = ({
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
             </svg>
           </button>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center text-center">
             <h1 className="plan-header-title">
               Sở thích chuyến đi
             </h1>
             <span className="text-[12px] font-medium text-slate-400">Tùy chọn</span>
           </div>
+          <div className="w-9" />
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 px-5 pt-2 pb-24 overflow-y-auto no-scrollbar flex flex-col gap-4 text-left">
+      <main className="flex-1 min-h-0 px-5 pt-3 pb-6 overflow-y-auto no-scrollbar flex flex-col gap-4 text-left">
         {/* Section 1: Bạn thích gì? */}
         <section className="flex flex-col gap-2">
           <div className="flex items-center justify-between">
@@ -323,8 +324,8 @@ export const WizardStep5Preferences: React.FC<WizardStep5PreferencesProps> = ({
         </section>
       </main>
 
-      {/* Floating Bottom CTA */}
-      <footer className="fixed bottom-0 max-w-[390px] w-full z-40 bg-white/95 backdrop-blur-xl px-5 py-3 border-t border-slate-200/80 shadow-md">
+      {/* Bottom CTA */}
+      <footer className="shrink-0 w-full z-40 bg-white/95 backdrop-blur-xl px-5 py-3.5 border-t border-slate-200/80 shadow-md">
         <button
           onClick={onNext}
           type="button"
@@ -363,8 +364,8 @@ export const WizardStep5Preferences: React.FC<WizardStep5PreferencesProps> = ({
               </button>
             </div>
 
-            <div className="relative flex items-center">
-              <svg className="w-4 h-4 text-slate-400 absolute left-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <div className="relative flex items-center h-12 bg-slate-50 rounded-full px-4 shadow-2xs">
+              <svg className="w-4 h-4 text-[#FFA62B] mr-2.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <circle cx="11" cy="11" r="8" />
                 <line x1="21" y1="21" x2="16.65" y2="16.65" />
               </svg>
@@ -372,8 +373,8 @@ export const WizardStep5Preferences: React.FC<WizardStep5PreferencesProps> = ({
                 type="text"
                 value={searchNewPlaceQuery}
                 onChange={(e) => setSearchNewPlaceQuery(e.target.value)}
-                placeholder="Tìm địa điểm (ví dụ: Ngũ Hành Sơn)..."
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-[14px] text-slate-800 focus:outline-none focus:border-[#0A1680]"
+                placeholder="Tìm địa điểm (ví dụ: Bảo tàng Thành phố Hồ Chí Minh)..."
+                className="w-full bg-transparent text-[13.5px] text-[#0F2C59] placeholder:text-slate-400 focus:outline-none border-0 shadow-none"
               />
             </div>
 
@@ -383,13 +384,13 @@ export const WizardStep5Preferences: React.FC<WizardStep5PreferencesProps> = ({
               </span>
               <div className="flex flex-wrap gap-2">
                 {[
-                  'Cầu Vàng',
-                  'Bán đảo Sơn Trà',
+                  'Bưu điện Thành phố',
+                  'Thảo Cầm Viên',
                   'Phố cổ Hội An',
-                  'Ngũ Hành Sơn',
-                  'Bà Nà Hills',
-                  'Bãi biển Mỹ Khê',
-                  'Cầu Rồng Phun Lửa',
+                  'Bảo tàng Thành phố Hồ Chí Minh',
+                  'Dinh Độc Lập',
+                  'Công viên Tao Đàn',
+                  'Bến Bạch Đằng Phun Lửa',
                 ].map((sugg) => (
                   <button
                     key={sugg}
