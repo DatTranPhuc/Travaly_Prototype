@@ -14,6 +14,18 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
   const [showSignupPassword, setShowSignupPassword] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
+  // Interactive Lumi greetings
+  const LUMI_GREETINGS = [
+    'Chào bạn! Hôm nay mình đi đâu ta? 🌟',
+    'Mình đã sẵn sàng lên lịch cho bạn! ⚡',
+    'Khám phá các điểm check-in cực xịn! 📸',
+    'Cùng tạo một chuyến đi đáng nhớ nhé! 🎒'
+  ];
+  const [greetingIndex, setGreetingIndex] = useState(0);
+  const cycleGreeting = () => {
+    setGreetingIndex((prev) => (prev + 1) % LUMI_GREETINGS.length);
+  };
+
   // Form states
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
@@ -58,93 +70,155 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
   };
 
   return (
-    <div className="relative w-full h-full flex flex-col justify-between overflow-hidden select-none bg-gradient-to-b from-[#FFFFFF] via-[#F2F7FD] to-[#E6F0FA] text-slate-800">
-      {/* Ambient background glow decoration (No photo) */}
+    <div className="relative w-full h-full flex flex-col justify-between overflow-hidden select-none bg-gradient-to-b from-[#FFFFFF] via-[#F4F8FD] to-[#E8F1FC] text-slate-800">
+      {/* Ambient background glow & atmospheric travel shapes */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        {/* Soft Golden/Amber Sun Glow behind mascot */}
-        <div className="absolute top-[28%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] rounded-full bg-radial from-[#FFA62B]/16 via-[#86C5FF]/14 to-transparent blur-3xl" />
-        {/* Sky blue aura lower glow */}
-        <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[380px] h-[220px] rounded-full bg-radial from-[#86C5FF]/20 to-transparent blur-2xl" />
+        {/* Top Sun Glow */}
+        <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-[380px] h-[340px] rounded-full bg-radial from-[#FFA62B]/18 via-[#86C5FF]/15 to-transparent blur-3xl" />
+        
+        {/* Center Mascot Aura */}
+        <div className="absolute top-[34%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] rounded-full bg-radial from-[#86C5FF]/25 via-[#FFA62B]/12 to-transparent blur-2xl" />
+        
+        {/* Bottom Ambient Glow */}
+        <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-[440px] h-[260px] rounded-full bg-radial from-[#86C5FF]/20 to-transparent blur-3xl" />
+
+        {/* Delicate Flight Path Arch with Dotted Line */}
+        <svg className="absolute inset-0 w-full h-full opacity-35" viewBox="0 0 390 844" fill="none">
+          <path
+            d="M -20 220 Q 90 140 200 230 T 410 260"
+            stroke="#93B2F8"
+            strokeWidth="1.5"
+            strokeDasharray="4 6"
+          />
+          <path
+            d="M 20 420 Q 180 340 370 410"
+            stroke="#FFA62B"
+            strokeWidth="1.2"
+            strokeDasharray="3 5"
+            opacity="0.5"
+          />
+        </svg>
+
         {/* Subtle decorative travel sparkles */}
-        <div className="absolute top-16 left-7 text-[#FFA62B]/35 text-base select-none">✦</div>
-        <div className="absolute top-24 right-8 text-[#86C5FF]/40 text-sm select-none">✦</div>
-        <div className="absolute top-44 left-10 text-[#FFA62B]/25 text-xs select-none">★</div>
+        <div className="absolute top-20 left-7 text-[#FFA62B]/40 text-base animate-pulse">✦</div>
+        <div className="absolute top-28 right-8 text-[#86C5FF]/50 text-sm">✦</div>
+        <div className="absolute top-[48%] left-8 text-[#FFA62B]/30 text-xs">★</div>
+        <div className="absolute top-[45%] right-7 text-[#86C5FF]/40 text-xs">★</div>
       </div>
 
-      {/* iOS Status Bar (dark text for crisp visibility on clean light background) */}
+      {/* iOS Status Bar */}
       <div className="relative z-20 shrink-0">
         <IOSStatusBar light={false} />
       </div>
 
       {/* Brand Header */}
-      <header className="relative z-20 flex items-center justify-center pt-2 px-6 shrink-0">
-        <div className="flex items-center gap-2 bg-white/85 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/80 shadow-xs">
+      <header className="relative z-20 flex items-center justify-between pt-1 px-6 shrink-0">
+        <div className="flex items-center gap-2 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/90 shadow-xs">
           <img src="/images/logo-full.png" alt="TravAly" className="h-[24px] w-auto object-contain" />
+        </div>
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/50 shadow-2xs">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="text-[11px] font-bold text-slate-700 tracking-wide font-heading">AI v2.0 Ready</span>
         </div>
       </header>
 
       {/* Hero Mascot Center Stage */}
       <main className="relative z-20 flex-1 flex flex-col items-center justify-center px-6 text-center my-auto min-h-0">
-        {/* Mascot Wrapper with Glowing Halo */}
+        {/* Center Mascot Container */}
         <div className="relative flex flex-col items-center justify-center">
-          {/* Greeting Badge */}
-          <div className="mb-2.5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md border border-[#FFA62B]/30 shadow-xs">
-            <span className="w-2 h-2 rounded-full bg-[#FFA62B] animate-pulse" />
-            <span className="text-[11px] font-bold text-[#0F2C59] tracking-wide font-heading">Bé Sao Lumi chào bạn!</span>
+          {/* Interactive Speech Bubble */}
+          <button
+            type="button"
+            onClick={cycleGreeting}
+            className="mb-2 relative z-30 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-2xl bg-white/95 backdrop-blur-md border border-[#FFA62B]/40 shadow-sm hover:scale-105 active:scale-95 transition-all cursor-pointer group"
+          >
+            <span className="text-[12px] font-bold text-[#0F2C59] tracking-tight font-heading">
+              {LUMI_GREETINGS[greetingIndex]}
+            </span>
+            <span className="text-[10px] text-[#FFA62B] group-hover:rotate-12 transition-transform">✨</span>
+            {/* Bubble Arrow */}
+            <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white border-b border-r border-[#FFA62B]/40 rotate-45" />
+          </button>
+
+          {/* Floating Feature Pill Left: ⚡ Lên lịch trong 30s */}
+          <div className="absolute -left-6 top-1/2 -translate-y-1/2 z-20 hidden xs:flex items-center gap-1.5 bg-white/90 backdrop-blur-md px-2.5 py-1.5 rounded-2xl border border-white/80 shadow-md">
+            <span className="w-5 h-5 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center text-[10px] font-bold">⚡</span>
+            <div className="text-left">
+              <span className="text-[10px] font-bold text-[#0F2C59] block leading-none font-heading">AI 30 Giây</span>
+              <span className="text-[8.5px] text-slate-400">Tối ưu lộ trình</span>
+            </div>
           </div>
 
-          {/* Mascot Figure - Prominently sized & crisp 3D */}
-          <div className="relative flex items-center justify-center">
-            <div className="absolute w-44 h-44 rounded-full bg-gradient-to-tr from-[#FFA62B]/20 via-[#86C5FF]/20 to-transparent blur-xl pointer-events-none" />
+          {/* Floating Feature Pill Right: 📍 100+ Điểm đến */}
+          <div className="absolute -right-6 top-1/3 z-20 hidden xs:flex items-center gap-1.5 bg-white/90 backdrop-blur-md px-2.5 py-1.5 rounded-2xl border border-white/80 shadow-md">
+            <span className="w-5 h-5 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-[10px] font-bold">📍</span>
+            <div className="text-left">
+              <span className="text-[10px] font-bold text-[#0F2C59] block leading-none font-heading">Chuẩn Gu</span>
+              <span className="text-[8.5px] text-slate-400">Ăn uống &amp; check-in</span>
+            </div>
+          </div>
+
+          {/* Mascot Figure with Halo & Floor Shadow */}
+          <div
+            onClick={cycleGreeting}
+            className="relative flex flex-col items-center justify-center cursor-pointer active:scale-95 transition-transform"
+            title="Chạm vào Bé Sao Lumi để chào hỏi!"
+          >
+            {/* Halo backlight */}
+            <div className="absolute w-48 h-48 rounded-full bg-gradient-to-tr from-[#FFA62B]/25 via-[#86C5FF]/30 to-transparent blur-2xl pointer-events-none" />
+            
+            {/* The Mascot */}
             <img
               src="/images/mascot-hero.png"
               alt="Bé Sao Lumi - Bạn đồng hành TravAly"
-              className="relative w-44 h-44 max-h-[185px] object-contain drop-shadow-xl animate-mascot-float cursor-pointer hover:scale-105 transition-transform"
+              className="relative w-48 h-48 sm:w-52 sm:h-52 max-h-[205px] object-contain drop-shadow-2xl animate-mascot-float"
             />
+
+            {/* Soft Floor Shadow */}
+            <div className="w-32 h-3.5 rounded-full bg-[#0F2C59]/10 blur-sm -mt-2 pointer-events-none" />
           </div>
         </div>
 
         {/* Title & Tagline */}
-        <div className="mt-3.5 space-y-1.5 max-w-[320px]">
-          <h1 className="text-[25px] sm:text-[27px] leading-[1.22] font-black text-[#0F2C59] tracking-tight font-heading">
+        <div className="mt-4 space-y-1.5 max-w-[330px]">
+          <div className="inline-block">
+            <span className="text-[10px] font-extrabold tracking-[0.16em] uppercase text-[#0A1680] bg-blue-50/90 px-3 py-1 rounded-full border border-blue-100/60 shadow-2xs font-heading">
+              Đồng hành du lịch thông minh
+            </span>
+          </div>
+          <h1 className="text-[26px] sm:text-[28px] leading-[1.2] font-black text-[#0F2C59] tracking-tight font-heading pt-1">
             Lên lịch cho chuyến đi của bạn
           </h1>
-          <p className="text-[13.5px] text-slate-500 leading-relaxed font-normal">
-            Chọn điểm đến, sắp xếp lịch trình thông minh và rủ bạn bè cùng vi vu.
+          <p className="text-[13px] text-slate-500 leading-relaxed font-normal max-w-[280px] mx-auto">
+            Chọn điểm đến, sắp xếp lịch trình tối ưu và rủ bạn bè cùng vi vu.
           </p>
-        </div>
-
-        {/* Feature highlight chips */}
-        <div className="mt-3 flex flex-wrap items-center justify-center gap-1.5 max-w-[320px]">
-          <span className="inline-flex items-center gap-1 text-[10.5px] font-semibold text-[#0F2C59] bg-white/85 px-2.5 py-1 rounded-full border border-slate-200/60 shadow-2xs">
-            ⚡ Lên lịch trong 1 phút
-          </span>
-          <span className="inline-flex items-center gap-1 text-[10.5px] font-semibold text-[#0F2C59] bg-white/85 px-2.5 py-1 rounded-full border border-slate-200/60 shadow-2xs">
-            🗺️ Lộ trình tối ưu
-          </span>
-          <span className="inline-flex items-center gap-1 text-[10.5px] font-semibold text-[#0F2C59] bg-white/85 px-2.5 py-1 rounded-full border border-slate-200/60 shadow-2xs">
-            👥 Đi cùng nhóm
-          </span>
         </div>
       </main>
 
       {/* Bottom Action Footer */}
       <footer className="relative z-20 px-6 pb-6 pt-2 shrink-0 flex flex-col items-center text-center">
         <div className="w-full space-y-3 max-w-[340px]">
-          {/* Primary Action Button */}
+          {/* Primary Action Button - Flagship Luxury Pill */}
           <button
             onClick={onStart}
             type="button"
-            className="w-full h-[50px] bg-[#0F2C59] hover:bg-[#0A1E3D] active:scale-[0.98] transition-all text-white font-bold text-[15px] rounded-full shadow-lg shadow-[#0F2C59]/25 flex items-center justify-center gap-2 font-heading tracking-wide cursor-pointer"
+            className="group relative w-full h-[52px] bg-[#0F2C59] hover:bg-[#091C3A] active:scale-[0.98] transition-all text-white font-bold text-[15.5px] rounded-full shadow-xl shadow-[#0F2C59]/30 flex items-center justify-between px-5 font-heading tracking-wide cursor-pointer overflow-hidden border border-white/15"
           >
-            <span>Lên kế hoạch</span>
-            <svg className="w-4 h-4 text-[#FFA62B]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
+            {/* Shimmer light pass */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />
+            
+            <span className="pl-2">Bắt đầu lên lịch trình</span>
+            
+            {/* Action Indicator Icon */}
+            <div className="w-8 h-8 rounded-full bg-[#FFA62B] text-[#0F2C59] flex items-center justify-center group-hover:translate-x-0.5 transition-transform shadow-xs">
+              <svg className="w-4 h-4 stroke-current fill-none stroke-[2.8]" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </div>
           </button>
 
           {/* Secondary Auth Links */}
-          <div className="flex items-center justify-center space-x-1.5 text-[13.5px] pt-1 text-slate-600 font-medium">
+          <div className="flex items-center justify-center space-x-1.5 text-[13px] pt-1 text-slate-600 font-medium">
             <span>Đã có tài khoản?</span>
             <button
               type="button"
