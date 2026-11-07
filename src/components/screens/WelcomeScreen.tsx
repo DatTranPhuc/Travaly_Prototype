@@ -179,44 +179,21 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
             Chọn điểm đến, sắp xếp lịch trình tối ưu và rủ bạn bè cùng vi vu.
           </p>
         </div>
-
-        {/* 3 Sleek Value Capsules */}
-        <div className="mt-3.5 flex items-center justify-center gap-1.5 max-w-[340px] mx-auto">
-          <div className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/60 shadow-2xs">
-            <span className="text-amber-500 text-[11px]">⚡</span>
-            <span className="text-[10.5px] font-bold text-[#0F2C59] font-heading">Lên lịch 30s</span>
-          </div>
-          <div className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/60 shadow-2xs">
-            <span className="text-blue-500 text-[11px]">🎯</span>
-            <span className="text-[10.5px] font-bold text-[#0F2C59] font-heading">Chuẩn Gu Bạn</span>
-          </div>
-          <div className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/60 shadow-2xs">
-            <span className="text-emerald-500 text-[11px]">👥</span>
-            <span className="text-[10.5px] font-bold text-[#0F2C59] font-heading">Đi Cùng Nhóm</span>
-          </div>
-        </div>
       </main>
 
       {/* Bottom Action Footer */}
       <footer className="relative z-20 px-6 pb-6 pt-2 shrink-0 flex flex-col items-center text-center">
         <div className="w-full space-y-3 max-w-[340px]">
-          {/* Primary Action Button - Flagship Luxury Pill */}
+          {/* Primary Action Button */}
           <button
             onClick={onStart}
             type="button"
-            className="group relative w-full h-[52px] bg-gradient-to-r from-[#0F2C59] via-[#143A70] to-[#0F2C59] hover:from-[#091C3A] hover:to-[#0F2C59] active:scale-[0.98] transition-all text-white font-bold text-[15.5px] rounded-full shadow-xl shadow-[#0F2C59]/30 flex items-center justify-between px-5 font-heading tracking-wide cursor-pointer overflow-hidden border border-white/15"
+            className="w-full h-[52px] bg-[#0F2C59] hover:bg-[#0A1E3D] active:scale-[0.98] transition-all text-white font-bold text-[16px] rounded-full shadow-lg shadow-[#0F2C59]/25 flex items-center justify-center space-x-2 font-heading tracking-wide cursor-pointer"
           >
-            {/* Shimmer light pass */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/12 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />
-            
-            <span className="pl-2">Bắt đầu lên lịch trình</span>
-            
-            {/* Action Indicator Icon */}
-            <div className="w-8 h-8 rounded-full bg-[#FFA62B] text-[#0F2C59] flex items-center justify-center group-hover:translate-x-0.5 transition-transform shadow-xs">
-              <svg className="w-4 h-4 stroke-current fill-none stroke-[2.8]" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
-            </div>
+            <span className="leading-none">Lên kế hoạch</span>
+            <svg className="w-4 h-4 ml-1 stroke-[#FFA62B] fill-none stroke-[2.5]" viewBox="0 0 24 24">
+              <path d="M5 12h14m-6-6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </button>
 
           {/* Secondary Auth Links */}
