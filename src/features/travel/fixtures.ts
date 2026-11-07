@@ -39,6 +39,7 @@ export const SAIGON_PLAN: ActivePlan = {
       dayNumber: 1,
       dateText: '16/10',
       title: 'Trung tâm lịch sử & Phố đi bộ',
+      dayCost: '130.000đ',
       items: [
         { id: 'sg-1', placeName: 'Ăn sáng - Cơm tấm Ba Ghiền', category: 'Ăn sáng', time: '07:30', duration: '1 giờ', cost: '65.000đ', note: 'Sườn nướng than hoa trứ danh Sài Gòn', location: { lat: 10.7932, lng: 106.6698 }, locked: true, image: images.food },
         { id: 'sg-2', placeName: 'Dinh Độc Lập', category: 'Tham quan', time: '09:00', duration: '2 giờ', cost: '65.000đ', note: 'Di tích lịch sử và biểu tượng kiến trúc', location: { lat: 10.7769, lng: 106.6953 }, locked: false, image: images.town },
@@ -50,6 +51,7 @@ export const SAIGON_PLAN: ActivePlan = {
       dayNumber: 2,
       dateText: '17/10',
       title: 'Hiện đại & Mua sắm check-in',
+      dayCost: '450.000đ',
       items: [
         { id: 'sg-5', placeName: 'Landmark 81 Skyview', category: 'Tham quan', time: '09:00', duration: '2 giờ', cost: '300.000đ', note: 'Ngắm toàn cảnh thành phố từ tầng cao nhất', location: { lat: 10.795, lng: 106.7219 }, locked: false, image: images.bridge },
         { id: 'sg-6', placeName: 'Chợ Bến Thành & Cà phê chung cư', category: 'Tham quan', time: '14:00', duration: '2.5 giờ', cost: '150.000đ', note: 'Dạo chợ lâu đời và cà phê ngắm phố', location: { lat: 10.7725, lng: 106.698 }, locked: false, image: images.room2 }
@@ -59,6 +61,7 @@ export const SAIGON_PLAN: ActivePlan = {
       dayNumber: 3,
       dateText: '18/10',
       title: 'Văn hóa Chợ Lớn & Sông Sài Gòn',
+      dayCost: '150.000đ',
       items: [
         { id: 'sg-7', placeName: 'Chợ Lớn & Chùa Bà Thiên Hậu', category: 'Văn hóa', time: '08:30', duration: '2 giờ', cost: '120.000đ', note: 'Chiêm bái chùa cổ và thưởng thức điểm sấm', location: { lat: 10.7533, lng: 106.6601 }, locked: false, image: images.town },
         { id: 'sg-8', placeName: 'Du thuyền buýt Saigon Waterbus', category: 'Tham quan', time: '16:00', duration: '1.5 giờ', cost: '30.000đ', note: 'Ngắm hoàng hôn trên sông lãng mạn', location: { lat: 10.7711, lng: 106.7061 }, locked: false, image: images.bay }

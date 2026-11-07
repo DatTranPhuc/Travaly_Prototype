@@ -93,7 +93,7 @@ export const ItineraryEditScreen: React.FC<ItineraryEditScreenProps> = ({
       cost: '100.000đ',
       duration: '1.5 giờ',
       image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80',
-      address: plan.destination || 'TP. Hồ Chí Minh',
+      address: tripPlan.destination || 'TP. Hồ Chí Minh',
     };
 
     const newItems = [...currentDay.items, newItem].sort((a, b) => a.time.localeCompare(b.time));
