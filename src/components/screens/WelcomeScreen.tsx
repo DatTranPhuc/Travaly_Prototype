@@ -58,77 +58,101 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
   };
 
   return (
-    <div className="relative w-full h-full flex flex-col justify-between overflow-hidden select-none bg-[#FCFDFF]">
-      {/* Fullbleed Travel Background Image with Gradient Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/images/vietnam-hero.png"
-          alt="Phong cảnh Việt Nam tuyệt đẹp"
-          className="w-full h-full object-cover object-top"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0A1680]/50 via-transparent to-[#FCFDFF] via-40% to-75%" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#FCFDFF] via-[#FCFDFF]/95 to-transparent h-1/2 bottom-0 top-auto" />
+    <div className="relative w-full h-full flex flex-col justify-between overflow-hidden select-none bg-gradient-to-b from-[#FFFFFF] via-[#F2F7FD] to-[#E6F0FA] text-slate-800">
+      {/* Ambient background glow decoration (No photo) */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        {/* Soft Golden/Amber Sun Glow behind mascot */}
+        <div className="absolute top-[28%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] rounded-full bg-radial from-[#FFA62B]/16 via-[#86C5FF]/14 to-transparent blur-3xl" />
+        {/* Sky blue aura lower glow */}
+        <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[380px] h-[220px] rounded-full bg-radial from-[#86C5FF]/20 to-transparent blur-2xl" />
+        {/* Subtle decorative travel sparkles */}
+        <div className="absolute top-16 left-7 text-[#FFA62B]/35 text-base select-none">✦</div>
+        <div className="absolute top-24 right-8 text-[#86C5FF]/40 text-sm select-none">✦</div>
+        <div className="absolute top-44 left-10 text-[#FFA62B]/25 text-xs select-none">★</div>
       </div>
 
-      {/* iOS Status Bar (White on top of ocean gradient) */}
-      <IOSStatusBar light={true} />
+      {/* iOS Status Bar (dark text for crisp visibility on clean light background) */}
+      <div className="relative z-20 shrink-0">
+        <IOSStatusBar light={false} />
+      </div>
 
       {/* Brand Header */}
-      <div className="relative z-20 flex items-center justify-center pt-3">
-        <div className="flex items-center justify-center bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/60 shadow-sm">
-          <img src="/images/logo-wordmark.png" alt="TravAly Logo" className="h-[22px] w-auto object-contain" />
+      <header className="relative z-20 flex items-center justify-center pt-2 px-6 shrink-0">
+        <div className="flex items-center gap-2 bg-white/85 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/80 shadow-xs">
+          <img src="/images/logo-full.png" alt="TravAly" className="h-[24px] w-auto object-contain" />
         </div>
-      </div>
+      </header>
 
-      {/* Spacer */}
-      <div className="flex-1" />
+      {/* Hero Mascot Center Stage */}
+      <main className="relative z-20 flex-1 flex flex-col items-center justify-center px-6 text-center my-auto min-h-0">
+        {/* Mascot Wrapper with Glowing Halo */}
+        <div className="relative flex flex-col items-center justify-center">
+          {/* Greeting Badge */}
+          <div className="mb-2.5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md border border-[#FFA62B]/30 shadow-xs">
+            <span className="w-2 h-2 rounded-full bg-[#FFA62B] animate-pulse" />
+            <span className="text-[11px] font-bold text-[#0F2C59] tracking-wide font-heading">Bé Sao Lumi chào bạn!</span>
+          </div>
 
-      {/* Bottom Interactive Welcome Sheet */}
-      <section className="relative z-20 px-6 pb-6 pt-2 flex flex-col justify-end text-center">
-        {/* Mascot Greeting with Brand Aura */}
-        <div className="relative flex justify-center mb-1.5">
-          <div className="absolute w-24 h-24 rounded-full mascot-halo pointer-events-none -top-1" />
-          <img
-            src="/images/mascot-hero.png"
-            alt="Bé Sao Lumi - Bạn đồng hành TravAly"
-            className="relative w-20 h-20 object-contain drop-shadow-md animate-mascot-float"
-          />
+          {/* Mascot Figure - Prominently sized & crisp 3D */}
+          <div className="relative flex items-center justify-center">
+            <div className="absolute w-44 h-44 rounded-full bg-gradient-to-tr from-[#FFA62B]/20 via-[#86C5FF]/20 to-transparent blur-xl pointer-events-none" />
+            <img
+              src="/images/mascot-hero.png"
+              alt="Bé Sao Lumi - Bạn đồng hành TravAly"
+              className="relative w-44 h-44 max-h-[185px] object-contain drop-shadow-xl animate-mascot-float cursor-pointer hover:scale-105 transition-transform"
+            />
+          </div>
         </div>
 
-        {/* Title & Tag */}
-        <div className="space-y-2 mb-6">
-          <h2 className="text-[30px] sm:text-[32px] leading-[1.2] font-extrabold text-[#0A1680] tracking-tight font-heading">
+        {/* Title & Tagline */}
+        <div className="mt-3.5 space-y-1.5 max-w-[320px]">
+          <h1 className="text-[25px] sm:text-[27px] leading-[1.22] font-black text-[#0F2C59] tracking-tight font-heading">
             Lên lịch cho chuyến đi của bạn
-          </h2>
-          <p className="text-[14px] text-slate-600 max-w-[290px] mx-auto leading-relaxed font-normal">
-            Chọn điểm đến, sắp xếp lịch trình và rủ bạn cùng đi.
+          </h1>
+          <p className="text-[13.5px] text-slate-500 leading-relaxed font-normal">
+            Chọn điểm đến, sắp xếp lịch trình thông minh và rủ bạn bè cùng vi vu.
           </p>
         </div>
 
-        {/* Action Buttons */}
-        <div className="space-y-3.5">
-          {/* Primary Pill Button 48px Navy #0A1680 */}
+        {/* Feature highlight chips */}
+        <div className="mt-3 flex flex-wrap items-center justify-center gap-1.5 max-w-[320px]">
+          <span className="inline-flex items-center gap-1 text-[10.5px] font-semibold text-[#0F2C59] bg-white/85 px-2.5 py-1 rounded-full border border-slate-200/60 shadow-2xs">
+            ⚡ Lên lịch trong 1 phút
+          </span>
+          <span className="inline-flex items-center gap-1 text-[10.5px] font-semibold text-[#0F2C59] bg-white/85 px-2.5 py-1 rounded-full border border-slate-200/60 shadow-2xs">
+            🗺️ Lộ trình tối ưu
+          </span>
+          <span className="inline-flex items-center gap-1 text-[10.5px] font-semibold text-[#0F2C59] bg-white/85 px-2.5 py-1 rounded-full border border-slate-200/60 shadow-2xs">
+            👥 Đi cùng nhóm
+          </span>
+        </div>
+      </main>
+
+      {/* Bottom Action Footer */}
+      <footer className="relative z-20 px-6 pb-6 pt-2 shrink-0 flex flex-col items-center text-center">
+        <div className="w-full space-y-3 max-w-[340px]">
+          {/* Primary Action Button */}
           <button
             onClick={onStart}
             type="button"
-            className="w-full h-[48px] bg-[#0A1680] hover:bg-[#071060] active:scale-[0.98] transition-all text-white font-bold text-[15px] rounded-full shadow-lg shadow-[#0A1680]/25 flex items-center justify-center space-x-2 font-heading tracking-wide cursor-pointer"
+            className="w-full h-[50px] bg-[#0F2C59] hover:bg-[#0A1E3D] active:scale-[0.98] transition-all text-white font-bold text-[15px] rounded-full shadow-lg shadow-[#0F2C59]/25 flex items-center justify-center gap-2 font-heading tracking-wide cursor-pointer"
           >
-            <span className="leading-none">Lên kế hoạch</span>
-            <svg className="w-4 h-4 ml-1 stroke-[#FBEDB0] fill-none stroke-[2.2]" viewBox="0 0 24 24">
-              <path d="M5 12h14m-6-6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+            <span>Lên kế hoạch</span>
+            <svg className="w-4 h-4 text-[#FFA62B]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
           </button>
 
-          {/* Secondary Login / Register Row */}
-          <div className="flex items-center justify-center space-x-1.5 text-[14px] pt-1 text-slate-600 font-medium">
+          {/* Secondary Auth Links */}
+          <div className="flex items-center justify-center space-x-1.5 text-[13.5px] pt-1 text-slate-600 font-medium">
             <span>Đã có tài khoản?</span>
             <button
               type="button"
               onClick={() => setActiveSheet('login')}
-              className="text-[#0A1680] font-bold hover:underline ml-1 inline-flex items-center gap-1 focus:outline-none cursor-pointer"
+              className="text-[#0F2C59] font-bold hover:underline ml-1 inline-flex items-center gap-0.5 focus:outline-none cursor-pointer"
             >
               <span>Đăng nhập</span>
-              <svg className="w-3.5 h-3.5 stroke-[#0A1680] fill-none stroke-[2]" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 text-[#FFA62B]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M9 18l6-6-6-6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
@@ -136,7 +160,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
             <button
               type="button"
               onClick={() => setActiveSheet('signup')}
-              className="text-[#0A1680] font-semibold hover:underline focus:outline-none cursor-pointer"
+              className="text-[#0F2C59] font-semibold hover:underline focus:outline-none cursor-pointer"
             >
               <span>Đăng ký</span>
             </button>
@@ -144,10 +168,10 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
         </div>
 
         {/* iOS Home Bar Indicator */}
-        <div className="w-full flex justify-center pt-6 pb-1">
+        <div className="w-full flex justify-center pt-5 pb-1">
           <div className="w-32 h-1 bg-slate-300 rounded-full" />
         </div>
-      </section>
+      </footer>
 
       {/* Toast Alert */}
       {toastMessage && (
