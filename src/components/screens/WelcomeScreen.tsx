@@ -111,14 +111,10 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
         <IOSStatusBar light={false} />
       </div>
 
-      {/* Brand Header */}
-      <header className="relative z-20 flex items-center justify-between pt-1 px-6 shrink-0">
-        <div className="flex items-center gap-2 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/90 shadow-xs">
-          <img src="/images/logo-full.png" alt="TravAly" className="h-[24px] w-auto object-contain" />
-        </div>
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/50 shadow-2xs">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="text-[11px] font-bold text-slate-700 tracking-wide font-heading">AI v2.0 Ready</span>
+      {/* Brand Header - Centered & Clean */}
+      <header className="relative z-20 flex items-center justify-center pt-2 px-6 shrink-0">
+        <div className="flex items-center gap-2 bg-white/90 backdrop-blur-xl px-5 py-2 rounded-full border border-white/80 shadow-xs">
+          <img src="/images/logo-full.png" alt="TravAly" className="h-[26px] w-auto object-contain" />
         </div>
       </header>
 
@@ -130,33 +126,19 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
           <button
             type="button"
             onClick={cycleGreeting}
-            className="mb-2 relative z-30 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-2xl bg-white/95 backdrop-blur-md border border-[#FFA62B]/40 shadow-sm hover:scale-105 active:scale-95 transition-all cursor-pointer group"
+            className="mb-3 relative z-30 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 backdrop-blur-xl border border-amber-200/70 shadow-md shadow-amber-500/10 hover:shadow-amber-500/20 active:scale-95 transition-all cursor-pointer group"
           >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FFA62B] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FFA62B]"></span>
+            </span>
             <span className="text-[12px] font-bold text-[#0F2C59] tracking-tight font-heading">
               {LUMI_GREETINGS[greetingIndex]}
             </span>
-            <span className="text-[10px] text-[#FFA62B] group-hover:rotate-12 transition-transform">✨</span>
+            <span className="text-[11px] group-hover:rotate-12 transition-transform">✨</span>
             {/* Bubble Arrow */}
-            <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white border-b border-r border-[#FFA62B]/40 rotate-45" />
+            <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-white border-b border-r border-amber-200/70 rotate-45" />
           </button>
-
-          {/* Floating Feature Pill Left: ⚡ Lên lịch trong 30s */}
-          <div className="absolute -left-6 top-1/2 -translate-y-1/2 z-20 hidden xs:flex items-center gap-1.5 bg-white/90 backdrop-blur-md px-2.5 py-1.5 rounded-2xl border border-white/80 shadow-md">
-            <span className="w-5 h-5 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center text-[10px] font-bold">⚡</span>
-            <div className="text-left">
-              <span className="text-[10px] font-bold text-[#0F2C59] block leading-none font-heading">AI 30 Giây</span>
-              <span className="text-[8.5px] text-slate-400">Tối ưu lộ trình</span>
-            </div>
-          </div>
-
-          {/* Floating Feature Pill Right: 📍 100+ Điểm đến */}
-          <div className="absolute -right-6 top-1/3 z-20 hidden xs:flex items-center gap-1.5 bg-white/90 backdrop-blur-md px-2.5 py-1.5 rounded-2xl border border-white/80 shadow-md">
-            <span className="w-5 h-5 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-[10px] font-bold">📍</span>
-            <div className="text-left">
-              <span className="text-[10px] font-bold text-[#0F2C59] block leading-none font-heading">Chuẩn Gu</span>
-              <span className="text-[8.5px] text-slate-400">Ăn uống &amp; check-in</span>
-            </div>
-          </div>
 
           {/* Mascot Figure with Halo & Floor Shadow */}
           <div
@@ -164,34 +146,54 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
             className="relative flex flex-col items-center justify-center cursor-pointer active:scale-95 transition-transform"
             title="Chạm vào Bé Sao Lumi để chào hỏi!"
           >
-            {/* Halo backlight */}
-            <div className="absolute w-48 h-48 rounded-full bg-gradient-to-tr from-[#FFA62B]/25 via-[#86C5FF]/30 to-transparent blur-2xl pointer-events-none" />
+            {/* Layered atmospheric halo backlights */}
+            <div className="absolute w-52 h-52 rounded-full bg-radial from-[#FFA62B]/25 via-[#86C5FF]/30 to-transparent blur-3xl pointer-events-none" />
+            <div className="absolute w-36 h-36 rounded-full bg-[#86C5FF]/20 blur-xl pointer-events-none" />
             
             {/* The Mascot */}
             <img
               src="/images/mascot-hero.png"
               alt="Bé Sao Lumi - Bạn đồng hành TravAly"
-              className="relative w-48 h-48 sm:w-52 sm:h-52 max-h-[205px] object-contain drop-shadow-2xl animate-mascot-float"
+              className="relative w-52 h-52 sm:w-56 sm:h-56 max-h-[220px] object-contain drop-shadow-2xl animate-mascot-float"
             />
 
-            {/* Soft Floor Shadow */}
-            <div className="w-32 h-3.5 rounded-full bg-[#0F2C59]/10 blur-sm -mt-2 pointer-events-none" />
+            {/* Soft 3D Floor Shadow */}
+            <div className="w-36 h-3.5 rounded-full bg-gradient-to-r from-transparent via-[#0F2C59]/12 to-transparent blur-xs -mt-2 pointer-events-none" />
           </div>
         </div>
 
         {/* Title & Tagline */}
-        <div className="mt-4 space-y-1.5 max-w-[330px]">
+        <div className="mt-4 space-y-1.5 max-w-[340px]">
           <div className="inline-block">
-            <span className="text-[10px] font-extrabold tracking-[0.16em] uppercase text-[#0A1680] bg-blue-50/90 px-3 py-1 rounded-full border border-blue-100/60 shadow-2xs font-heading">
+            <span className="text-[10px] font-extrabold tracking-[0.16em] uppercase text-[#0F2C59] bg-[#86C5FF]/25 px-3 py-1 rounded-full border border-[#86C5FF]/40 shadow-2xs font-heading">
               Đồng hành du lịch thông minh
             </span>
           </div>
-          <h1 className="text-[26px] sm:text-[28px] leading-[1.2] font-black text-[#0F2C59] tracking-tight font-heading pt-1">
-            Lên lịch cho chuyến đi của bạn
+          <h1 className="text-[27px] sm:text-[29px] leading-[1.2] font-black text-[#0F2C59] tracking-tight font-heading pt-1">
+            Lên lịch cho <br />
+            <span className="bg-gradient-to-r from-[#0F2C59] via-[#1C4E8A] to-[#FFA62B] bg-clip-text text-transparent">
+              chuyến đi của bạn
+            </span>
           </h1>
-          <p className="text-[13px] text-slate-500 leading-relaxed font-normal max-w-[280px] mx-auto">
+          <p className="text-[13px] text-slate-500 leading-relaxed font-normal max-w-[285px] mx-auto">
             Chọn điểm đến, sắp xếp lịch trình tối ưu và rủ bạn bè cùng vi vu.
           </p>
+        </div>
+
+        {/* 3 Sleek Value Capsules */}
+        <div className="mt-3.5 flex items-center justify-center gap-1.5 max-w-[340px] mx-auto">
+          <div className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/60 shadow-2xs">
+            <span className="text-amber-500 text-[11px]">⚡</span>
+            <span className="text-[10.5px] font-bold text-[#0F2C59] font-heading">Lên lịch 30s</span>
+          </div>
+          <div className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/60 shadow-2xs">
+            <span className="text-blue-500 text-[11px]">🎯</span>
+            <span className="text-[10.5px] font-bold text-[#0F2C59] font-heading">Chuẩn Gu Bạn</span>
+          </div>
+          <div className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/60 shadow-2xs">
+            <span className="text-emerald-500 text-[11px]">👥</span>
+            <span className="text-[10.5px] font-bold text-[#0F2C59] font-heading">Đi Cùng Nhóm</span>
+          </div>
         </div>
       </main>
 
@@ -202,10 +204,10 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
           <button
             onClick={onStart}
             type="button"
-            className="group relative w-full h-[52px] bg-[#0F2C59] hover:bg-[#091C3A] active:scale-[0.98] transition-all text-white font-bold text-[15.5px] rounded-full shadow-xl shadow-[#0F2C59]/30 flex items-center justify-between px-5 font-heading tracking-wide cursor-pointer overflow-hidden border border-white/15"
+            className="group relative w-full h-[52px] bg-gradient-to-r from-[#0F2C59] via-[#143A70] to-[#0F2C59] hover:from-[#091C3A] hover:to-[#0F2C59] active:scale-[0.98] transition-all text-white font-bold text-[15.5px] rounded-full shadow-xl shadow-[#0F2C59]/30 flex items-center justify-between px-5 font-heading tracking-wide cursor-pointer overflow-hidden border border-white/15"
           >
             {/* Shimmer light pass */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/12 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />
             
             <span className="pl-2">Bắt đầu lên lịch trình</span>
             
