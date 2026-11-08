@@ -1,3 +1,5 @@
+import {LumiGuide} from './LumiGuide';
+import {lumiGuideFor} from './lumiGuides';
 import {useCallback,useEffect,useRef,useState} from 'react';
 import {useLocation,useNavigate} from 'react-router-dom';
 import {ArrowUp,ArrowUpRight,MessageCircle,Minus,Sparkles} from 'lucide-react';
@@ -8,6 +10,10 @@ import './aly.css';
 type Message={id:string;role:'user'|'assistant';text:string;link?:{label:string;path:string}};
 export function AlyAssistant(){
  const {pathname,search}=useLocation();const navigate=useNavigate();const {plan,expenses}=useTravel();
+ const guide=lumiGuideFor(pathname);
+ const [seenGuides,setSeenGuides]=useStored<Record<string,boolean>>('travaiy-lumi-guides-v1',{});
+ const [guideOpen,setGuideOpen]=useState(()=>!!guide&&!seenGuides[guide.id]);
+ const closeGuide=useCallback(()=>{if(guide)setSeenGuides(previous=>({...previous,[guide.id]:true}));setGuideOpen(false);},[guide?.id,setSeenGuides]);
  const [open,setOpen]=useState(false);const [draft,setDraft]=useState('');
  const [conversations,setConversations]=useStored<Record<string,Message[]>>('travaiy-aly-conversations-v1',{});
  const messages=conversations[plan.id]||[];const end=useRef<HTMLDivElement>(null);const close=useCallback(()=>setOpen(false),[]);
@@ -42,6 +48,7 @@ export function AlyAssistant(){
   <ModalSheet isOpen={open} onClose={close} title="Lumi — trợ lý chuyến đi" className="aly-overlay" contentClassName="aly-panel" showHandleBar={false}>
    <header className="aly-header"><img src="/images/mascot-thinking.png" alt=""/><div><h2>Lumi ở đây cùng bạn</h2><p>Trợ lý chuyến đi · Bản trải nghiệm</p></div><button type="button" aria-label="Thu gọn Lumi" onClick={close}><Minus size={21}/></button></header>
    <div className="aly-context"><span/>{plan.destination} · {area}{['Lịch trình','Bản đồ'].includes(area)?` · Ngày ${dayNumber}`:''}</div>
+   {guide&&<button type="button" className="aly-guide-replay" onClick={()=>{setOpen(false);setGuideOpen(true);}}><Sparkles size={16}/>Xem hướng dẫn trang này</button>}
    <div className="aly-messages" role="log" aria-label="Hội thoại với Lumi" aria-live="polite">
     {!messages.length&&<div className="aly-welcome"><Sparkles size={24}/><h3>Bạn muốn làm gì tiếp theo?</h3><p>Xem lịch, tra chi tiêu hay tìm đường — mình đã biết chuyến đi bạn đang xem.</p></div>}
     {messages.map(message=><article key={message.id} className={`aly-message ${message.role}`}><small>{message.role==='assistant'?'Lumi':'Bạn'}</small><p>{message.role==='assistant'?message.text.replace(/\bAly\b/g,'Lumi'):message.text}</p>{message.link&&<button type="button" onClick={()=>{navigate(message.link!.path);close();}}>{message.link.label}<ArrowUpRight size={15}/></button>}</article>)}<div ref={end}/>
@@ -49,5 +56,6 @@ export function AlyAssistant(){
    <div className="aly-prompts" aria-label="Gợi ý hỏi Lumi">{prompts.map(prompt=><button type="button" key={prompt} onClick={()=>ask(prompt)}>{prompt}</button>)}</div>
    <form className="aly-composer" onSubmit={event=>{event.preventDefault();ask(draft);}}><label className="sr-only" htmlFor="aly-message">Hỏi Lumi</label><input id="aly-message" autoComplete="off" placeholder="Hỏi Lumi về chuyến đi…" maxLength={1000} value={draft} onChange={event=>setDraft(event.target.value)}/><button type="submit" aria-label="Gửi câu hỏi cho Lumi" disabled={!draft.trim()}><ArrowUp size={19}/></button></form>
   </ModalSheet>
+  {guide&&guideOpen&&<LumiGuide guide={guide} onClose={closeGuide}/>}
  </>;
 }

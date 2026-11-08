@@ -151,11 +151,12 @@ export const WizardStep1Destination: React.FC<WizardStep1DestinationProps> = ({
             <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-4.35-4.35" />
           </svg></span>
           <input
+            id="wizard-destination-query"
             type="search"
             aria-label="Tìm thành phố hoặc khu vực"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Tìm thành phố, khu vực…"
+            placeholder="Bạn muốn đi đâu?"
             className="destination-search-input"
           />
           {searchQuery && (
@@ -168,6 +169,7 @@ export const WizardStep1Destination: React.FC<WizardStep1DestinationProps> = ({
               ✕
             </button>
           )}
+          <span className="destination-search-arrow" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
         </label>
 
         {!hasResults && (
