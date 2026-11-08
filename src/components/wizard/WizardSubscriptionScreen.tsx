@@ -28,7 +28,7 @@ export function WizardSubscriptionScreen({ destination, duration, initialPlan, c
   const availablePlans = plans.filter(plan => isPlanAvailable(plan.id, companionType));
   return (
     <div className="relative w-full h-full min-h-0 flex flex-col bg-[#FCFDFF] text-slate-800">
-      {purpose === 'create' ? <WizardHeader step={8} destination={destination} title="Chọn gói chuyến đi" subtitle={`${duration} · ${planningMode === 'manual' ? 'Tự xếp lịch' : 'AI xếp lịch'}`} onBack={onBack}/> : <WizardHeader title="Chọn gói chuyến đi" subtitle={`${destination} · ${duration}`} onBack={onBack}/>}
+      {purpose === 'create' ? <WizardHeader step={6} total={6} destination={destination} title="Chọn gói chuyến đi" subtitle={`${duration} · ${planningMode === 'manual' ? 'Tự xếp lịch' : 'AI xếp lịch'}`} onBack={onBack}/> : <WizardHeader title="Chọn gói chuyến đi" subtitle={`${destination} · ${duration}`} onBack={onBack}/>}
 
       <main className="flex-1 min-h-0 overflow-y-auto px-5 py-4 no-scrollbar">
         <p className="text-xs text-slate-500 mb-4">{purpose === 'upgrade' ? 'Chọn gói áp dụng cho chuyến đi.' : planningMode === 'manual' ? 'Tự xếp lịch không trừ lượt AI. Có thể bắt đầu với gói Miễn phí.' : `Chọn gói để tạo lịch trình. Đã dùng ${used} lượt AI.`}</p>

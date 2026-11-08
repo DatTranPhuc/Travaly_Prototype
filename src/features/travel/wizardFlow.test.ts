@@ -9,7 +9,7 @@ test('both methods require valid common trip information',()=>{
  for(const planningMode of ['ai','manual'] as const){
   assert.equal(requiredWizardStep({...data,planningMode}),null);
   assert.equal(requiredWizardStep({...data,planningMode,startDate:'20/10/2026',endDate:'23/10/2026'}),null);
-  assert.equal(requiredWizardStep({...data,planningMode,stayId:undefined}),'/wizard/stay');
+  assert.equal(requiredWizardStep({...data,planningMode,stayId:undefined}),null);
   assert.equal(requiredWizardStep({...data,planningMode,startDate:'bad'}),'/wizard/dates');
   assert.equal(requiredWizardStep({...data,planningMode,departureTime:''}),'/wizard/dates');
   assert.equal(requiredWizardStep({...data,planningMode,companionCount:1}),'/wizard/companions');

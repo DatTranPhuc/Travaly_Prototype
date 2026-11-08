@@ -18,8 +18,8 @@ test('group balances include payer outside the split and conserve money',()=>{
  assert.deepEqual(expenseBalances(entries),{you:600,a:-200,b:-400});
  assert.equal(Object.values(expenseBalances(entries)).reduce((n,v)=>n+v,0),0);
 });
-test('manual plan starts with empty days across year boundary and requires accommodation overnight',()=>{
- assert.throws(()=>createManualPlan('Đà Nẵng','2026-12-30','2027-01-02'));
+test('manual plan starts with empty days across year boundary and supports choosing accommodation later',()=>{
+ assert.equal(createManualPlan('Đà Nẵng','2026-12-30','2027-01-02').stayId,undefined);
  const plan=createManualPlan('Đà Nẵng','2026-12-30','2027-01-02','may-bien');
  assert.equal(plan.days,4);assert.equal(plan.planningMode,'manual');assert.equal(plan.stayId,'may-bien');assert.ok(plan.daysSchedule.every(d=>!d.items.length));assert.equal(plan.daysSchedule[3].dateText,'02/01');
  assert.equal(createManualPlan('Đà Lạt','2026-10-18','2026-10-18').days,1);
@@ -39,12 +39,12 @@ test('AI places every selected stop once across days, with its coordinates and i
  const chosen=['Bãi biển Mỹ Khê','Bán đảo Sơn Trà'];
  const data={...INITIAL_WIZARD_DATA,destination:'Đà Nẵng',mustVisitPlaces:[...chosen,chosen[0]],stayId:'may-bien'};
  const source=JSON.stringify(data);const plan=buildWizardPlan(data);const items=plan.daysSchedule.flatMap(d=>d.items);
- assert.equal(items.length,2);assert.deepEqual(items.map(i=>i.placeName).sort(),chosen.sort());assert.ok(items.every(i=>i.location&&i.image));assert.equal(JSON.stringify(data),source);
+ assert.ok(plan.daysSchedule.every(day=>day.items.length>=6));for(const name of chosen)assert.equal(items.filter(i=>i.placeName===name).length,1);assert.ok(items.filter(i=>chosen.includes(i.placeName)).every(i=>i.location&&i.image));assert.equal(JSON.stringify(data),source);
 });
 test('a custom selected place is retained even without coordinates',async()=>{
  const {buildWizardPlan}=await import('./wizardPlan');
  const plan=buildWizardPlan({...INITIAL_WIZARD_DATA,mustVisitPlaces:['Điểm hẹn riêng của nhóm']});
- const items=plan.daysSchedule.flatMap(d=>d.items);assert.equal(items.length,1);assert.equal(items[0].placeName,'Điểm hẹn riêng của nhóm');assert.equal(items[0].location,undefined);
+ const items=plan.daysSchedule.flatMap(d=>d.items);const selected=items.filter(i=>i.placeName==='Điểm hẹn riêng của nhóm');assert.equal(selected.length,1);assert.equal(selected[0].location,undefined);assert.ok(plan.daysSchedule.every(day=>day.items.length>=6));
 });
 test('changing the selected pool removes only deselected pool activities, preserving custom additions',async()=>{
  const {updateManualSelection}=await import('./manualPlan');

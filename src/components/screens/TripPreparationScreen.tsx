@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { IOSStatusBar } from '../common/IOSStatusBar';
+import { TravelHeader } from '../../features/travel/UI';
+import { useTravel, useStored } from '../../features/travel/TravelContext';
+import { MOCK_PACKING_ITEMS } from '../../data/mockData';
+import type { PackingItem } from '../../types/travel';
+import './trip-preparation.css';
 import { BottomNav } from '../common/BottomNav';
 import { NavTab } from '../../types/travel';
 import { TripWorkspaceNav } from '../../features/travel/TripWorkspaceNav';
@@ -15,6 +19,11 @@ export const TripPreparationScreen: React.FC<TripPreparationScreenProps> = ({
   onOpenPackingList,
   onBack,
 }) => {
+  const {plan}=useTravel();
+  const [packing]=useStored<Record<string,PackingItem[]>>('travaiy-packing-v1',{});
+  const packed=packing[plan.id]||MOCK_PACKING_ITEMS;
+  const packedCount=packed.filter(i=>i.isChecked).length;
+  const packedPercent=packed.length?Math.round(packedCount/packed.length*100):0;
   const [checklist, setChecklist] = useState([
     { id: 'c1', label: 'CCCD / Hộ chiếu bản gốc', checked: true, cat: 'Giấy tờ' },
     { id: 'c2', label: 'Vé máy bay khứ hồi (Check-in online trước 24h)', checked: true, cat: 'Vé & Đặt chỗ' },
@@ -41,66 +50,41 @@ export const TripPreparationScreen: React.FC<TripPreparationScreenProps> = ({
   const progressPercent = Math.round((checkedCount / checklist.length) * 100);
 
   return (
-    <div className="relative w-full h-full flex flex-col overflow-hidden bg-[#FCFDFF] select-none text-slate-800">
-      {/* Header */}
-      <header className="shrink-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-100">
-        <IOSStatusBar light={false} />
-        <div className="h-14 px-5 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <button
-              onClick={onBack}
-              aria-label="Quay lại"
-              type="button"
-              className="w-10 h-10 -ml-1 flex items-center justify-center rounded-full text-slate-800 hover:bg-slate-100 transition-colors cursor-pointer"
-            >
-              <svg className="w-5 h-5 text-slate-800" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <div>
-              <span className="text-[10px] font-bold text-[#0A1680] uppercase tracking-wider font-heading">
-                Chuẩn bị chuyến đi
-              </span>
-              <h1 className="font-bold text-[18px] text-slate-900 leading-tight font-heading">
-                TP. Hồ Chí Minh (12 - 14 Thg 6)
-              </h1>
-            </div>
-          </div>
-        </div>
-      </header>
+    <div className="travel-screen preparation-screen">
+      <TravelHeader title="Chuẩn bị chuyến đi" subtitle={`${plan.destination} · ${plan.dates}`} onBack={onBack}/>
 
       <TripWorkspaceNav />
 
       {/* Main Content */}
-      <main className="flex-1 min-h-0 overflow-y-auto no-scrollbar px-5 pt-3 space-y-4 pb-28">
+      <main className="travel-scroll preparation-content">
         {/* Weather Forecast Card */}
-        <div className="p-4 rounded-3xl bg-gradient-to-br from-blue-500 via-indigo-600 to-[#0A1680] text-white shadow-md">
+        <div className="preparation-weather">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-semibold text-blue-100 font-heading">
-              Dự báo thời tiết TP. Hồ Chí Minh
+              Thời tiết · {plan.destination}
             </span>
             <span className="text-[11px] px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-md">
-              Rất lý tưởng
+              Minh hoạ
             </span>
           </div>
 
           <div className="grid grid-cols-3 gap-2 text-center pt-2 border-t border-white/20">
             <div className="p-2 rounded-2xl bg-white/10 backdrop-blur-xs">
-              <span className="text-[11px] block opacity-80">12/06 (T5)</span>
+              <span className="text-[11px] block opacity-80">Ngày 1</span>
               <span className="text-2xl my-1 block">☀️</span>
               <span className="font-bold text-[14px] font-heading block">31°C</span>
               <span className="text-[10px] opacity-75">Nắng nhẹ</span>
             </div>
 
             <div className="p-2 rounded-2xl bg-white/10 backdrop-blur-xs">
-              <span className="text-[11px] block opacity-80">13/06 (T6)</span>
+              <span className="text-[11px] block opacity-80">Ngày 2</span>
               <span className="text-2xl my-1 block">🌤️</span>
               <span className="font-bold text-[14px] font-heading block">29°C</span>
               <span className="text-[10px] opacity-75">Mây rải rác</span>
             </div>
 
             <div className="p-2 rounded-2xl bg-white/10 backdrop-blur-xs">
-              <span className="text-[11px] block opacity-80">14/06 (T7)</span>
+              <span className="text-[11px] block opacity-80">Ngày 3</span>
               <span className="text-2xl my-1 block">⛅</span>
               <span className="font-bold text-[14px] font-heading block">30°C</span>
               <span className="text-[10px] opacity-75">Nắng ấm</span>
@@ -114,9 +98,10 @@ export const TripPreparationScreen: React.FC<TripPreparationScreenProps> = ({
         </div>
 
         {/* Smart Packing List Banner */}
-        <div
+        <button
+          type="button"
           onClick={onOpenPackingList}
-          className="p-4 rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:border-[#0A1680]/40 hover:shadow-md transition-all cursor-pointer group"
+          className="preparation-packing group"
         >
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2.5">
@@ -128,7 +113,7 @@ export const TripPreparationScreen: React.FC<TripPreparationScreenProps> = ({
                   Danh sách hành lý thông minh
                 </h3>
                 <span className="text-[11px] text-slate-500 font-medium">
-                  Đã chuẩn bị 10 / 18 món ({Math.round((10 / 18) * 100)}%)
+                  Đã chuẩn bị {packedCount} / {packed.length} món ({packedPercent}%)
                 </span>
               </div>
             </div>
@@ -139,12 +124,12 @@ export const TripPreparationScreen: React.FC<TripPreparationScreenProps> = ({
 
           {/* Progress Bar */}
           <div className="w-full h-2 rounded-full bg-slate-100 overflow-hidden mt-3">
-            <div className="h-full bg-emerald-500 rounded-full w-[56%]" />
+            <div className="h-full bg-emerald-500 rounded-full" style={{width:`${packedPercent}%`}} />
           </div>
-        </div>
+        </button>
 
         {/* Pre-Trip Checklist Section */}
-        <div className="p-4 rounded-3xl bg-white border border-slate-200/90 shadow-xs space-y-3">
+        <div className="preparation-checklist">
           <div className="flex items-center justify-between">
             <h3 className="font-bold text-[15px] text-slate-900 font-heading">
               Thủ tục cần chuẩn bị trước
@@ -158,6 +143,8 @@ export const TripPreparationScreen: React.FC<TripPreparationScreenProps> = ({
             {checklist.map((item) => (
               <div
                 key={item.id}
+                role="checkbox" aria-checked={item.checked} tabIndex={0}
+                onKeyDown={e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();toggleCheck(item.id);}}}
                 onClick={() => toggleCheck(item.id)}
                 className={`p-3 rounded-2xl border transition-all cursor-pointer flex items-center gap-3 ${
                   item.checked
@@ -181,7 +168,7 @@ export const TripPreparationScreen: React.FC<TripPreparationScreenProps> = ({
                 </div>
                 <div className="flex-1 min-w-0">
                   <span
-                    className={`text-xs font-medium block truncate ${
+                    className={`preparation-item-label ${
                       item.checked ? 'line-through text-slate-400' : 'text-slate-800'
                     }`}
                   >

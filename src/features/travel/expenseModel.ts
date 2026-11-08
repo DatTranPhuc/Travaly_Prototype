@@ -19,3 +19,12 @@ export function expenseBalances(expenses:Expense[]){
  }
  return balances;
 }
+
+/** Settles exact integer balances; largest debtor/creditor matching uses at most n−1 transfers. */
+export function settlementTransfers(balances:Record<string,number>){
+ const creditors=Object.entries(balances).filter(([,n])=>n>0).map(([id,n])=>({id,amount:n})).sort((a,b)=>b.amount-a.amount);
+ const debtors=Object.entries(balances).filter(([,n])=>n<0).map(([id,n])=>({id,amount:-n})).sort((a,b)=>b.amount-a.amount);
+ const transfers:{from:string;to:string;amount:number}[]=[];let i=0,j=0;
+ while(i<debtors.length&&j<creditors.length){const amount=Math.min(debtors[i].amount,creditors[j].amount);transfers.push({from:debtors[i].id,to:creditors[j].id,amount});debtors[i].amount-=amount;creditors[j].amount-=amount;if(!debtors[i].amount)i++;if(!creditors[j].amount)j++;}
+ return transfers;
+}

@@ -1,3 +1,4 @@
+import {currentTripDay} from './coreLoop';
 import './trips.css';
 import { ArrowUpRight, CalendarDays, Plus, Users } from 'lucide-react';
 import { images } from './fixtures';
@@ -30,7 +31,7 @@ export function TripsScreen({onNew,onManual,onContinueDraft,draft,onNavigateTab}
        const status=tripStatuses[trip.id]||'planned';
        const statusLabel=status==='active'?'Đang đi':status==='completed'?'Đã kết thúc':'Sắp đi';
        return <article className="trips-photo-card" key={trip.id}>
-         <button type="button" className="trips-open-card" aria-label={`Mở chuyến đi ${trip.title}`} onClick={()=>{setPlan(trip);nav('/trip/overview');}}>
+         <button type="button" className="trips-open-card" aria-label={`Mở chuyến đi ${trip.title}`} onClick={()=>{setPlan(trip);nav(currentTripDay(trip)!==null?'/trip/today':'/trip/overview');}}>
            <div className="trips-cover"><Image src={coverFor(trip)} alt={trip.destination}/><span className={`trips-status is-${status}`}>{statusLabel}</span><span className="trips-duration">{trip.days} ngày</span><h2>{trip.destination}</h2></div>
            <div className="trips-card-caption"><span><CalendarDays size={14}/>{trip.dates}</span><span className="trips-open-arrow"><ArrowUpRight size={18}/></span></div>
          </button>

@@ -1,3 +1,9 @@
+import {WizardStep6Summary} from './components/wizard/WizardStep6Summary';
+import {localDate} from './features/travel/format';
+import {WizardStayScreen} from './features/travel/WizardStayScreen';
+import {QuickWizard,QuickRefine} from './features/travel/QuickWizard';
+import {TodayScreen} from './features/travel/TodayScreen';
+import './features/travel/core-loop.css';
 import {AIGeneratingScreen} from './components/wizard/AIGeneratingScreen';
 import {TripMemoriesScreen,TripJourneyMapScreen} from './features/travel/TripMemoriesScreen';
 import {requiredWizardStep,destinationAfterAccess,manualEditorRedirect,type ConfirmedWizardAccess,type AccessPurpose,type PlanningMode} from './features/travel/wizardFlow';
@@ -25,9 +31,8 @@ import { MemoryMapScreen } from './features/travel/MapScreens';
 import { ReviewHub } from './features/travel/ReviewHub';
 import { TripsScreen, DestinationScreen, AIUsageScreen, JoinGroupScreen, RecoveryScreen, ManageAccessScreen, LocalDocumentScreen } from './features/travel/FlowScreens';
 import { useTravel, useStored } from './features/travel/TravelContext';
-import { WizardStayScreen } from './features/travel/WizardStayScreen';
 import { STAYS } from './features/travel/fixtures';
-import { buildWizardPlan, wizardDateError, lodgingBudget, wizardNeedsStay } from './features/travel/wizardPlan';
+import { buildWizardPlan, wizardDateError } from './features/travel/wizardPlan';
 import { DeviceFrame } from './components/common/DeviceFrame';
 import { WelcomeScreen } from './components/screens/WelcomeScreen';
 import { OnboardingStep1 } from './components/screens/OnboardingStep1';
@@ -44,12 +49,6 @@ import { WishlistScreen } from './components/screens/WishlistScreen';
 import { ProfileScreen } from './components/screens/ProfileScreen';
 
 // Wizard Flow Components
-import { WizardStep1Destination } from './components/wizard/WizardStep1Destination';
-import { WizardStep2Dates } from './components/wizard/WizardStep2Dates';
-import { WizardStep3Companions } from './components/wizard/WizardStep3Companions';
-import { WizardStep4Budget } from './components/wizard/WizardStep4Budget';
-import { WizardStep5Preferences } from './components/wizard/WizardStep5Preferences';
-import { WizardStep6Summary } from './components/wizard/WizardStep6Summary';
 
 // Itinerary & Preparation Screens
 import { TripOverviewScreen } from './components/screens/TripOverviewScreen';
@@ -111,7 +110,7 @@ const SCREEN_ROUTES: Record<ScreenId, string> = {
   'itinerary-edit': '/trip/edit/1',
   'trip-preparation': '/trip/preparation',
   'packing-list': '/trip/packing-list',
-  'today-schedule': '/trip/day/1',
+  'today-schedule': '/trip/today',
   'adaptive-schedule': '/trip/adaptive',
   'group-space': '/trip/group',
   'group-poll': '/trip/group/poll',
@@ -187,7 +186,7 @@ function ItineraryEditWrapper({ onBack }: { onBack: () => void }) {
   const navigate = useNavigate();
   const { dayNumber } = useParams<{ dayNumber: string }>();
   const day = dayNumber ? parseInt(dayNumber, 10) : 1;
-  return <ItineraryEditScreen initialDay={day} onSave={(updatedPlan) => { setPlan(updatedPlan); navigate(`/trip/day/${day}`); }} onCancel={() => navigate(`/trip/day/${day}`)} />;
+  return <ItineraryEditScreen initialDay={day} onSave={(updatedPlan) => { setPlan(previous=>({...previous,...updatedPlan})); navigate(`/trip/day/${day}`); }} onCancel={() => navigate(`/trip/day/${day}`)} />;
 }
 
 function NewTripEntry({onStart}:{onStart:()=>void}){const started=useRef(false);useEffect(()=>{if(!started.current){started.current=true;onStart();}},[onStart]);return null;}
@@ -205,14 +204,16 @@ export default function App() {
   const [wizardAccessPlan, setWizardAccessPlan] = useStored<TripAccessPlan | null>('travaiy-wizard-access-v1',null);
   const [draftId,setDraftId]=useStored<string>('travaiy-draft-id-v1',`draft-${Date.now()}`);
   const [draftPending,setDraftPending]=useStored<boolean>('travaiy-draft-pending-v1',true);
+  const [previewPackage,setPreviewPackage]=useStored<boolean>('travaiy-preview-package-v1',false);
   const [generationRequestId,setGenerationRequestId]=useStored<string>('travaiy-ai-request-v1','');
   const [wizardData, setWizardData] = useStored<TripWizardData>('travaiy-wizard-data-v2',DEFAULT_SAIGON_WIZARD_DATA);
   const {plan,setPlan,trips,accessFor,accessLimit,selectAccess,consumeAI} = useTravel();
   const wizardPlan = useMemo(() => ({...buildWizardPlan(wizardData),id:draftId}), [wizardData,draftId]);
-  const approveWizardPlan = () => {if(wizardNeedsStay(wizardData)){navigate('/wizard/stay');return;}if(wizardDateError(wizardData)){navigate('/wizard/dates');return;}setPlan(wizardPlan);setDraftPending(false); navigate('/trip/overview');};
+  const approveWizardPlan = () => {if(wizardDateError(wizardData)){navigate('/wizard/dates');return;}setPlan(wizardPlan);setDraftPending(false); navigate('/trip/overview');};
   const startNewTrip=()=>{
     const interests=userPreferences.interests.flatMap(value=>/Ăn|cà phê/i.test(value)?['Ẩm thực']:/Thiên nhiên/i.test(value)?['Thiên nhiên']:/Văn hóa/i.test(value)?['Văn hóa']:/Chụp ảnh/i.test(value)?['Chụp ảnh']:/Nghỉ dưỡng|thư giãn/i.test(value)?['Thư giãn']:[]);
-    setWizardData({...DEFAULT_SAIGON_WIZARD_DATA,planningMode:undefined,interests:[...new Set(interests)],mustVisitPlaces:[]});setDraftId(`trip-${Date.now()}`);setDraftPending(true);setWizardAccessPlan(null);setConfirmedAccess(null);setAccessPurpose('create');setGenerationRequestId('');navigate('/wizard/destination');
+    const startDate=localDate();const endDate=localDate(new Date(Date.now()+2*86400000));
+    setWizardData({...DEFAULT_SAIGON_WIZARD_DATA,startDate,endDate,durationText:'3 ngày · 2 đêm',planningMode:'ai',stayId:undefined,checkIn:undefined,checkOut:undefined,interests:[...new Set(interests)].slice(0,3),mustVisitPlaces:[]});setDraftId(`trip-${Date.now()}`);setDraftPending(true);setWizardAccessPlan(null);setConfirmedAccess(null);setAccessPurpose('create');setPreviewPackage(false);setGenerationRequestId('');navigate('/wizard/destination');
   };
   const startGeneration=(tier:TripAccessPlan)=>{
     const required=requiredWizardStep(wizardData);if(required){navigate(required);return;}
@@ -227,6 +228,7 @@ export default function App() {
     if(mode==='manual')navigate(destinationAfterAccess(mode,'create'));else startGeneration(tier);
   };
   const chooseWizardAccess=(tier:TripAccessPlan)=>{
+    if(previewPackage){if(!isPlanAvailable(tier,wizardData.companionType))return;selectAccess(draftId,tier);setWizardAccessPlan(tier);setPreviewPackage(false);navigate('/wizard/ai-proposal');return;}
     if(accessPurpose==='create'){const required=requiredWizardStep(wizardData);if(required){navigate(required);return;}if(!wizardData.planningMode){navigate('/wizard/summary');return;}}
     if(!isPlanAvailable(tier,wizardData.companionType)){setWizardAccessPlan(null);navigate('/wizard/subscription');return;}
     setWizardAccessPlan(tier);
@@ -234,7 +236,19 @@ export default function App() {
   };
   const choosePlanningMode=(mode:PlanningMode)=>{
     const required=requiredWizardStep(wizardData);if(required){navigate(required);return;}
-    setWizardData(prev=>({...prev,planningMode:mode}));setConfirmedAccess(null);setAccessPurpose('create');navigate('/wizard/subscription');
+    setWizardData(prev=>({...prev,planningMode:mode}));setPreviewPackage(false);setAccessPurpose('create');
+    if(mode==='manual'){
+      const tier='free' as const;
+      setConfirmedAccess({tripId:draftId,mode:'manual',tier});
+      navigate(destinationAfterAccess('manual','create'));return;
+    }
+    setConfirmedAccess(null);navigate('/wizard/subscription');
+  };
+  const createQuickPlan=()=>{
+    const required=requiredWizardStep(wizardData);if(required){navigate(required);return;}
+    setWizardData(prev=>({...prev,planningMode:'ai'}));
+    const tier=accessFor(draftId).tier;selectAccess(draftId,tier);setWizardAccessPlan(tier);setConfirmedAccess({tripId:draftId,mode:'ai',tier});setPreviewPackage(false);
+    startGeneration(tier);
   };
   const manualRedirect=manualEditorRedirect(wizardData,draftId,confirmedAccess);
   const finishGeneration=()=>{
@@ -281,6 +295,7 @@ export default function App() {
     if (pathname === '/wizard/dates') return 'wizard-dates';
     if (pathname === '/wizard/companions') return 'wizard-companions';
     if (pathname === '/wizard/budget') return 'wizard-budget';
+    if (pathname === '/wizard/refine') return 'wizard-preferences';
     if (pathname === '/wizard/preferences') return 'wizard-preferences';
     if (pathname === '/wizard/summary') return 'wizard-summary';
     if (pathname === '/wizard/ai-generating') return 'ai-generating';
@@ -384,7 +399,7 @@ export default function App() {
         <Route path="/explore/stays" element={<StayListScreen wizardData={wizardData}/>}/>
         <Route path="/stay/:stayId" element={<StayDetailScreen wizardData={wizardData} onChooseForWizard={(id)=>{setWizardData(prev=>({...prev,stayId:id,accommodation:STAYS.find(s=>s.id===id)?.type||prev.accommodation}));navigate('/wizard/stay');}}/>}/>
         <Route path="/trip/recap/map" element={<MemoryMapScreen/>}/>
-        <Route path="/trips" element={<TripsScreen draft={draftPending?wizardData:null} onNew={()=>navigate('/trip/create')} onManual={startNewTrip} onContinueDraft={()=>navigate('/wizard/summary')} onNavigateTab={handleNavTab}/>}/>
+        <Route path="/trips" element={<TripsScreen draft={draftPending?wizardData:null} onNew={()=>navigate('/trip/create')} onManual={startNewTrip} onContinueDraft={()=>navigate('/wizard/destination')} onNavigateTab={handleNavTab}/>}/>
         <Route path="/destination/:id" element={<DestinationScreen onCreate={(name,image,tagline)=>{setWizardData({...INITIAL_WIZARD_DATA,destination:name,destinationImage:image,destinationTagline:tagline,mustVisitPlaces:[]});setDraftId(`trip-${Date.now()}`);setDraftPending(true);setWizardAccessPlan(null);setConfirmedAccess(null);setAccessPurpose('create');navigate('/wizard/destination');}}/>}/>
         <Route path="/wizard/checkout" element={<Navigate to="/wizard/subscription" replace/>}/>
         <Route path="/wizard/ai-limit" element={<AIUsageScreen tripId={draftId} onUpgrade={()=>navigate('/wizard/subscription')} onManual={()=>{const saved=trips.find(t=>t.id===draftId);if(saved){setPlan(saved);navigate('/trip/edit/1');}else{setWizardData(prev=>({...prev,planningMode:'manual'}));setAccessPurpose('create');navigate('/wizard/subscription');}}}/>}/>
@@ -565,153 +580,16 @@ export default function App() {
           }
         />
 
-        {/* 13. Wizard Step 1: Chọn điểm đến */}
-        <Route
-          path="/wizard/destination"
-          element={
-            <WizardStep1Destination
-              selectedDestination={wizardData.destination}
-              onSelect={(destName, tagline, img) =>
-                setWizardData((prev) => ({
-                  ...prev,
-                  destination: destName,
-                  stayId: prev.destination === destName ? prev.stayId : undefined,
-                  checkIn: prev.destination === destName ? prev.checkIn : undefined,
-                  checkOut: prev.destination === destName ? prev.checkOut : undefined,
-                  stayDatesMode: prev.destination === destName ? prev.stayDatesMode : 'trip',
-                  mustVisitPlaces: prev.destination === destName ? prev.mustVisitPlaces : [],
-                  destinationTagline: tagline,
-                  destinationImage: img,
-                }))
-              }
-              onNext={() => navigate('/wizard/places')}
-              onBack={() => navigate('/home')}
-            />
-          }
-        />
+        <Route path="/wizard/destination" element={<QuickWizard step={1} data={wizardData} onChange={patch=>setWizardData(prev=>({...prev,...patch}))} onBack={()=>navigate('/home')} onNext={()=>navigate('/wizard/places')}/>}/>
+        <Route path="/wizard/companions" element={<QuickWizard step={3} data={wizardData} onChange={patch=>setWizardData(prev=>({...prev,...patch}))} onBack={()=>navigate('/wizard/places')} onNext={()=>navigate('/wizard/stay')}/>}/>
+        <Route path="/wizard/dates" element={<Navigate to="/wizard/destination" replace/>}/>
+        <Route path="/wizard/budget" element={<Navigate to="/wizard/companions" replace/>}/>
+        <Route path="/wizard/refine" element={<QuickRefine data={wizardData} onChange={patch=>setWizardData(prev=>({...prev,...patch}))} onBack={()=>navigate(location.search.includes('from=method')?'/wizard/summary':'/wizard/ai-proposal')} onPackage={()=>{setPreviewPackage(true);setAccessPurpose('upgrade');navigate('/wizard/subscription');}}/>}/>
+        <Route path="/wizard/stay" element={<WizardStayScreen data={wizardData} onSelect={id=>setWizardData(prev=>({...prev,stayId:id,stayDatesMode:'trip',checkIn:prev.startDate,checkOut:prev.endDate,accommodation:STAYS.find(s=>s.id===id)?.type||prev.accommodation}))} onUpdate={patch=>setWizardData(prev=>({...prev,...patch}))} onBack={()=>navigate('/wizard/companions')} onNext={()=>navigate('/wizard/summary')}/>}/>
 
-        <Route path="/wizard/stay" element={<WizardStayScreen data={wizardData} onSelect={id=>setWizardData(prev=>({...prev,stayId:id,accommodation:STAYS.find(s=>s.id===id)?.type||prev.accommodation}))} onUpdate={patch=>setWizardData(prev=>({...prev,...patch}))} onNext={()=>{if(!wizardNeedsStay(wizardData))navigate('/wizard/summary');}} onBack={()=>navigate('/wizard/budget')}/>}/>
-
-        {/* 14. Wizard Step 2: Thời gian & Ngày */}
-        <Route
-          path="/wizard/dates"
-          element={
-            <WizardStep2Dates
-              destination={wizardData.destination}
-              startDate={wizardData.startDate}
-              endDate={wizardData.endDate}
-              durationText={wizardData.durationText}
-              departureTime={wizardData.departureTime}
-              returnTime={wizardData.returnTime}
-              stayId={wizardData.stayId}
-              stayDatesMode={wizardData.stayDatesMode}
-              checkIn={wizardData.checkIn}
-              checkOut={wizardData.checkOut}
-              onChange={(dates) => setWizardData((prev) => ({ ...prev, ...dates }))}
-              onNext={() => navigate('/wizard/companions')}
-              onBack={() => navigate('/wizard/places')}
-            />
-          }
-        />
-
-        {/* 15. Wizard Step 3: Người đồng hành */}
-        <Route
-          path="/wizard/companions"
-          element={
-            <WizardStep3Companions
-              destination={wizardData.destination}
-              companionType={wizardData.companionType}
-              companionCount={wizardData.companionCount}
-              inviteCode={wizardData.inviteCode}
-              onChange={(comp) => {
-                setWizardData((prev) => ({ ...prev, ...comp }));
-                if (!isPlanAvailable(wizardAccessPlan, comp.companionType)) setWizardAccessPlan(null);
-              }}
-              onNext={() => navigate('/wizard/budget')}
-              onBack={() => navigate('/wizard/dates')}
-            />
-          }
-        />
-
-        {/* 16. Wizard Step 4: Ngân sách */}
-        <Route
-          path="/wizard/budget"
-          element={
-            <WizardStep4Budget
-              destination={wizardData.destination}
-              budgetTier={wizardData.budgetTier}
-              budgetAmount={wizardData.budgetAmount}
-              hotelBudgetPerNight={lodgingBudget(wizardData).nightly}
-              roomCount={lodgingBudget(wizardData).rooms}
-              nights={lodgingBudget(wizardData).nights}
-              onHotelBudgetChange={value=>setWizardData(prev=>({...prev,hotelBudgetPerNight:value}))}
-              onRoomsChange={value=>setWizardData(prev=>({...prev,stayRoomCount:value}))}
-              onChange={(budget) => setWizardData((prev) => ({ ...prev, ...budget }))}
-              onNext={() => navigate('/wizard/stay')}
-              onBack={() => navigate('/wizard/companions')}
-            />
-          }
-        />
-
-        {/* 17. Wizard Step 5: Sở thích & Phương tiện */}
-        <Route
-          path="/wizard/preferences"
-          element={
-            <WizardStep5Preferences
-              interests={wizardData.interests}
-              transport={wizardData.transport}
-              accommodation={wizardData.accommodation}
-              selectedStayName={STAYS.find(s=>s.id===wizardData.stayId)?.name}
-              onEditStay={()=>navigate('/wizard/stay')}
-              mustVisitPlaces={wizardData.mustVisitPlaces}
-              notes={wizardData.notes}
-              onChange={(prefs) => setWizardData((prev) => ({ ...prev, ...prefs }))}
-              onNext={() => navigate('/wizard/summary')}
-              onBack={() => navigate('/wizard/summary')}
-            />
-          }
-        />
-
-        <Route path="/wizard/places" element={<PlaceSelectionScreen city={wizardData.destination} selected={wizardData.mustVisitPlaces} onChange={names=>setWizardData(prev=>({...prev,mustVisitPlaces:names}))} deferScheduling onBack={()=>navigate('/wizard/destination')} onContinue={()=>navigate('/wizard/dates')} onAI={()=>navigate('/wizard/dates')} onManual={()=>navigate('/wizard/dates')}/>}/>
-
-        {/* 18. Wizard Step 6: Xác nhận thông tin */}
-        <Route
-          path="/wizard/summary"
-          element={
-            <WizardStep6Summary
-              data={wizardData}
-              onChooseMode={choosePlanningMode}
-              onEditStep={(stepNum) => {
-                switch (stepNum) {
-                  case 6:
-                    navigate('/wizard/places');
-                    break;
-                  case 7:
-                    navigate('/wizard/stay');
-                    break;
-                  case 1:
-                    navigate('/wizard/destination');
-                    break;
-                  case 2:
-                    navigate('/wizard/dates');
-                    break;
-                  case 3:
-                    navigate('/wizard/companions');
-                    break;
-                  case 4:
-                    navigate('/wizard/budget');
-                    break;
-                  case 5:
-                    navigate('/wizard/preferences');
-                    break;
-                  default:
-                    break;
-                }
-              }}
-              onBack={() => navigate('/wizard/stay')}
-            />
-          }
-        />
+        <Route path="/wizard/preferences" element={<Navigate to="/wizard/refine" replace/>}/>
+        <Route path="/wizard/places" element={<PlaceSelectionScreen city={wizardData.destination} selected={wizardData.mustVisitPlaces} onChange={names=>setWizardData(prev=>({...prev,mustVisitPlaces:names}))} deferScheduling wizardTotal={6} onBack={()=>navigate('/wizard/destination')} onContinue={()=>navigate('/wizard/companions')} onAI={()=>navigate('/wizard/companions')} onManual={()=>navigate('/wizard/companions')}/>}/>
+        <Route path="/wizard/summary" element={<WizardStep6Summary data={wizardData} onChooseMode={choosePlanningMode} onBack={()=>navigate('/wizard/stay')} onEditStep={step=>navigate(step===7?'/wizard/stay':step===6?'/wizard/places':step===3||step===4?'/wizard/companions':step===5?'/wizard/refine?from=method':'/wizard/destination')}/>}/>
 
         <Route path="/wizard/subscription" element={<WizardSubscriptionScreen key={`${draftId}:${wizardData.planningMode}:${accessPurpose}`}
           planningMode={wizardData.planningMode||'ai'}
@@ -720,7 +598,7 @@ export default function App() {
           duration={wizardData.durationText}
           initialPlan={wizardAccessPlan}
           companionType={wizardData.companionType}
-          onBack={() => navigate(accessPurpose==='upgrade'?'/subscription':'/wizard/summary')}
+          onBack={() => {if(previewPackage){setPreviewPackage(false);navigate('/wizard/refine');}else navigate(accessPurpose==='upgrade'?'/subscription':'/wizard/summary');}}
           onContinue={chooseWizardAccess}
           used={accessFor(draftId).used}
         />} />
@@ -748,7 +626,7 @@ export default function App() {
               onEditTrip={() => navigate('/trip/edit/1')}
               onOpenPreparation={() => navigate('/trip/preparation')}
               onOpenPackingList={() => navigate('/trip/packing-list')}
-              onOpenTodaySchedule={() => navigate('/trip/day/1')}
+              onOpenTodaySchedule={() => navigate('/trip/today')}
               onOpenGroupSpace={() => navigate('/trip/group')}
               onOpenExpenses={() => navigate('/trip/expenses')}
               onOpenJournal={() => navigate('/trip/journal')}
@@ -801,7 +679,7 @@ export default function App() {
           }
         />
 
-        <Route path="/trip/today" element={<Navigate to="/trip/day/1" replace />} />
+        <Route path="/trip/today" element={<TodayScreen/>} />
 
         <Route path="/trip/adaptive" element={<AdaptiveRouteRedirect />} />
 
@@ -974,10 +852,11 @@ export default function App() {
           element={
             <AIItineraryProposalScreen
               draft={wizardPlan}
-              onBack={() => navigate('/wizard/summary')}
+              onRefine={()=>navigate('/wizard/refine')}
+              onBack={() => navigate('/wizard/stay')}
               onApprove={approveWizardPlan}
               onAdjust={() => {setPlan(wizardPlan);setDraftPending(false);navigate('/trip/edit/1');}}
-              onRegenerate={() => navigate('/wizard/subscription')}
+              onRegenerate={createQuickPlan}
               remaining={Math.max(0,accessLimit(accessFor(draftId).tier)-accessFor(draftId).used)}
             />
           }
