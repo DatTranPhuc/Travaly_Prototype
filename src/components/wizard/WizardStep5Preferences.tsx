@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IOSStatusBar } from '../common/IOSStatusBar';
+import { WizardHeader } from '../../features/travel/WizardUI';
 
 interface WizardStep5PreferencesProps {
   interests: string[];
@@ -114,28 +114,7 @@ export const WizardStep5Preferences: React.FC<WizardStep5PreferencesProps> = ({
   return (
     <div className="relative w-full h-full min-h-0 bg-[#FCFDFF] flex flex-col justify-between overflow-hidden select-none text-slate-800">
       {/* Top Header */}
-      <header className="pt-2 px-5 shrink-0 bg-[#FCFDFF] z-20">
-        <IOSStatusBar light={false} />
-        <div className="grid grid-cols-[36px_1fr_36px] items-center pt-1 pb-2">
-          <button
-            onClick={onBack}
-            aria-label="Quay lại"
-            type="button"
-            className="w-9 h-9 -ml-1 flex items-center justify-center rounded-full text-slate-800 hover:bg-slate-100 transition-colors cursor-pointer"
-          >
-            <svg className="w-5 h-5 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-            </svg>
-          </button>
-          <div className="flex flex-col items-center text-center">
-            <h1 className="plan-header-title">
-              Sở thích chuyến đi
-            </h1>
-            <span className="text-[12px] font-medium text-slate-400">Tùy chọn</span>
-          </div>
-          <div className="w-9" />
-        </div>
-      </header>
+      <WizardHeader title="Sở thích chuyến đi" subtitle="Tùy chỉnh DNA du lịch cho chuyến đi của bạn." onBack={onBack}/>
 
       {/* Main Content */}
       <main className="flex-1 min-h-0 px-5 pt-3 pb-6 overflow-y-auto no-scrollbar flex flex-col gap-4 text-left">
@@ -351,7 +330,7 @@ export const WizardStep5Preferences: React.FC<WizardStep5PreferencesProps> = ({
             className="absolute inset-0 bg-[#0A1680]/30 backdrop-blur-xs transition-opacity"
             onClick={() => setShowAddPlaceSheet(false)}
           />
-          <div className="relative w-full bg-white rounded-t-[28px] shadow-2xl p-5 flex flex-col gap-4 z-10 animate-in slide-in-from-bottom duration-300 text-left">
+          <div className="relative w-full bg-white modal-surface rounded-[28px] shadow-2xl p-5 flex flex-col gap-4 z-10 animate-in slide-in-from-bottom duration-300 text-left">
             <div className="flex items-center justify-between pb-1 border-b border-slate-100">
               <div className="flex flex-col">
                 <h3 className="text-[16px] font-bold text-[#0A1680] font-heading">

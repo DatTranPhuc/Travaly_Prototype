@@ -42,7 +42,7 @@ export const ModalSheet: React.FC<ModalSheetProps> = ({
         aria-label={ariaLabel || title || 'Toàn màn hình'}
         ref={modalRef}
         tabIndex={-1}
-        className={`absolute inset-0 z-50 flex flex-col justify-between bg-black/95 text-white overflow-hidden animate-in fade-in duration-200 ${className}`}
+        className={`modal-fullscreen absolute inset-0 z-50 flex flex-col justify-between bg-black/95 text-white overflow-hidden animate-in fade-in duration-200 ${className}`}
       >
         {children}
       </div>
@@ -60,12 +60,12 @@ export const ModalSheet: React.FC<ModalSheetProps> = ({
         className={`absolute inset-0 z-50 flex items-center justify-center p-4 overflow-hidden animate-in fade-in duration-200 ${className}`}
       >
         <div
-          className="absolute inset-0 bg-[#0A1680]/40 backdrop-blur-[3px] transition-opacity"
+          className="modal-sheet-scrim absolute inset-0 transition-opacity"
           onClick={onClose}
           aria-hidden="true"
         />
         <div
-          className={`relative bg-white rounded-3xl p-5 shadow-2xl border border-slate-100 max-w-sm w-full z-10 animate-in zoom-in-95 duration-200 ${contentClassName}`}
+          className={`modal-surface relative bg-white rounded-3xl p-5 shadow-2xl border border-slate-100 max-w-sm w-full z-10 animate-in zoom-in-95 duration-200 ${contentClassName}`}
         >
           {children}
         </div>
@@ -84,12 +84,12 @@ export const ModalSheet: React.FC<ModalSheetProps> = ({
       className={`absolute inset-0 z-50 flex flex-col justify-end overflow-hidden animate-in fade-in duration-200 ${className}`}
     >
       <div
-        className="absolute inset-0 bg-[#0A1680]/35 backdrop-blur-[3px] transition-opacity"
+        className="modal-sheet-scrim absolute inset-0 transition-opacity"
         onClick={onClose}
         aria-hidden="true"
       />
       <div
-        className={`relative bg-white rounded-t-[28px] shadow-2xl z-10 w-full max-h-[88vh] flex flex-col overflow-hidden animate-in slide-in-from-bottom duration-300 ${contentClassName}`}
+        className={`relative bg-white modal-surface rounded-[28px] shadow-2xl z-10 w-full max-h-[88vh] flex flex-col overflow-hidden animate-in slide-in-from-bottom duration-300 ${contentClassName}`}
       >
         {showHandleBar && (
           <div className="w-full flex justify-center pt-3 pb-1 shrink-0">

@@ -253,7 +253,7 @@ export const CreatePostScreen: React.FC<CreatePostScreenProps> = ({
       {/* POPUP 1: Thêm ảnh */}
       {showAddPhotosModal && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-xs">
-          <div className="bg-white w-full max-w-[390px] rounded-t-[28px] p-5 flex flex-col gap-3 shadow-xl animate-in slide-in-from-bottom duration-200">
+          <div className="bg-white w-full max-w-[390px] modal-surface rounded-[28px] p-5 flex flex-col gap-3 shadow-xl animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto" />
             <div className="flex items-center justify-between pb-1 border-b border-slate-100">
               <h3 className="font-heading font-bold text-[16px] text-[#0A1680]">Chọn ảnh tải lên</h3>
@@ -285,7 +285,7 @@ export const CreatePostScreen: React.FC<CreatePostScreenProps> = ({
       {/* POPUP 2: Đổi địa điểm */}
       {showLocationModal && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-xs">
-          <div className="bg-white w-full max-w-[390px] rounded-t-[28px] p-5 flex flex-col gap-3 shadow-xl animate-in slide-in-from-bottom duration-200">
+          <div className="bg-white w-full max-w-[390px] modal-surface rounded-[28px] p-5 flex flex-col gap-3 shadow-xl animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto" />
             <div className="flex items-center justify-between pb-1 border-b border-slate-100">
               <h3 className="font-heading font-bold text-[16px] text-[#0A1680]">Chọn điểm đến / Check-in</h3>
@@ -315,7 +315,7 @@ export const CreatePostScreen: React.FC<CreatePostScreenProps> = ({
       {/* POPUP 3: Thêm hashtag */}
       {showTagsModal && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-xs">
-          <div className="bg-white w-full max-w-[390px] rounded-t-[28px] p-5 flex flex-col gap-3 shadow-xl animate-in slide-in-from-bottom duration-200">
+          <div className="bg-white w-full max-w-[390px] modal-surface rounded-[28px] p-5 flex flex-col gap-3 shadow-xl animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto" />
             <div className="flex items-center justify-between pb-1 border-b border-slate-100">
               <h3 className="font-heading font-bold text-[16px] text-[#0A1680]">Thêm Hashtag</h3>
@@ -368,7 +368,7 @@ export const CreatePostScreen: React.FC<CreatePostScreenProps> = ({
       {/* POPUP 4: AI Viết Giúp */}
       {showAIWriteModal && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-xs">
-          <div className="bg-white w-full max-w-[390px] rounded-t-[28px] p-5 flex flex-col gap-3.5 shadow-xl animate-in slide-in-from-bottom duration-200">
+          <div className="bg-white w-full max-w-[390px] modal-surface rounded-[28px] p-5 flex flex-col gap-3.5 shadow-xl animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto" />
             <div className="flex items-center justify-between pb-1 border-b border-slate-100">
               <div className="flex items-center gap-1.5">
@@ -410,7 +410,7 @@ export const CreatePostScreen: React.FC<CreatePostScreenProps> = ({
       {/* POPUP 5: Publish Preview Modal */}
       {showPublishPreviewModal && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-xs">
-          <div className="bg-white w-full max-w-[390px] rounded-t-[28px] p-5 flex flex-col gap-3 shadow-xl animate-in slide-in-from-bottom duration-200">
+          <div className="bg-white w-full max-w-[390px] modal-surface rounded-[28px] p-5 flex flex-col gap-3 shadow-xl animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto" />
             <div className="flex items-center justify-between pb-1 border-b border-slate-100">
               <h3 className="font-heading font-bold text-[16px] text-[#0A1680]">Xem trước & Đăng bài</h3>

@@ -1,6 +1,6 @@
+import {WizardHeader} from '../../features/travel/WizardUI';
 import React, { useState } from 'react';
-import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
-import { IOSStatusBar } from '../common/IOSStatusBar';
+import { ArrowRight, Check } from 'lucide-react';
 
 export type TripAccessPlan = 'free' | 'solo' | 'group';
 export function isPlanAvailable(plan: TripAccessPlan | null, companionType: 'solo' | 'group') {
@@ -28,17 +28,10 @@ export function WizardSubscriptionScreen({ destination, duration, initialPlan, c
   const availablePlans = plans.filter(plan => isPlanAvailable(plan.id, companionType));
   return (
     <div className="relative w-full h-full min-h-0 flex flex-col bg-[#FCFDFF] text-slate-800">
-      <header className="shrink-0 px-5 pb-4 border-b border-slate-100">
-        <IOSStatusBar />
-        <div className="flex items-center gap-3 py-2">
-          <button type="button" onClick={onBack} aria-label="Quay lại xác nhận chuyến đi" className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-slate-100"><ArrowLeft size={20} /></button>
-          <h1 className="plan-header-title">Chọn gói chuyến đi</h1>
-        </div>
-        {purpose === 'create' && <p className="text-xs text-slate-400 mb-2">Bước 8/8 · {planningMode === 'manual' ? 'Tự xếp lịch' : 'AI xếp lịch'}</p>}
-        <p className="text-sm font-semibold text-[#0A1680]">{destination} · {duration}</p>
-        <p className="text-xs text-slate-500 mt-1">{purpose === 'upgrade' ? 'Chọn gói áp dụng cho chuyến đi.' : planningMode === 'manual' ? 'Tự xếp lịch không trừ lượt AI. Có thể bắt đầu với gói Miễn phí.' : `Chọn gói để tạo lịch trình. Đã dùng ${used} lượt AI.`}</p>
-      </header>
+      {purpose === 'create' ? <WizardHeader step={8} destination={destination} title="Chọn gói chuyến đi" subtitle={`${duration} · ${planningMode === 'manual' ? 'Tự xếp lịch' : 'AI xếp lịch'}`} onBack={onBack}/> : <WizardHeader title="Chọn gói chuyến đi" subtitle={`${destination} · ${duration}`} onBack={onBack}/>}
+
       <main className="flex-1 min-h-0 overflow-y-auto px-5 py-4 no-scrollbar">
+        <p className="text-xs text-slate-500 mb-4">{purpose === 'upgrade' ? 'Chọn gói áp dụng cho chuyến đi.' : planningMode === 'manual' ? 'Tự xếp lịch không trừ lượt AI. Có thể bắt đầu với gói Miễn phí.' : `Chọn gói để tạo lịch trình. Đã dùng ${used} lượt AI.`}</p>
         <fieldset className="flex flex-col gap-3">
           <legend className="sr-only">Gói áp dụng cho chuyến đi này</legend>
           {availablePlans.map(plan => (

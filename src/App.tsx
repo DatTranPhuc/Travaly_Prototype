@@ -597,6 +597,7 @@ export default function App() {
           path="/wizard/dates"
           element={
             <WizardStep2Dates
+              destination={wizardData.destination}
               startDate={wizardData.startDate}
               endDate={wizardData.endDate}
               durationText={wizardData.durationText}
@@ -618,6 +619,7 @@ export default function App() {
           path="/wizard/companions"
           element={
             <WizardStep3Companions
+              destination={wizardData.destination}
               companionType={wizardData.companionType}
               companionCount={wizardData.companionCount}
               inviteCode={wizardData.inviteCode}
@@ -636,6 +638,7 @@ export default function App() {
           path="/wizard/budget"
           element={
             <WizardStep4Budget
+              destination={wizardData.destination}
               budgetTier={wizardData.budgetTier}
               budgetAmount={wizardData.budgetAmount}
               hotelBudgetPerNight={lodgingBudget(wizardData).nightly}
@@ -1009,7 +1012,7 @@ export default function App() {
         {/* Catch-all fallback */}
         <Route path="*" element={<Navigate to="/home" replace />} />
       </Routes>
-      {homeUnlocked && location.pathname === '/home' && <AlyAssistant/>}
+      {homeUnlocked && !/^\/(welcome|onboarding|auth)(\/|$)/.test(location.pathname) && <AlyAssistant key={location.pathname}/>}
     </DeviceFrame>
   );
 }

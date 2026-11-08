@@ -366,7 +366,7 @@ export const TodayScheduleScreen: React.FC<TodayScheduleScreenProps> = ({
 
       {/* POPUP 1: Weather Forecast Bottom Sheet */}
       <ModalSheet isOpen={showWeatherForecastSheet} onClose={()=>setShowWeatherForecastSheet(false)} title="Thời tiết minh họa" showHandleBar={false} contentClassName="today-sheet">
-          <div className="today-sheet-content relative w-full bg-white rounded-t-[28px] p-5 pb-8 shadow-2xl flex flex-col gap-3.5 z-10 animate-in slide-in-from-bottom duration-200">
+          <div className="today-sheet-content relative w-full bg-white modal-surface rounded-[28px] p-5 pb-8 shadow-2xl flex flex-col gap-3.5 z-10 animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto shrink-0" />
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -430,7 +430,7 @@ export const TodayScheduleScreen: React.FC<TodayScheduleScreenProps> = ({
 
       {/* POPUP 2: Route Options Sheet (Chỉ đường: Hải Đăng Vũng Tàu) */}
       <ModalSheet isOpen={showRouteOptions} onClose={()=>setShowRouteOptions(false)} title="Tùy chọn chỉ đường" showHandleBar={false} contentClassName="today-sheet">
-          <div className="today-sheet-content relative w-full bg-white rounded-t-[28px] p-5 pb-8 shadow-2xl flex flex-col gap-3.5 z-10 animate-in slide-in-from-bottom duration-200">
+          <div className="today-sheet-content relative w-full bg-white modal-surface rounded-[28px] p-5 pb-8 shadow-2xl flex flex-col gap-3.5 z-10 animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto shrink-0" />
             <div className="flex items-center justify-between">
               <div>
@@ -520,7 +520,7 @@ export const TodayScheduleScreen: React.FC<TodayScheduleScreenProps> = ({
 
       {/* POPUP 3: Delay Prompt Modal */}
       <ModalSheet isOpen={showDelayPrompt} onClose={()=>setShowDelayPrompt(false)} title="Tùy chọn khi trễ giờ" showHandleBar={false} contentClassName="today-sheet">
-          <div className="today-sheet-content relative w-full bg-white rounded-t-[28px] p-5 pb-8 shadow-2xl flex flex-col gap-3.5 z-10 animate-in slide-in-from-bottom duration-200">
+          <div className="today-sheet-content relative w-full bg-white modal-surface rounded-[28px] p-5 pb-8 shadow-2xl flex flex-col gap-3.5 z-10 animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto shrink-0" />
             <div className="flex items-center justify-between">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-[11px] font-bold">
@@ -572,7 +572,7 @@ export const TodayScheduleScreen: React.FC<TodayScheduleScreenProps> = ({
 
       {/* POPUP 4: Notifications Sheet */}
       <ModalSheet isOpen={showNotificationsSheet} onClose={()=>setShowNotificationsSheet(false)} title="Thông báo hành trình" showHandleBar={false} contentClassName="today-sheet">
-          <div className="today-sheet-content relative w-full bg-white rounded-t-[28px] p-5 pb-8 shadow-2xl flex flex-col gap-3.5 z-10 animate-in slide-in-from-bottom duration-200">
+          <div className="today-sheet-content relative w-full bg-white modal-surface rounded-[28px] p-5 pb-8 shadow-2xl flex flex-col gap-3.5 z-10 animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto shrink-0" />
             <div className="flex items-center justify-between pb-1 border-b border-slate-100">
               <div className="flex items-center gap-2">
@@ -632,7 +632,7 @@ export const TodayScheduleScreen: React.FC<TodayScheduleScreenProps> = ({
 
       {/* POPUP 5: Destination Picker Sheet */}
       <ModalSheet isOpen={showDestinationPicker} onClose={()=>setShowDestinationPicker(false)} title="Chọn chuyến đi" showHandleBar={false} contentClassName="today-sheet">
-          <div className="today-sheet-content relative w-full bg-white rounded-t-[28px] p-5 pb-8 shadow-2xl flex flex-col gap-3.5 z-10 animate-in slide-in-from-bottom duration-200">
+          <div className="today-sheet-content relative w-full bg-white modal-surface rounded-[28px] p-5 pb-8 shadow-2xl flex flex-col gap-3.5 z-10 animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto shrink-0" />
             <div className="flex items-center justify-between pb-1 border-b border-slate-100">
               <h3 className="text-[16px] font-bold text-slate-900 font-heading">

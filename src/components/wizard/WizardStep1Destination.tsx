@@ -1,5 +1,6 @@
+import './destination-search.css';
 import React, { useState } from 'react';
-import { IOSStatusBar } from '../common/IOSStatusBar';
+import { WizardHeader } from '../../features/travel/WizardUI';
 
 interface WizardStep1DestinationProps {
   selectedDestination: string;
@@ -129,42 +130,7 @@ export const WizardStep1Destination: React.FC<WizardStep1DestinationProps> = ({
   return (
     <div className="relative w-full h-full min-h-0 bg-[#FCFDFF] flex flex-col justify-between overflow-hidden select-none text-slate-800">
       {/* Header & Progress */}
-      <header className="pt-2 px-5 shrink-0 bg-[#FCFDFF] z-20">
-        <IOSStatusBar light={false} />
-        <div className="flex items-center justify-between pt-1 pb-2">
-          <button
-            onClick={onBack}
-            aria-label="Quay lại"
-            type="button"
-            className="w-9 h-9 -ml-1 flex items-center justify-center rounded-full text-slate-800 hover:bg-slate-100 transition-colors cursor-pointer"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19 12H5M12 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <span className="plan-header-title">
-            Bước 1/8
-          </span>
-          <div className="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-[#0A1680]">
-            <svg className="w-5 h-5 text-[#0A1680]" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
-            </svg>
-          </div>
-        </div>
-
-        {/* Progress bar (12.5%) */}
-        <div className="pt-1 pb-1">
-          <div className="flex items-center justify-between mb-1">
-            <span className="text-xs font-bold text-[#0A1680] uppercase tracking-wider font-heading">
-              Chọn điểm đến
-            </span>
-            <span className="text-xs text-slate-400 font-medium">1/8</span>
-          </div>
-          <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
-            <div className="h-full bg-[#0A1680] rounded-full w-[12.5%] transition-all duration-300" />
-          </div>
-        </div>
-      </header>
+      <WizardHeader step={1} destination={selectedDestination} onBack={onBack}/>
 
       {/* Main Content */}
       <main className="flex-1 min-h-0 px-5 pt-2 pb-4 overflow-y-auto no-scrollbar flex flex-col gap-3.5 text-left">
@@ -178,28 +144,31 @@ export const WizardStep1Destination: React.FC<WizardStep1DestinationProps> = ({
         </div>
 
         {/* Search Input */}
-        <div className="relative flex items-center h-12 bg-white rounded-2xl shadow-xs px-4 border border-slate-200 focus-within:border-[#0A1680]">
+        <label className="destination-search">
+          <span className="destination-search-icon" aria-hidden="true">
           <svg className="w-5 h-5 text-[#0A1680] mr-2.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
             <circle cx="11" cy="11" r="8" />
             <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-4.35-4.35" />
-          </svg>
+          </svg></span>
           <input
-            type="text"
+            type="search"
+            aria-label="Tìm thành phố hoặc khu vực"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Tìm kiếm khu vực, điểm đến tại HCM & Vũng Tàu..."
-            className="w-full bg-transparent text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none"
+            placeholder="Tìm thành phố, khu vực…"
+            className="destination-search-input"
           />
           {searchQuery && (
             <button
               type="button"
               onClick={() => setSearchQuery('')}
+              aria-label="Xoá từ khoá tìm kiếm"
               className="text-xs text-slate-400 hover:text-slate-600 ml-1 p-1"
             >
               ✕
             </button>
           )}
-        </div>
+        </label>
 
         {!hasResults && (
           <div className="py-8 text-center text-slate-500 text-sm">

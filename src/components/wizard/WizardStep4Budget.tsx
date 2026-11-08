@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { IOSStatusBar } from '../common/IOSStatusBar';
+import { WizardHeader } from '../../features/travel/WizardUI';
 
 interface WizardStep4BudgetProps {
+  destination?: string;
   budgetTier: 'Tiết kiệm' | 'Vừa túi tiền' | 'Thoải mái' | 'Tùy chỉnh';
   budgetAmount: number;
   hotelBudgetPerNight: number;
@@ -18,6 +19,7 @@ interface WizardStep4BudgetProps {
 }
 
 export const WizardStep4Budget: React.FC<WizardStep4BudgetProps> = ({
+  destination,
   budgetTier,
   budgetAmount,
   hotelBudgetPerNight,roomCount,nights,onHotelBudgetChange,onRoomsChange,
@@ -88,39 +90,7 @@ export const WizardStep4Budget: React.FC<WizardStep4BudgetProps> = ({
   return (
     <div className="relative w-full h-full min-h-0 bg-[#FCFDFF] flex flex-col justify-between overflow-hidden select-none text-slate-800">
       {/* Top Header */}
-      <header className="pt-2 px-5 shrink-0 bg-[#FCFDFF] z-20">
-        <IOSStatusBar light={false} />
-        <div className="flex items-center justify-between pt-1 pb-2">
-          <button
-            onClick={onBack}
-            aria-label="Quay lại"
-            type="button"
-            className="w-9 h-9 -ml-1 flex items-center justify-center rounded-full text-slate-800 hover:bg-slate-100 transition-colors cursor-pointer"
-          >
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
-          <span className="plan-header-title">Ngân sách</span>
-          <div className="w-9" />
-        </div>
-
-        {/* Progress bar (66.7%) */}
-        <div className="pt-1 pb-1">
-          <div className="flex items-center justify-between mb-1">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#0A1680] animate-pulse" />
-              <span className="text-[11px] font-bold text-[#0A1680] uppercase tracking-wider font-heading">
-                Bước 5/8
-              </span>
-            </div>
-            <span className="text-xs font-semibold text-slate-400">Ngân sách dự kiến</span>
-          </div>
-          <div className="w-full h-1 bg-slate-200 rounded-full overflow-hidden">
-            <div className="h-full bg-[#0A1680] rounded-full w-[62.5%] transition-all duration-300" />
-          </div>
-        </div>
-      </header>
+      <WizardHeader step={5} destination={destination} onBack={onBack}/>
 
       {/* Main Content */}
       <main className="flex-1 px-5 pt-2 pb-24 overflow-y-auto no-scrollbar flex flex-col gap-3.5 text-left">
@@ -261,7 +231,7 @@ export const WizardStep4Budget: React.FC<WizardStep4BudgetProps> = ({
             </span>
           </div>
         </div>
-        {nights>0&&<section className="hotel-budget-card"><h2>Ngân sách khách sạn</h2><p>Mức dự kiến để đề xuất chỗ ở phù hợp (giá phòng thực tế mang tính tham khảo và biến động theo thời điểm đặt).</p><div><label>Mỗi phòng / đêm<input aria-label="Ngân sách khách sạn mỗi phòng mỗi đêm" type="number" min="100000" step="50000" value={hotelBudgetPerNight||''} onChange={e=>onHotelBudgetChange(Number(e.currentTarget.value))}/></label><label>Số phòng<input aria-label="Số phòng" type="number" min="1" max="20" value={roomCount} onChange={e=>onRoomsChange(Math.max(1,Math.min(20,Number(e.currentTarget.value))))}/></label></div><small>Gợi ý ban đầu dành 35% ngân sách cho chỗ ở, 2 người/phòng. Bạn có thể đổi.</small><p><b>{(hotelBudgetPerNight*roomCount*nights).toLocaleString('vi-VN')}đ</b> cho {roomCount} phòng · {nights} đêm</p>{hotelBudgetPerNight<100000&&<p role="alert">Nhập mức từ 100.000đ/phòng/đêm.</p>}</section>}
+        {nights>0&&<section className="hotel-budget-card"><h2>Ngân sách khách sạn</h2><p>Mức dự kiến để đề xuất chỗ ở phù hợp (giá phòng thực tế mang tính tham khảo và biến động theo thời điểm đặt).</p><div><label>Mỗi phòng / đêm<input aria-label="Ngân sách khách sạn mỗi phòng mỗi đêm" type="text" inputMode="numeric" value={hotelBudgetPerNight?hotelBudgetPerNight.toLocaleString('vi-VN'):''} onChange={e=>{const digits=e.currentTarget.value.replace(/\D/g,'');const amount=Number(digits);if(Number.isSafeInteger(amount))onHotelBudgetChange(amount);}}/></label><label>Số phòng<input aria-label="Số phòng" type="number" min="1" max="20" value={roomCount} onChange={e=>onRoomsChange(Math.max(1,Math.min(20,Number(e.currentTarget.value))))}/></label></div><small>Gợi ý ban đầu dành 35% ngân sách cho chỗ ở, 2 người/phòng. Bạn có thể đổi.</small><p><b>{(hotelBudgetPerNight*roomCount*nights).toLocaleString('vi-VN')}đ</b> cho {roomCount} phòng · {nights} đêm</p>{hotelBudgetPerNight<100000&&<p role="alert">Nhập mức từ 100.000đ/phòng/đêm.</p>}</section>}
       </main>
 
       {/* Bottom CTA */}
@@ -287,7 +257,7 @@ export const WizardStep4Budget: React.FC<WizardStep4BudgetProps> = ({
             className="absolute inset-0 bg-[#0A1680]/30 backdrop-blur-xs transition-opacity"
             onClick={() => setShowBreakdown(false)}
           />
-          <div className="w-full bg-white rounded-t-[28px] p-5 pb-8 shadow-2xl z-10 flex flex-col gap-4 animate-in slide-in-from-bottom duration-300 text-left">
+          <div className="w-full bg-white modal-surface rounded-[28px] p-5 pb-8 shadow-2xl z-10 flex flex-col gap-4 animate-in slide-in-from-bottom duration-300 text-left">
             <div className="w-12 h-1 bg-slate-200 rounded-full mx-auto" />
             <div className="flex items-center justify-between pb-2 border-b border-slate-100">
               <div>
@@ -395,7 +365,7 @@ export const WizardStep4Budget: React.FC<WizardStep4BudgetProps> = ({
             className="absolute inset-0 bg-[#0A1680]/30 backdrop-blur-xs transition-opacity"
             onClick={() => setShowCustomSheet(false)}
           />
-          <div className="w-full bg-white rounded-t-[28px] p-5 pb-8 shadow-2xl z-10 flex flex-col gap-4 animate-in slide-in-from-bottom duration-300 text-left">
+          <div className="w-full bg-white modal-surface rounded-[28px] p-5 pb-8 shadow-2xl z-10 flex flex-col gap-4 animate-in slide-in-from-bottom duration-300 text-left">
             <div className="w-12 h-1 bg-slate-200 rounded-full mx-auto" />
             <div className="flex items-center justify-between pb-2 border-b border-slate-100">
               <h3 className="text-[17px] font-bold text-slate-900 font-heading">

@@ -138,7 +138,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
           <div
             onClick={cycleGreeting}
             className="relative flex flex-col items-center justify-center cursor-pointer active:scale-95 transition-transform"
-            title="Chạm vào Bé Sao Lumi để chào hỏi!"
+            title="Chạm vào Lumi để chào hỏi!"
           >
             {/* Layered atmospheric halo backlights */}
             <div className="absolute w-52 h-52 rounded-full bg-radial from-[#FFA62B]/25 via-[#86C5FF]/30 to-transparent blur-3xl pointer-events-none" />
@@ -147,7 +147,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
             {/* The Mascot */}
             <img
               src="/images/mascot-hero.png"
-              alt="Bé Sao Lumi - Bạn đồng hành TravAly"
+              alt="Lumi - Bạn đồng hành TravAly"
               className="relative w-52 h-52 sm:w-56 sm:h-56 max-h-[220px] object-contain drop-shadow-2xl animate-mascot-float"
             />
 
@@ -237,7 +237,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
             className="absolute inset-0 bg-[#0A1680]/30 backdrop-blur-xs transition-opacity"
             onClick={() => setActiveSheet('none')}
           />
-          <div className="relative bg-white p-6 shadow-2xl z-10 w-full max-h-[90%] overflow-y-auto rounded-t-[32px] flex flex-col animate-in slide-in-from-bottom duration-300">
+          <div className="relative bg-white p-6 shadow-2xl z-10 w-full max-h-[90%] overflow-y-auto modal-surface rounded-[28px] flex flex-col animate-in slide-in-from-bottom duration-300">
             {/* Handle & Close */}
             <div className="flex items-center justify-between pb-3">
               <div className="w-12 h-1 bg-slate-200 rounded-full mx-auto" />
@@ -396,7 +396,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
             className="absolute inset-0 bg-[#0A1680]/30 backdrop-blur-xs transition-opacity"
             onClick={() => setActiveSheet('none')}
           />
-          <div className="relative bg-white p-6 shadow-2xl z-10 w-full max-h-[92%] overflow-y-auto rounded-t-[32px] flex flex-col animate-in slide-in-from-bottom duration-300">
+          <div className="relative bg-white p-6 shadow-2xl z-10 w-full max-h-[92%] overflow-y-auto modal-surface rounded-[28px] flex flex-col animate-in slide-in-from-bottom duration-300">
             {/* Handle & Close */}
             <div className="flex items-center justify-between pb-3">
               <div className="w-12 h-1 bg-slate-200 rounded-full mx-auto" />
@@ -419,7 +419,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
                   Tạo tài khoản mới
                 </h3>
                 <p className="text-[13px] text-slate-500 mt-1">
-                  Cùng bé Sao Lumi kiến tạo những chuyến du lịch đáng nhớ
+                  Cùng Lumi kiến tạo những chuyến du lịch đáng nhớ
                 </p>
               </div>
               <img src="/images/mascot-laptop-happy.png" alt="TravAly Mascot" className="w-9 h-9 object-contain shrink-0 ml-2" />
@@ -534,7 +534,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
             className="absolute inset-0 bg-[#0A1680]/30 backdrop-blur-xs transition-opacity"
             onClick={() => setActiveSheet('none')}
           />
-          <div className="relative bg-white p-6 shadow-2xl z-10 w-full rounded-t-[32px] flex flex-col animate-in slide-in-from-bottom duration-300 text-left">
+          <div className="relative bg-white p-6 shadow-2xl z-10 w-full modal-surface rounded-[28px] flex flex-col animate-in slide-in-from-bottom duration-300 text-left">
             <button
               type="button"
               onClick={() => setActiveSheet('login')}

@@ -643,7 +643,7 @@ export const SearchFilterScreen: React.FC<SearchFilterScreenProps> = ({
             className="absolute inset-0 bg-[#0A1680]/25 backdrop-blur-xs transition-opacity"
             onClick={() => setShowCityPicker(false)}
           />
-          <div className="relative w-full bg-white rounded-t-[28px] shadow-2xl flex flex-col max-h-[80vh] z-10 overflow-hidden pb-6 animate-in slide-in-from-bottom duration-300">
+          <div className="relative w-full bg-white modal-surface rounded-[28px] shadow-2xl flex flex-col max-h-[80vh] z-10 overflow-hidden pb-6 animate-in slide-in-from-bottom duration-300">
             <div className="pt-3 pb-2 px-5 flex items-center justify-between border-b border-slate-100">
               <div className="w-8" />
               <div className="flex flex-col items-center">
@@ -701,7 +701,7 @@ export const SearchFilterScreen: React.FC<SearchFilterScreenProps> = ({
             className="absolute inset-0 bg-black/40 backdrop-blur-xs transition-opacity"
             onClick={() => setShowSortSheet(false)}
           />
-          <div className="w-full bg-white rounded-t-[28px] p-5 pb-8 shadow-2xl z-10 flex flex-col gap-4 animate-in slide-in-from-bottom duration-300">
+          <div className="w-full bg-white modal-surface rounded-[28px] p-5 pb-8 shadow-2xl z-10 flex flex-col gap-4 animate-in slide-in-from-bottom duration-300">
             <div className="w-10 h-1 bg-slate-200 rounded-full mx-auto" />
             <div className="flex items-center justify-between">
               <h2 className="text-[18px] font-bold text-[#0f1d26] font-heading">Sắp xếp theo</h2>

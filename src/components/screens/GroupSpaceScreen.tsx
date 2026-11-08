@@ -301,7 +301,7 @@ export const GroupSpaceScreen: React.FC<GroupSpaceScreenProps> = ({
             className="absolute inset-0 bg-black/40 backdrop-blur-xs"
             onClick={() => setShowEditTripModal(false)}
           />
-          <div className="w-full max-w-[390px] bg-white rounded-t-[28px] p-5 pb-8 shadow-xl flex flex-col space-y-4 z-10 animate-in slide-in-from-bottom duration-200">
+          <div className="w-full max-w-[390px] bg-white modal-surface rounded-[28px] p-5 pb-8 shadow-xl flex flex-col space-y-4 z-10 animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto" />
             <div className="flex items-center justify-between">
               <h3 className="text-[18px] font-bold text-slate-900 font-heading">Chỉnh sửa thông tin nhóm</h3>
@@ -363,7 +363,7 @@ export const GroupSpaceScreen: React.FC<GroupSpaceScreenProps> = ({
             className="absolute inset-0 bg-black/40 backdrop-blur-xs"
             onClick={() => setShowInviteModal(false)}
           />
-          <div className="w-full max-w-[390px] bg-white rounded-t-[28px] p-5 pb-8 shadow-xl flex flex-col space-y-4 z-10 animate-in slide-in-from-bottom duration-200">
+          <div className="w-full max-w-[390px] bg-white modal-surface rounded-[28px] p-5 pb-8 shadow-xl flex flex-col space-y-4 z-10 animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto" />
             <div className="flex items-center justify-between">
               <h3 className="text-[18px] font-bold text-slate-900 font-heading">Mời bạn vào nhóm</h3>
@@ -412,7 +412,7 @@ export const GroupSpaceScreen: React.FC<GroupSpaceScreenProps> = ({
             className="absolute inset-0 bg-black/40 backdrop-blur-xs"
             onClick={() => setShowManageMembersModal(false)}
           />
-          <div className="w-full max-w-[390px] bg-white rounded-t-[28px] p-5 pb-8 shadow-xl flex flex-col space-y-3 z-10 max-h-[85vh] animate-in slide-in-from-bottom duration-200">
+          <div className="w-full max-w-[390px] bg-white modal-surface rounded-[28px] p-5 pb-8 shadow-xl flex flex-col space-y-3 z-10 max-h-[85vh] animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto" />
             <div className="flex items-center justify-between pb-1 border-b border-slate-100">
               <div>
@@ -480,7 +480,7 @@ export const GroupSpaceScreen: React.FC<GroupSpaceScreenProps> = ({
             className="absolute inset-0 bg-black/40 backdrop-blur-xs"
             onClick={() => setShowGroupSettingsModal(false)}
           />
-          <div className="w-full max-w-[390px] bg-white rounded-t-[28px] p-5 pb-8 shadow-xl flex flex-col space-y-4 z-10 animate-in slide-in-from-bottom duration-200">
+          <div className="w-full max-w-[390px] bg-white modal-surface rounded-[28px] p-5 pb-8 shadow-xl flex flex-col space-y-4 z-10 animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto" />
             <div className="flex items-center justify-between">
               <h3 className="text-[18px] font-bold text-slate-900 font-heading">Cài đặt nhóm</h3>

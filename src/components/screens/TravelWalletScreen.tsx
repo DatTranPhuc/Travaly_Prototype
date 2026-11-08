@@ -96,7 +96,7 @@ export const TravelWalletScreen: React.FC<TravelWalletScreenProps> = ({
       isPrivate: false,
       actionText: 'Tải file PDF',
       icon: 'health_and_safety',
-      iconBg: 'bg-[#ffdea8] text-[#b9881c]',
+      iconBg: 'bg-[#ffdea8] text-[#79571D]',
       searchKeywords: 'bảo hiểm du lịch nội địa bảo việt an gia bv-2025',
     },
   ];
@@ -173,8 +173,8 @@ export const TravelWalletScreen: React.FC<TravelWalletScreenProps> = ({
         <div className="bg-gradient-to-br from-[#dfe0ff]/40 via-white to-[#f2f4f6] p-4 rounded-[24px] shadow-xs border border-blue-100 flex items-start justify-between gap-3">
           <div className="flex flex-col">
             <div className="flex items-center gap-1.5 mb-1">
-              <span className="text-[#b9881c] text-sm">📁</span>
-              <span className="font-heading font-bold text-[10px] uppercase tracking-wider text-[#b9881c]">
+              <span className="text-[#79571D] text-sm">📁</span>
+              <span className="font-heading font-bold text-[10px] uppercase tracking-wider text-[#79571D]">
                 Kho lưu trữ an toàn
               </span>
             </div>
@@ -349,7 +349,7 @@ export const TravelWalletScreen: React.FC<TravelWalletScreenProps> = ({
       {/* Share Modal */}
       {showShareModal && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-xs">
-          <div className="w-full max-w-[390px] bg-white rounded-t-[28px] p-5 shadow-2xl flex flex-col gap-3 animate-in slide-in-from-bottom duration-200">
+          <div className="w-full max-w-[390px] bg-white modal-surface rounded-[28px] p-5 shadow-2xl flex flex-col gap-3 animate-in slide-in-from-bottom duration-200">
             <div className="flex items-center justify-between pb-2 border-b border-slate-100">
               <h3 className="font-heading font-bold text-[16px] text-slate-900">Chia sẻ giấy tờ chuyến đi</h3>
               <button onClick={() => setShowShareModal(false)} className="w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:bg-slate-100">
@@ -385,7 +385,7 @@ export const TravelWalletScreen: React.FC<TravelWalletScreenProps> = ({
       {/* More Options Modal */}
       {showMoreOptionsModal && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-xs">
-          <div className="w-full max-w-[390px] bg-white rounded-t-[28px] p-5 shadow-2xl flex flex-col gap-2 animate-in slide-in-from-bottom duration-200">
+          <div className="w-full max-w-[390px] bg-white modal-surface rounded-[28px] p-5 shadow-2xl flex flex-col gap-2 animate-in slide-in-from-bottom duration-200">
             <div className="flex items-center justify-between pb-2 border-b border-slate-100">
               <h3 className="font-heading font-bold text-[16px] text-slate-900">Tùy chọn kho giấy tờ</h3>
               <button onClick={() => setShowMoreOptionsModal(false)} className="w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:bg-slate-100">

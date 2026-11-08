@@ -95,7 +95,7 @@ export const CreateRecapScreen: React.FC<CreateRecapScreenProps> = ({ onBack, on
           <div className="flex items-center justify-between">
             <h2 className="font-heading font-bold text-[15px] text-[#191c1e]">
               Chọn khoảnh khắc nổi bật{' '}
-              <span className="text-[13px] font-medium text-[#767684]">
+              <span className="text-[13px] font-medium text-[#4A5F7A]">
                 (Đã chọn {selectedPhotos.length}/10 ảnh)
               </span>
             </h2>
@@ -152,14 +152,14 @@ export const CreateRecapScreen: React.FC<CreateRecapScreenProps> = ({ onBack, on
           </h2>
           <div className="relative bg-[#FCFDFF] rounded-[16px] border border-[#edeef0] p-3 shadow-xs focus-within:border-[#0A1680] transition-colors">
             <textarea
-              className="w-full h-[75px] bg-transparent text-[13px] leading-relaxed text-[#191c1e] placeholder:text-[#767684] resize-none focus:outline-none"
+              className="w-full h-[75px] bg-transparent text-[13px] leading-relaxed text-[#191c1e] placeholder:text-[#4A5F7A] resize-none focus:outline-none"
               maxLength={500}
               value={tripNote}
               onChange={(e) => setTripNote(e.target.value)}
               placeholder="Chia sẻ những cảm xúc hoặc ấn tượng sâu sắc nhất của bạn..."
             />
             <div className="flex justify-end pt-1">
-              <span className="text-[11px] text-[#767684] font-medium font-mono">
+              <span className="text-[11px] text-[#4A5F7A] font-medium font-mono">
                 {tripNote.length}/500
               </span>
             </div>
@@ -214,7 +214,7 @@ export const CreateRecapScreen: React.FC<CreateRecapScreenProps> = ({ onBack, on
       {/* POPUP 1: Pick more photos */}
       {showPickMoreModal && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 backdrop-blur-xs">
-          <div className="w-full max-w-[390px] bg-white rounded-t-[28px] p-5 shadow-2xl flex flex-col max-h-[85vh] animate-in slide-in-from-bottom duration-200">
+          <div className="w-full max-w-[390px] bg-white modal-surface rounded-[28px] p-5 shadow-2xl flex flex-col max-h-[85vh] animate-in slide-in-from-bottom duration-200">
             <div className="flex items-center justify-between pb-3 border-b border-[#edeef0]">
               <div>
                 <h3 className="font-heading font-bold text-[16px] text-[#191c1e]">Chọn thêm ảnh</h3>
@@ -263,7 +263,7 @@ export const CreateRecapScreen: React.FC<CreateRecapScreenProps> = ({ onBack, on
       {/* POPUP 2: Preview Selected Photo */}
       {previewPhoto && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 backdrop-blur-xs">
-          <div className="w-full max-w-[390px] bg-white rounded-t-[28px] p-5 shadow-2xl flex flex-col gap-3 animate-in slide-in-from-bottom duration-200">
+          <div className="w-full max-w-[390px] bg-white modal-surface rounded-[28px] p-5 shadow-2xl flex flex-col gap-3 animate-in slide-in-from-bottom duration-200">
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="font-heading font-bold text-[15px] text-slate-900">{previewPhoto.title}</h3>
