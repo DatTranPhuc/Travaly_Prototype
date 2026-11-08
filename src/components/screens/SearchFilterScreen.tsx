@@ -664,13 +664,15 @@ export const SearchFilterScreen: React.FC<SearchFilterScreenProps> = ({
             <div className="p-4 space-y-1.5 overflow-y-auto">
               {[
                 'TP. Hồ Chí Minh',
+                'Quận 1, TP. Hồ Chí Minh',
+                'Quận 3, TP. Hồ Chí Minh',
+                'Quận 5 - Chợ Lớn, TP. Hồ Chí Minh',
+                'Bình Thạnh, TP. Hồ Chí Minh',
+                'TP. Thủ Đức, TP. Hồ Chí Minh',
                 'Vũng Tàu',
-                'Đà Lạt, Lâm Đồng',
-                'Phú Quốc, Kiên Giang',
-                'Hội An, Quảng Nam',
-                'Nha Trang, Khánh Hòa',
-                'Sa Pa, Lào Cai',
-                'Hà Nội',
+                'Bãi Sau, Vũng Tàu',
+                'Bãi Trước, Vũng Tàu',
+                'Mũi Nghinh Phong, Vũng Tàu',
               ].map((c) => (
                 <button
                   key={c}

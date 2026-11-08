@@ -22,7 +22,7 @@ export const TripPlannerScreen: React.FC<TripPlannerScreenProps> = ({
   const [isGenerating, setIsGenerating] = useState(false);
 
   // Generator form fields
-  const [genDestination, setGenDestination] = useState('Đà Lạt');
+  const [genDestination, setGenDestination] = useState('TP. Hồ Chí Minh');
   const [genDuration, setGenDuration] = useState('3N2Đ');
   const [genCompanion, setGenCompanion] = useState('Cặp đôi');
   const [genPace, setGenPace] = useState(userPreferences.travelStyle || 'Cân bằng');
@@ -185,8 +185,8 @@ export const TripPlannerScreen: React.FC<TripPlannerScreenProps> = ({
               {/* Destination */}
               <div>
                 <label className="text-[12px] font-bold text-slate-600 mb-1 block">Điểm đến</label>
-                <div className="grid grid-cols-4 gap-2">
-                  {['TP. Hồ Chí Minh', 'Vũng Tàu', 'Đà Lạt', 'Phú Quốc'].map((dest) => (
+                <div className="grid grid-cols-2 gap-2">
+                  {['TP. Hồ Chí Minh', 'Vũng Tàu'].map((dest) => (
                     <button
                       key={dest}
                       type="button"

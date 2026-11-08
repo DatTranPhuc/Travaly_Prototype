@@ -94,12 +94,12 @@ export const AdaptivePreviewSkipScreen: React.FC<AdaptivePreviewSkipScreenProps>
                 <div className="flex flex-col">
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-semibold text-slate-400 line-through">09:30</span>
-                    <span className="text-xs font-bold text-slate-400 line-through font-heading">Bán đảo Sơn Trà</span>
+                    <span className="text-xs font-bold text-slate-400 line-through font-heading">Hải Đăng Vũng Tàu</span>
                     <span className="text-[10px] font-semibold text-rose-600 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded-md font-heading">
-                      Bỏ Sơn Trà hôm nay
+                      Bỏ Hải Đăng hôm nay
                     </span>
                   </div>
-                  <p className="text-[11px] text-slate-400 line-through mt-0.5">Tham quan, chụp ảnh Linh Ứng</p>
+                  <p className="text-[11px] text-slate-400 line-through mt-0.5">Tham quan ngọn hải đăng cổ Núi Nhỏ</p>
                 </div>
               </li>
 
@@ -129,10 +129,10 @@ export const AdaptivePreviewSkipScreen: React.FC<AdaptivePreviewSkipScreenProps>
                 <div className="flex flex-col">
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-bold text-slate-700 font-heading">15:00 – 17:30</span>
-                    <span className="text-xs font-bold text-slate-800 font-heading">Bãi biển Mỹ Khê</span>
+                    <span className="text-xs font-bold text-slate-800 font-heading">Bãi Sau Vũng Tàu</span>
                   </div>
                   <p className="text-[11px] text-slate-500 mt-0.5">
-                    Tắm biển, dạo mát · <span className="text-slate-600 font-medium">Giữ nguyên lịch trình</span>
+                    Tắm biển, dạo mát bờ biển · <span className="text-slate-600 font-medium">Giữ nguyên lịch trình</span>
                   </p>
                 </div>
               </li>

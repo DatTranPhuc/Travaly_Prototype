@@ -40,8 +40,8 @@ export const AdaptiveScheduleScreen: React.FC<AdaptiveScheduleScreenProps> = ({
     setShowConfirmApplyModal(false);
     showToast(
       selectedWeatherOption === 1
-        ? 'Đã áp dụng lịch trình: Đi Hội An chiều nay! ✨'
-        : 'Đã áp dụng lịch trình: Đi Mỹ Khê chiều nay, Bà Nà dời ngày mai! ☀️',
+        ? 'Đã áp dụng lịch trình: Đi Bạch Dinh chiều nay! ✨'
+        : 'Đã áp dụng lịch trình: Đi Bãi Sau chiều nay, Mũi Nghinh Phong dời ngày mai! ☀️',
       true
     );
     if (onApplyPlan) onApplyPlan();
@@ -49,9 +49,9 @@ export const AdaptiveScheduleScreen: React.FC<AdaptiveScheduleScreenProps> = ({
 
   const handleApplyDelayBranch = (branch: 'go' | 'skip') => {
     if (branch === 'go') {
-      showToast('Đã áp dụng lịch mới: Dời giờ Sơn Trà sang 11:00 🚗', true);
+      showToast('Đã áp dụng lịch mới: Dời giờ Hải Đăng sang 11:00 🚗', true);
     } else {
-      showToast('Đã áp dụng lịch mới: Bỏ qua Sơn Trà để giữ nhịp nghỉ ngơi 🌴', true);
+      showToast('Đã áp dụng lịch mới: Bỏ qua Hải Đăng để giữ nhịp nghỉ ngơi 🌴', true);
     }
   };
 
@@ -142,7 +142,7 @@ export const AdaptiveScheduleScreen: React.FC<AdaptiveScheduleScreenProps> = ({
                 </div>
               </div>
               <p className="text-[13px] text-slate-700 leading-relaxed">
-                Dự báo chiều nay mưa lớn tại <strong className="text-[#0A1680]">Bà Nà Hills</strong>, TravAIy đề xuất điều chỉnh lịch trình phù hợp.
+                Dự báo chiều nay mưa to và gió lớn tại <strong className="text-[#0A1680]">Mũi Nghinh Phong</strong>, TravAIy đề xuất điều chỉnh lịch trình phù hợp.
               </p>
             </div>
 
@@ -185,12 +185,12 @@ export const AdaptiveScheduleScreen: React.FC<AdaptiveScheduleScreenProps> = ({
                     <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100 shadow-xs">
                       <img
                         className="w-full h-full object-cover"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDm-mGD2_kjO_m4SNx1G_-1AlZnZsnm0-U6_vbRQ-kiLj-VvCrqG4cQDYzmplnPmCzsrdOGZQC7GlE-VLNHfZePi-NSOgNR3QH7llZXIv1Hc-t5BeOgz5hN_cGXOu0AECGTxFjA27JUGhDZX9zCpCcrw1ntuTt7sw829z9dQNHGyEbwMm-x_L_2B3YcdlEwG1o2_cDgXDIx7AqdzWhF39ZQhQ5jxfLgD05Y-j3wc_s6_1trEeqD0Q"
-                        alt="Bà Nà Hills"
+                        src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
+                        alt="Mũi Nghinh Phong"
                       />
                     </div>
                     <span className="font-heading font-bold text-[13px] text-slate-800 line-clamp-1">
-                      Bà Nà Hills
+                      Mũi Nghinh Phong
                     </span>
                     <span className="text-[11px] text-slate-400">Chiều nay</span>
                   </div>
@@ -205,14 +205,14 @@ export const AdaptiveScheduleScreen: React.FC<AdaptiveScheduleScreenProps> = ({
                     <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100 shadow-xs">
                       <img
                         className="w-full h-full object-cover"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmDX9C4RIFDYBDCu7tkGQpw3NMJhxCXDJAR4ajBLq_JzwEg-YbrSON49BfpnSI82TZLUtU8CRj4ZLJqjaXDfGwwvcHK1mtuVs5b8CvsPNfy-GsnMyUtRms7B3EFA5W-9fVxJniBI3_kMiqOeUBTKYIm9-ymus-UmQCyPzxotz0i62Bs5DZsVi4qEKfnPW-19oT55f4Fe4lAPgojrtUnrMnKm0mGcmEtHYTrBmfnzmxYW1t35efrg"
-                        alt="Phố cổ Hội An"
+                        src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80"
+                        alt="Bạch Dinh Vũng Tàu"
                       />
                     </div>
                     <span className="font-heading font-bold text-[13px] text-[#0A1680] line-clamp-1">
-                      Phố cổ Hội An
+                      Bạch Dinh Vũng Tàu
                     </span>
-                    <span className="text-[11px] text-[#0A1680] font-semibold">Chiều nay</span>
+                    <span className="text-[11px] text-[#0A1680] font-semibold">Chiều nay (Trong nhà)</span>
                   </div>
                 </div>
 
@@ -261,12 +261,12 @@ export const AdaptiveScheduleScreen: React.FC<AdaptiveScheduleScreenProps> = ({
                     <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100 shadow-xs">
                       <img
                         className="w-full h-full object-cover"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAemgXFHHm8x9cm5xTBJnVP5wR6iHOB_qxR8kblOAyY6WsHPX_o7-BBB0Q7RbPbIomDQohwi7b0ubqo4S5mQHujWwyqb4hsK0rrrY0BMjreh8VjQJy03W4820OM9l6ssH3bxx8CvMF7-wCRlqgycdXGysg4es3hdZFx3yMkeb5cghXR6x-I4sSB0ws2uoIveCAyTVx_zdhxvodqsGa-1VVy12UUWcfmoSH275ZQJjUoRxlZkGrkGQ"
-                        alt="Bà Nà"
+                        src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
+                        alt="Mũi Nghinh Phong"
                       />
                     </div>
                     <span className="font-heading font-bold text-[13px] text-slate-800 line-clamp-1">
-                      Bà Nà Hills
+                      Mũi Nghinh Phong
                     </span>
                     <span className="text-[11px] text-slate-400">Ngày mai</span>
                   </div>
@@ -281,12 +281,12 @@ export const AdaptiveScheduleScreen: React.FC<AdaptiveScheduleScreenProps> = ({
                     <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100 shadow-xs">
                       <img
                         className="w-full h-full object-cover"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLcuETr8Z6wybqkiFwjYhm-FRRvUuK3TdpsUhqgJ7EgtfU3MrNTuIgWLU7W1UlkBHRIGWC5LtjZvvvuKPWzSCuSk7xH8r4HmTo8UYsDrgf8Vp-DhET1jXFYgDuDNFyTSODem-4aMtCtCuqXVLQGE-59Ui5uZfBz4kjHeWsNelJrLSznnXYmHxQQrZhw1JENmBaHyowGXu9cL0JgBxsFv1qTHnGZQpiCP6fvXPLp-N3B2i83HXe5w"
-                        alt="Mỹ Khê"
+                        src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=600&q=80"
+                        alt="Bãi Sau Vũng Tàu"
                       />
                     </div>
                     <span className="font-heading font-bold text-[13px] text-slate-800 line-clamp-1">
-                      Biển Mỹ Khê
+                      Bãi Sau Vũng Tàu
                     </span>
                     <span className="text-[11px] text-slate-400">Chiều nay</span>
                   </div>
@@ -310,7 +310,7 @@ export const AdaptiveScheduleScreen: React.FC<AdaptiveScheduleScreenProps> = ({
                 </span>
               </div>
               <p className="text-[13px] text-slate-700 leading-relaxed">
-                Bạn dự kiến đến <strong className="text-[#0A1680]">Bán đảo Sơn Trà</strong> trễ 60 phút (từ 09:30 sang 10:30 - 11:00). TravAIy đề xuất 2 nhánh xử lý tự động:
+                Bạn dự kiến đến <strong className="text-[#0A1680]">Hải Đăng Vũng Tàu</strong> trễ 60 phút (từ 09:30 sang 10:30 - 11:00). TravAIy đề xuất 2 nhánh xử lý tự động:
               </p>
             </div>
 
@@ -359,7 +359,7 @@ export const AdaptiveScheduleScreen: React.FC<AdaptiveScheduleScreenProps> = ({
                   <div className="flex items-start gap-2.5 p-2 rounded-xl bg-slate-50">
                     <div className="flex-1">
                       <div className="flex items-center justify-between">
-                        <span className="font-bold text-slate-900">Bán đảo Sơn Trà</span>
+                        <span className="font-bold text-slate-900">Hải Đăng Vũng Tàu</span>
                         <span className="font-bold text-[#0A1680]">11:00 – 12:00</span>
                       </div>
                       <span className="text-rose-500 text-[11px]">Lùi 60 phút (Lịch gốc: 09:30)</span>
@@ -429,8 +429,8 @@ export const AdaptiveScheduleScreen: React.FC<AdaptiveScheduleScreenProps> = ({
                 <div className="flex flex-col gap-2 text-xs">
                   <div className="p-2 rounded-xl bg-rose-50/60 border border-rose-200/50">
                     <div className="flex items-center justify-between">
-                      <span className="font-bold text-slate-500 line-through">Bán đảo Sơn Trà</span>
-                      <span className="text-rose-600 font-semibold text-[11px]">Bỏ Sơn Trà hôm nay</span>
+                      <span className="font-bold text-slate-500 line-through">Hải Đăng Vũng Tàu</span>
+                      <span className="text-rose-600 font-semibold text-[11px]">Bỏ Hải Đăng hôm nay</span>
                     </div>
                     <span className="text-rose-500 text-[11px]">Bỏ qua hôm nay (không dồn ép di chuyển)</span>
                   </div>
@@ -445,7 +445,7 @@ export const AdaptiveScheduleScreen: React.FC<AdaptiveScheduleScreenProps> = ({
 
                   <div className="p-2 rounded-xl bg-slate-50 opacity-80">
                     <div className="flex items-center justify-between">
-                      <span className="font-bold text-slate-700">Bãi biển Mỹ Khê</span>
+                      <span className="font-bold text-slate-700">Bãi Sau Vũng Tàu</span>
                       <span className="text-slate-500">15:00 – 17:30</span>
                     </div>
                     <span className="text-slate-400 text-[11px]">Giữ nguyên</span>
@@ -526,13 +526,13 @@ export const AdaptiveScheduleScreen: React.FC<AdaptiveScheduleScreenProps> = ({
             <div className="bg-slate-50 rounded-2xl p-3.5 flex flex-col gap-2 border border-slate-200/80 text-left">
               <div className="flex items-center justify-between text-xs">
                 <div>
-                  <span className="font-bold text-slate-800 block">Bà Nà Hills</span>
+                  <span className="font-bold text-slate-800 block">Mũi Nghinh Phong</span>
                   <span className="text-[10px] text-slate-400">Chiều nay</span>
                 </div>
                 <span className="text-[#0A1680] font-bold text-sm">→</span>
                 <div className="text-right">
                   <span className="font-bold text-[#0A1680] block">
-                    {selectedWeatherOption === 1 ? 'Phố cổ Hội An' : 'Biển Mỹ Khê'}
+                    {selectedWeatherOption === 1 ? 'Bạch Dinh Vũng Tàu' : 'Bãi Sau Vũng Tàu'}
                   </span>
                   <span className="text-[10px] text-[#0A1680]">Chiều nay</span>
                 </div>
@@ -609,7 +609,7 @@ export const AdaptiveScheduleScreen: React.FC<AdaptiveScheduleScreenProps> = ({
             {/* Explanation */}
             <div className="bg-blue-50/70 border border-blue-200/50 rounded-2xl p-3.5 text-xs text-slate-700 leading-relaxed">
               <strong className="text-[#0A1680] block mb-1">Lý do TravAIy đề xuất dời lịch:</strong>
-              Khu vực đỉnh núi Bà Nà có độ cao 1.487m thường xuyên có sương mù dày đặc và gió lốc khi mưa lớn, khiến cáp treo tạm dừng hoạt động và tầm nhìn dưới 10m. Dời sang ngày mai (dự báo trời nắng 29°C) sẽ giúp trải nghiệm trọn vẹn hơn.
+              Khu vực Mũi Nghinh Phong đón gió trực tiếp từ biển thường xuyên có gió giật mạnh và sóng lớn khi mưa dông, trơn trượt các bậc đá ngắm cảnh. Đề xuất đổi sang điểm tham quan trong nhà hoặc dời sang ngày mai để trải nghiệm an toàn và trọn vẹn hơn.
             </div>
 
             <button

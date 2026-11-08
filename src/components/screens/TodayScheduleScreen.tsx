@@ -150,7 +150,7 @@ export const TodayScheduleScreen: React.FC<TodayScheduleScreenProps> = ({
 
         {/* Normal-flow layers keep controls separate even inside short device frames. */}
         <section className="today-hero" aria-label="Điểm đến đang xem">
-          <img src="https://images.unsplash.com/photo-1570789210967-2cac24afeb00?auto=format&fit=crop&w=900&q=80" alt="Ảnh địa điểm minh họa" className="today-hero-image" />
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80" alt="Ảnh địa điểm minh họa" className="today-hero-image" />
           <div className="today-hero-scrim" aria-hidden="true" />
           <div className="today-hero-content">
             <div className="today-hero-badges">
@@ -158,8 +158,8 @@ export const TodayScheduleScreen: React.FC<TodayScheduleScreenProps> = ({
               <span className="today-hero-sample">Lịch mẫu</span>
             </div>
             <div className="today-hero-info">
-              <h2>Bán đảo Sơn Trà</h2>
-              <p>Khoảng 8 km · 20 phút di chuyển (mẫu)</p>
+              <h2>Hải Đăng Vũng Tàu</h2>
+              <p>Khoảng 4 km · 15 phút di chuyển (Núi Nhỏ)</p>
               <div className="today-hero-actions">
                 <button type="button" onClick={handleCheckin} aria-pressed={isCheckedIn} className="today-checkin">{isCheckedIn?'✓ Đã đến nơi':'✓ Đánh dấu đến nơi'}</button>
                 <button type="button" onClick={()=>setShowRouteOptions(true)} className="today-directions">Chỉ đường <span aria-hidden="true">↗</span></button>
@@ -428,16 +428,16 @@ export const TodayScheduleScreen: React.FC<TodayScheduleScreenProps> = ({
           </div>
       </ModalSheet>
 
-      {/* POPUP 2: Route Options Sheet (Chỉ đường: Bán đảo Sơn Trà) */}
+      {/* POPUP 2: Route Options Sheet (Chỉ đường: Hải Đăng Vũng Tàu) */}
       <ModalSheet isOpen={showRouteOptions} onClose={()=>setShowRouteOptions(false)} title="Tùy chọn chỉ đường" showHandleBar={false} contentClassName="today-sheet">
           <div className="today-sheet-content relative w-full bg-white rounded-t-[28px] p-5 pb-8 shadow-2xl flex flex-col gap-3.5 z-10 animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto shrink-0" />
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-[16px] font-bold text-slate-900 font-heading">
-                  Chỉ đường: Bán đảo Sơn Trà
+                  Chỉ đường: Hải Đăng Vũng Tàu
                 </h3>
-                <p className="text-[11px] text-slate-500">Khoảng cách minh họa: 8 km. Chưa dùng vị trí thực.</p>
+                <p className="text-[11px] text-slate-500">Khoảng cách minh họa: 4 km. Núi Nhỏ, Vũng Tàu.</p>
               </div>
               <button
                 type="button"
@@ -463,11 +463,11 @@ export const TodayScheduleScreen: React.FC<TodayScheduleScreenProps> = ({
                       <span className="font-bold text-[13px] text-slate-900 font-heading">Ô tô / Grab Car</span>
                       <span className="px-2 py-0.2 rounded-full bg-blue-100 text-[#0A1680] text-[10px] font-bold">Nhanh nhất</span>
                     </div>
-                    <p className="text-[11px] text-slate-500">15 phút • Đường Hoàng Sa ven biển</p>
+                    <p className="text-[11px] text-slate-500">12 phút • Đường Hải Đăng dốc thoai thoải</p>
                   </div>
                 </div>
                 <div className="text-right">
-                  <span className="font-bold text-[13px] text-slate-900 font-heading">85.000đ</span>
+                  <span className="font-bold text-[13px] text-slate-900 font-heading">45.000đ</span>
                   <p className="text-[10px] text-slate-400">Ước tính</p>
                 </div>
               </div>
@@ -483,11 +483,11 @@ export const TodayScheduleScreen: React.FC<TodayScheduleScreenProps> = ({
                   <span className="text-2xl">🛵</span>
                   <div>
                     <span className="font-bold text-[13px] text-slate-900 font-heading">Xe máy / Thuê xe</span>
-                    <p className="text-[11px] text-slate-500">18 phút • Thích hợp ngắm cảnh</p>
+                    <p className="text-[11px] text-slate-500">15 phút • Đường dốc Núi Nhỏ ngắm toàn cảnh</p>
                   </div>
                 </div>
                 <div className="text-right">
-                  <span className="font-bold text-[13px] text-slate-900 font-heading">35.000đ</span>
+                  <span className="font-bold text-[13px] text-slate-900 font-heading">20.000đ</span>
                   <p className="text-[10px] text-slate-400">Xăng xe</p>
                 </div>
               </div>
@@ -507,7 +507,7 @@ export const TodayScheduleScreen: React.FC<TodayScheduleScreenProps> = ({
               <button
                 type="button"
                 onClick={() => {
-                  showToast('Bắt đầu điều hướng đến Bán đảo Sơn Trà! 🧭');
+                  showToast('Bắt đầu điều hướng đến Hải Đăng Vũng Tàu! 🧭');
                   setShowRouteOptions(false);
                 }}
                 className="flex-1 h-11 rounded-full bg-[#0A1680] text-white font-heading font-bold text-xs shadow-md hover:bg-[#071060] cursor-pointer"

@@ -184,7 +184,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
             type="button"
             className="w-full h-[52px] bg-[#0F2C59] hover:bg-[#0A1E3D] active:scale-[0.98] transition-all text-white font-bold text-[16px] rounded-full shadow-lg shadow-[#0F2C59]/25 flex items-center justify-center space-x-2 font-heading tracking-wide cursor-pointer"
           >
-            <span className="leading-none">Lên kế hoạch</span>
+            <span className="leading-none">Bắt đầu lên lịch trình</span>
             <svg className="w-4 h-4 ml-1 stroke-[#FFA62B] fill-none stroke-[2.5]" viewBox="0 0 24 24">
               <path d="M5 12h14m-6-6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>

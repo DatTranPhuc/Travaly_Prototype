@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 import { IOSStatusBar } from '../common/IOSStatusBar';
-import { MOCK_DESTINATIONS } from '../../data/mockData';
 
 interface WizardStep1DestinationProps {
   selectedDestination: string;
   onSelect: (destName: string, tagline?: string, img?: string) => void;
   onNext: () => void;
   onBack: () => void;
+}
+
+interface DestinationCardItem {
+  id: string;
+  name: string;
+  destName: 'TP. Hồ Chí Minh' | 'Vũng Tàu';
+  sub: string;
+  tag: string;
+  img: string;
 }
 
 export const WizardStep1Destination: React.FC<WizardStep1DestinationProps> = ({
@@ -16,51 +24,79 @@ export const WizardStep1Destination: React.FC<WizardStep1DestinationProps> = ({
   onBack,
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [favorites, setFavorites] = useState<string[]>(['Đà Lạt']);
+  const [favorites, setFavorites] = useState<string[]>(['Vũng Tàu', 'Quận 1 - Bến Bạch Đằng']);
+  const [selectedCardId, setSelectedCardId] = useState<string>(() => {
+    if (selectedDestination === 'Vũng Tàu') return 'vungtau';
+    return 'tphcm';
+  });
 
-  const popular = [
+  const popular: DestinationCardItem[] = [
     {
+      id: 'tphcm',
       name: 'TP. Hồ Chí Minh',
+      destName: 'TP. Hồ Chí Minh',
       sub: 'Hòn ngọc Viễn Đông sôi động & sầm uất',
-      img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD4mM2mnWQ9jOm16yXo8Oi9mWSrpCmTDS0Q6gh0Hc_pe7BBoYZvoT_i7jsJWJM07bwIBcDHWXmZR_CZwaGUGVVTUWNJYOvPafTampf8-ZFVZ_t6hlilrxKiKTF1Of2B1KAFohBoqzIK7Hm8dt8xxjwlumWMw3OZVx-Tij5915YM0VtjeR7dUx7geaPs4A7kdSYnTvpA2AfgizrOFNpHOw3xxbZymb1TmZtiuYKIQnt1BloqfTwoBg',
+      tag: 'Đô thị & Văn hóa',
+      img: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=800&q=80',
     },
     {
+      id: 'vungtau',
       name: 'Vũng Tàu',
+      destName: 'Vũng Tàu',
       sub: 'Thiên đường biển xanh nghỉ dưỡng cuối tuần',
-      img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCiSmA4xNta0kIzk3pYZKe1-m3nZW5qoFayLftmXyx-dmZKPR_lp_SG_SfVAw5lSqLnjyarQtND1fFHgoVaAXJAVlztBY0YMKFPt2j1EMtpycF7okytZIwH8EDevH6Op5nlLypkyIS4Tv5dVlnaYFOPtJtZ9R6KFMeZkm-Yvr0tAisJE3ttn5qo6rP2uUUrouHJUCczEbC50sqXnjxFDgiIXMVJSyKsqkaQBQVQ-Fnzk0Q-eVMCuw',
-    },
-    {
-      name: 'Đà Lạt',
-      sub: 'Thành phố ngàn hoa',
-      img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB4S0_utHqNlrpQQ7NOJoc_3pjyBwLRbQOaqMbu9KLLsl5i2h5nctvEmVNayB_AdUQsown1Nf7PiWDjbY0J-ojdo0RVQZIkvRZiwYoNuCMN3PlAf9V-czMN1mScej99LJRwWnTpXeUfeQ6KOpGL6rHvf4Kxt9sTQofwhp8MyoKahhET2meg2CEfpAZfeqgNLcmBJMEgZ9JSIms4qY1dxY83wglILRNMW-4Tbx-2mBVijkXbdCObyg',
-    },
-    {
-      name: 'Phú Quốc',
-      sub: 'Thiên đường biển đảo & hoàng hôn',
-      img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDecTG-4n9bt-VSpUjV3PAexFYgCm853v1ly9ccXvaCHQebr-pUOIdbFnDBaJNjPtL1AmfBRs9GWpI5A2zxEEFn7X3AcEfxMjrnO-X8j2d5NsKCs-LwD98TUS_mYzsIVM9bxzYMjeBRWYrYYSakkIAO0oLcnlEkBSoqzntE1_Ciz_TkL1FaaS5u51fjnN1QzHZTRacVO8m3dNAagHI-pANKaUkJSoqeTYPMjAa29aUEgo6NR9nk5A',
+      tag: 'Bãi biển & Nghỉ dưỡng',
+      img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
     },
   ];
 
-  const others = [
+  const others: DestinationCardItem[] = [
     {
-      name: 'Phú Quốc',
-      sub: 'Thiên đường biển đảo',
-      img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDecTG-4n9bt-VSpUjV3PAexFYgCm853v1ly9ccXvaCHQebr-pUOIdbFnDBaJNjPtL1AmfBRs9GWpI5A2zxEEFn7X3AcEfxMjrnO-X8j2d5NsKCs-LwD98TUS_mYzsIVM9bxzYMjeBRWYrYYSakkIAO0oLcnlEkBSoqzntE1_Ciz_TkL1FaaS5u51fjnN1QzHZTRacVO8m3dNAagHI-pANKaUkJSoqeTYPMjAa29aUEgo6NR9nk5A',
+      id: 'q1',
+      name: 'Quận 1 - Bến Bạch Đằng',
+      destName: 'TP. Hồ Chí Minh',
+      sub: 'Dinh Độc Lập, phố đi bộ & bến Bạch Đằng',
+      tag: 'Trung tâm Sài Gòn',
+      img: 'https://images.unsplash.com/photo-1578922746465-3a80a228f223?auto=format&fit=crop&w=800&q=80',
     },
     {
-      name: 'Sapa',
-      sub: 'Săn mây, khám phá núi rừng',
-      img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBKJ0UPhT9gud9fL2yvcHff7yIaiEJAaSGQWbki14xLzr5c2nVFfB4EkUnfhe6E8dX2IQX6tA6jD-RJwjeTkzoL1JdNctbMW_ygt0OIEJKSJJvc1kYgZHZC4y7hpYrxwuVLP3lqAk09muAx5oEx3ukbpbqD2WoI4dOq8hWII2vaSrZEcrNau23_Qwp1Ex3hVl48bTS9uh5i5LOdfhXrIYfxfw5DJLukm7T0fwl4rpgFiAuOHLkRTg',
+      id: 'baisau',
+      name: 'Bãi Sau - Thùy Vân',
+      destName: 'Vũng Tàu',
+      sub: 'Bờ biển cát vàng, tắm biển & hải sản',
+      tag: 'Bãi biển Vũng Tàu',
+      img: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=800&q=80',
     },
     {
-      name: 'Huế',
-      sub: 'Cố đô trầm mặc',
-      img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCy-kY7OYgSnU-byvkh0MlQYeK0kHA1jWBu4Unzk3X9KFnFmir_Nevzl4Z-TUCm-gQDIg-pHZmuJ7JCk9QOc8h5WD-fh3PT7TedcwpZbJAESMLZ8CqUtj3LZeK4vbovDR8IolS8Z3tpmAIjsw7pCCmMkuviQutV-gNXebHoqr2JnhCAcpFKERW_Jql6bImL04zgiw1R5VEjINvnChaEPOAKVMDoktb5Gk8ZrUPhODSdM9w2tBeL2Q',
+      id: 'muinghinhphong',
+      name: 'Mũi Nghinh Phong & Hải Đăng',
+      destName: 'Vũng Tàu',
+      sub: 'Cổng Trời lộng gió & Ngọn Hải Đăng cổ',
+      tag: 'Danh thắng Vũng Tàu',
+      img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
     },
     {
-      name: 'Ninh Bình',
-      sub: 'Non nước hữu tình',
-      img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCduywWHA4u8zFrCOhmevvbfeo1UbBCxOorXn3L89bLOuNNlscoeCJvY6lFyFfcPtRW4mA0UfpurBGlUPuLi25AHNDVlKnxEE1IMpmh9WhinW6hbZzdb766oxBqJfEzYc9NWU9AHyRBDKfAd7XZzaXKVJ4GtHzRVDlo02illQLHBfQD0ao6aGlPkPz51iJgVDgZon-ne-7wSTTnY4O8f3DNEdwob97t4V2wNpdlZilq0fRbzj-oaw',
+      id: 'cholon',
+      name: 'Chợ Lớn - Quận 5',
+      destName: 'TP. Hồ Chí Minh',
+      sub: 'Phố người Hoa cổ kính & ẩm thực dimsum',
+      tag: 'Văn hóa & Ẩm thực',
+      img: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      id: 'baitruoc',
+      name: 'Bãi Trước & Núi Lớn',
+      destName: 'Vũng Tàu',
+      sub: 'Công viên ven biển, ngắm hoàng hôn & cà phê',
+      tag: 'Cảnh quan Vũng Tàu',
+      img: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      id: 'landmark81',
+      name: 'Bình Thạnh & Landmark 81',
+      destName: 'TP. Hồ Chí Minh',
+      sub: 'Đài quan sát cao nhất & view sông Sài Gòn',
+      tag: 'Hiện đại & Check-in',
+      img: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=800&q=80',
     },
   ];
 
@@ -72,6 +108,23 @@ export const WizardStep1Destination: React.FC<WizardStep1DestinationProps> = ({
       setFavorites([...favorites, name]);
     }
   };
+
+  const handleCardClick = (item: DestinationCardItem) => {
+    setSelectedCardId(item.id);
+    onSelect(item.destName, item.sub, item.img);
+  };
+
+  const q = searchQuery.trim().toLowerCase();
+  const filterFn = (item: DestinationCardItem) =>
+    !q ||
+    item.name.toLowerCase().includes(q) ||
+    item.sub.toLowerCase().includes(q) ||
+    item.destName.toLowerCase().includes(q) ||
+    item.tag.toLowerCase().includes(q);
+
+  const filteredPopular = popular.filter(filterFn);
+  const filteredOthers = others.filter(filterFn);
+  const hasResults = filteredPopular.length > 0 || filteredOthers.length > 0;
 
   return (
     <div className="relative w-full h-full min-h-0 bg-[#FCFDFF] flex flex-col justify-between overflow-hidden select-none text-slate-800">
@@ -99,7 +152,7 @@ export const WizardStep1Destination: React.FC<WizardStep1DestinationProps> = ({
           </div>
         </div>
 
-        {/* Progress bar (16.7%) */}
+        {/* Progress bar (12.5%) */}
         <div className="pt-1 pb-1">
           <div className="flex items-center justify-between mb-1">
             <span className="text-xs font-bold text-[#0A1680] uppercase tracking-wider font-heading">
@@ -120,7 +173,7 @@ export const WizardStep1Destination: React.FC<WizardStep1DestinationProps> = ({
             Bạn muốn đi đâu?
           </h1>
           <p className="text-xs text-slate-500 mt-1">
-            Khám phá và lên lịch trình cho điểm đến mơ ước của bạn
+            Khám phá và lên lịch trình khám phá TP. Hồ Chí Minh & Vũng Tàu
           </p>
         </div>
 
@@ -134,123 +187,159 @@ export const WizardStep1Destination: React.FC<WizardStep1DestinationProps> = ({
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Tìm kiếm thành phố, điểm du lịch..."
+            placeholder="Tìm kiếm khu vực, điểm đến tại HCM & Vũng Tàu..."
             className="w-full bg-transparent text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none"
           />
+          {searchQuery && (
+            <button
+              type="button"
+              onClick={() => setSearchQuery('')}
+              className="text-xs text-slate-400 hover:text-slate-600 ml-1 p-1"
+            >
+              ✕
+            </button>
+          )}
         </div>
 
-        {/* Gợi ý phổ biến (2x2 Grid) */}
-        <div>
-          <div className="flex items-center justify-between mb-2.5">
-            <div className="flex items-center gap-1.5">
-              <span className="text-[15px] font-bold text-slate-900 font-heading">Gợi ý phổ biến</span>
-              <span className="text-[#0A1680] text-sm">✨</span>
+        {!hasResults && (
+          <div className="py-8 text-center text-slate-500 text-sm">
+            <p>Không tìm thấy điểm đến nào phù hợp với &quot;{searchQuery}&quot;.</p>
+            <p className="text-xs text-slate-400 mt-1">Hệ thống hiện phục vụ TP. Hồ Chí Minh và Vũng Tàu.</p>
+          </div>
+        )}
+
+        {/* Gợi ý phổ biến (2-column Grid) */}
+        {filteredPopular.length > 0 && (
+          <div>
+            <div className="flex items-center justify-between mb-2.5">
+              <div className="flex items-center gap-1.5">
+                <span className="text-[15px] font-bold text-slate-900 font-heading">Điểm đến chính</span>
+                <span className="text-[#0A1680] text-sm">✨</span>
+              </div>
+              <span className="text-xs text-slate-400 font-medium">
+                {filteredPopular.length} thành phố
+              </span>
             </div>
-            <span className="text-xs text-[#0A1680] font-semibold cursor-pointer hover:underline">
-              Xem tất cả
-            </span>
-          </div>
 
-          <div className="grid grid-cols-2 gap-3">
-            {popular.map((item) => {
-              const isSelected = selectedDestination === item.name;
-              const isFav = favorites.includes(item.name);
-              return (
-                <div
-                  key={item.name}
-                  onClick={() => onSelect(item.name, item.sub, item.img)}
-                  className={`group relative flex flex-col rounded-[24px] overflow-hidden bg-white shadow-xs cursor-pointer transition-all active:scale-[0.98] ${
-                    isSelected ? 'border-2 border-[#0A1680]' : 'border border-slate-200'
-                  }`}
-                >
-                  <div className="relative w-full h-[116px] overflow-hidden bg-slate-100">
-                    <img src={item.img} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                    {/* Heart Button */}
-                    <button
-                      type="button"
-                      aria-label={`Yêu thích ${item.name}`}
-                      onClick={(e) => toggleFav(item.name, e)}
-                      className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/80 backdrop-blur-md flex items-center justify-center shadow-xs active:scale-90 transition-transform cursor-pointer"
-                    >
-                      <svg className={`w-4 h-4 ${isFav ? 'text-rose-500 fill-rose-500' : 'text-slate-400 fill-none'}`} viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                      </svg>
-                    </button>
-                    {/* Selected Badge */}
-                    {isSelected && (
-                      <div className="absolute top-2 left-2 w-6 h-6 rounded-full bg-[#0A1680] text-white flex items-center justify-center shadow-md">
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M20 6L9 17l-5-5" />
+            <div className="grid grid-cols-2 gap-3">
+              {filteredPopular.map((item) => {
+                const isSelected = selectedCardId === item.id || (!selectedCardId && selectedDestination === item.destName);
+                const isFav = favorites.includes(item.name);
+                return (
+                  <div
+                    key={item.id}
+                    onClick={() => handleCardClick(item)}
+                    className={`group relative flex flex-col rounded-[24px] overflow-hidden bg-white shadow-xs cursor-pointer transition-all active:scale-[0.98] ${
+                      isSelected ? 'border-2 border-[#0A1680] ring-2 ring-[#0A1680]/20' : 'border border-slate-200 hover:border-slate-300'
+                    }`}
+                  >
+                    <div className="relative w-full h-[116px] overflow-hidden bg-slate-100">
+                      <img
+                        src={item.img}
+                        alt={item.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      {/* Badge tag */}
+                      <span className="absolute bottom-2 left-2 px-2 py-0.5 rounded-full bg-black/55 backdrop-blur-xs text-[10px] font-semibold text-white">
+                        {item.tag}
+                      </span>
+                      {/* Heart Button */}
+                      <button
+                        type="button"
+                        aria-label={`Yêu thích ${item.name}`}
+                        onClick={(e) => toggleFav(item.name, e)}
+                        className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/85 backdrop-blur-md flex items-center justify-center shadow-xs active:scale-90 transition-transform cursor-pointer"
+                      >
+                        <svg className={`w-4 h-4 ${isFav ? 'text-rose-500 fill-rose-500' : 'text-slate-400 fill-none'}`} viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                         </svg>
-                      </div>
-                    )}
+                      </button>
+                      {/* Selected Badge */}
+                      {isSelected && (
+                        <div className="absolute top-2 left-2 w-6 h-6 rounded-full bg-[#0A1680] text-white flex items-center justify-center shadow-md">
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M20 6L9 17l-5-5" />
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-3 flex flex-col bg-white">
+                      <span className="font-bold text-sm text-slate-900 leading-tight truncate font-heading">
+                        {item.name}
+                      </span>
+                      <span className="text-xs text-slate-500 truncate mt-0.5">{item.sub}</span>
+                    </div>
                   </div>
-                  <div className="p-3 flex flex-col bg-white">
-                    <span className="font-bold text-sm text-slate-900 leading-tight truncate font-heading">
-                      {item.name}
-                    </span>
-                    <span className="text-xs text-slate-500 truncate mt-0.5">{item.sub}</span>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
 
-        {/* Các điểm đến khác (2-column grid) */}
-        <div>
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-[15px] font-bold text-slate-900 font-heading">
-              Các điểm đến khác
-            </span>
-            <span className="text-xs text-slate-400 font-medium">Khám phá thêm</span>
-          </div>
+        {/* Các khu vực & Tuyến điểm nổi bật */}
+        {filteredOthers.length > 0 && (
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[15px] font-bold text-slate-900 font-heading">
+                Khu vực & Tuyến điểm nổi bật
+              </span>
+              <span className="text-xs text-slate-400 font-medium">HCM & Vũng Tàu</span>
+            </div>
 
-          <div className="grid grid-cols-2 gap-3">
-            {others.map((item) => {
-              const isSelected = selectedDestination === item.name;
-              const isFav = favorites.includes(item.name);
-              return (
-                <div
-                  key={item.name}
-                  onClick={() => onSelect(item.name, item.sub, item.img)}
-                  className={`group relative flex flex-col rounded-[24px] overflow-hidden bg-white shadow-xs cursor-pointer transition-all active:scale-[0.98] ${
-                    isSelected ? 'border-2 border-[#0A1680]' : 'border border-slate-200'
-                  }`}
-                >
-                  <div className="relative w-full h-[116px] overflow-hidden bg-slate-100">
-                    <img src={item.img} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                    {/* Heart Button */}
-                    <button
-                      type="button"
-                      aria-label={`Yêu thích ${item.name}`}
-                      onClick={(e) => toggleFav(item.name, e)}
-                      className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/80 backdrop-blur-md flex items-center justify-center shadow-xs active:scale-90 transition-transform cursor-pointer"
-                    >
-                      <svg className={`w-4 h-4 ${isFav ? 'text-rose-500 fill-rose-500' : 'text-slate-400 fill-none'}`} viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                      </svg>
-                    </button>
-                    {/* Selected Badge */}
-                    {isSelected && (
-                      <div className="absolute top-2 left-2 w-6 h-6 rounded-full bg-[#0A1680] text-white flex items-center justify-center shadow-md">
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M20 6L9 17l-5-5" />
+            <div className="grid grid-cols-2 gap-3">
+              {filteredOthers.map((item) => {
+                const isSelected = selectedCardId === item.id;
+                const isFav = favorites.includes(item.name);
+                return (
+                  <div
+                    key={item.id}
+                    onClick={() => handleCardClick(item)}
+                    className={`group relative flex flex-col rounded-[24px] overflow-hidden bg-white shadow-xs cursor-pointer transition-all active:scale-[0.98] ${
+                      isSelected ? 'border-2 border-[#0A1680] ring-2 ring-[#0A1680]/20' : 'border border-slate-200 hover:border-slate-300'
+                    }`}
+                  >
+                    <div className="relative w-full h-[116px] overflow-hidden bg-slate-100">
+                      <img
+                        src={item.img}
+                        alt={item.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      {/* City tag */}
+                      <span className="absolute bottom-2 left-2 px-2 py-0.5 rounded-full bg-black/55 backdrop-blur-xs text-[10px] font-semibold text-white">
+                        {item.destName}
+                      </span>
+                      {/* Heart Button */}
+                      <button
+                        type="button"
+                        aria-label={`Yêu thích ${item.name}`}
+                        onClick={(e) => toggleFav(item.name, e)}
+                        className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/85 backdrop-blur-md flex items-center justify-center shadow-xs active:scale-90 transition-transform cursor-pointer"
+                      >
+                        <svg className={`w-4 h-4 ${isFav ? 'text-rose-500 fill-rose-500' : 'text-slate-400 fill-none'}`} viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                         </svg>
-                      </div>
-                    )}
+                      </button>
+                      {/* Selected Badge */}
+                      {isSelected && (
+                        <div className="absolute top-2 left-2 w-6 h-6 rounded-full bg-[#0A1680] text-white flex items-center justify-center shadow-md">
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M20 6L9 17l-5-5" />
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-3 flex flex-col bg-white">
+                      <span className="font-bold text-sm text-slate-900 leading-tight truncate font-heading">
+                        {item.name}
+                      </span>
+                      <span className="text-xs text-slate-500 truncate mt-0.5">{item.sub}</span>
+                    </div>
                   </div>
-                  <div className="p-3 flex flex-col bg-white">
-                    <span className="font-bold text-sm text-slate-900 leading-tight truncate font-heading">
-                      {item.name}
-                    </span>
-                    <span className="text-xs text-slate-500 truncate mt-0.5">{item.sub}</span>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
       </main>
 
       {/* Floating Bottom CTA */}
