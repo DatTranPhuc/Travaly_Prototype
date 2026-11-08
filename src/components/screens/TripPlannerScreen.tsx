@@ -3,7 +3,7 @@ import { IOSStatusBar } from '../common/IOSStatusBar';
 import { BottomNav } from '../common/BottomNav';
 import { ModalSheet } from '../common/ModalSheet';
 import { NavTab, TripPlan, UserPreferences } from '../../types/travel';
-import { MOCK_TRIP } from '../../data/mockData';
+import { SAIGON_PLAN } from '../../features/travel/fixtures';
 
 interface TripPlannerScreenProps {
   onNavigateTab: (tab: NavTab) => void;
@@ -17,7 +17,7 @@ export const TripPlannerScreen: React.FC<TripPlannerScreenProps> = ({
   onOpenPlaceDetail,
 }) => {
   const [activeDay, setActiveDay] = useState(1);
-  const [tripPlan, setTripPlan] = useState<TripPlan>(MOCK_TRIP);
+  const [tripPlan, setTripPlan] = useState<TripPlan>(SAIGON_PLAN);
   const [showGenerateModal, setShowGenerateModal] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
 

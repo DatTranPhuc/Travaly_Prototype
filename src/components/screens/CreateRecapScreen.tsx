@@ -10,7 +10,7 @@ export const CreateRecapScreen: React.FC<CreateRecapScreenProps> = ({ onBack, on
   const [selectedPhotos, setSelectedPhotos] = useState<number[]>([1, 2, 3, 4, 5, 6]);
   const [selectedFeeling, setSelectedFeeling] = useState<string>('Tuyệt vời');
   const [tripNote, setTripNote] = useState<string>(
-    'Phú Quốc thực sự là một thiên đường biển đảo! Biển xanh, đồ ăn ngon và những con người siêu thân thiện! 🌴☀️'
+    'Vũng Tàu thực sự là một thiên đường nghỉ dưỡng cuối tuần! Biển xanh, đồ ăn ngon và người dân thân thiện! 🌊🏖️'
   );
 
   // Modals state
@@ -20,12 +20,12 @@ export const CreateRecapScreen: React.FC<CreateRecapScreenProps> = ({ onBack, on
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const photoList = [
-    { id: 1, src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBu23qKE7ytT0HiKJHXejjyg7ERfPC7J4dnTYIAro4qUXz4NgI2hxpQKZ4WIFeDkWjyYMdoZuN56uHh6NYbFz8RCbHZeuQWSJplPDv9DDLQFH7SiZyt73OAxjLDESPiFlzo0NQvlUzMr5fb6FPPbKEd3mD-dtcmMqqzVDUt22VSH2FNZYLVxoxMrdknz4NzGV7aU4X8CTIy9IXOgJBPeBIQDJfyv6CwhZ8u1eOKMnCgdz4zJ-cZ-w', title: 'Bãi Sao, Phú Quốc - Ảnh bìa' },
-    { id: 2, src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAJ1-GGO-Us5WoSGRQ-Xz2wkt29irmDRpE43UKN5f0FGq3IAp2gkWgtrGcnkxYpvZ8V_LR9_X0ErqmDubn4KPzhpXRt-t9Q5wEvHmUmDR-MdPrjairzLpoQmcLUGEO37P76nnMEf3LNaL76cKOWZakRNm424xi8Yd0NEx16RgSB-E2qVfvfql1mFG7wvYr-TGoQVWyfcvGfKBFpeymkLdiB88LNOeBh0zFE0vQYQh7uDmnTQf29Dw', title: 'Thuyền trên vịnh An Thới' },
-    { id: 3, src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCdrDMa6B0vgD_SZQJ9nB95HY9MWdma1TwHE7BqfatoWmdICeVPO-IW31jj8OPElUeA4GkAWGQdppg1zzqR7UscwUJpmjiTN3GZHd76PtzcdKckyaoYCTs3-TaOp7e-MeIW6-0Osimzat6sOJSVVvthWKmXdmzNw8hBJiu7deyXho--c2xwF2AxAyAM5rIe60PMjKFiwyzKSW3nNmkpf4QFhM32lWPvibe09CbF4kyYkuACac7o7A', title: 'Lặn ngắm san hô Hòn Móng Tay' },
-    { id: 4, src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBVVnBXGRFKepzpuukUx8ccVz9iAPeDKSBVXacpGmMaRWYOW700G12GrNS49d2bFVkp1qf-gz-nEVXz8FTp9YNH8mODDqOArhCrMPvq-84n7bdacGUkrXLgVYUNm0iLSmjoG8HPXc_jDP4WgicenDDjbL5q3OyNkBxZj8l_pFeTyq5jDT9iVZd358Cyqc9LhSxo15bJtZarIDrZnajqnCxrKBB4XLGy9uydMSWLHIkEtIgzRYgRqg', title: 'Hoàng hôn Bãi Trường' },
-    { id: 5, src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAlFGjR5B76QDuR-8AKCvgCUFMUqQ-zsZIIqLIc2zMw4UVJkGFpbwEfnv1YW20phuVnZmp0GYI6x1Y8OT74LtyrxRdERY9zWaCPq_vhqsbCv-I0YX565am0tBVs47G4iU74ip4MgbSYUe_yv7xr6d52ovlLkgEf09mA1A-TTXnhpNE93__iwmy0MqlNUNLXZmYUosL8JKaofd-G7ZwvIfzjQqwktqcFbnlNm373VJgw0WhX9_MrlQ', title: 'Hải sản chợ đêm Phú Quốc' },
-    { id: 6, src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAA7JsoKvq4oFPo3m519cG7iF8MLnlR3GnTj25Uy2Tll9sRyu27HoGNo9SSO-Ye0WLnZkEQa4tPQK-kPnOle3T2m1itGiiINdobypIxRY7-9fKlfxOszcOdOgd15IGZoGWfEsjvq7tu9l4F0hOHR11r6LuikdQaVt5nU0wcIuElaZyYKeeWnByViYwyUwLQ7NY_t0p68EPo4tlzF2FlE4_B5Z2v7doHIe8_6tUXp59W6moCSSHf5A', title: 'Dạo biển chiều' },
+    { id: 1, src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80', title: 'Bãi Sau, Vũng Tàu - Ảnh bìa' },
+    { id: 2, src: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80', title: 'Mũi Nghinh Phong lộng gió' },
+    { id: 3, src: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80', title: 'Hoàng hôn Bãi Trước' },
+    { id: 4, src: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=800&q=80', title: 'Tắm biển Bãi Sau' },
+    { id: 5, src: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80', title: 'Hải sản đêm Vũng Tàu' },
+    { id: 6, src: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=800&q=80', title: 'Cà phê ngắm biển chiều' },
   ];
 
   const showToast = (msg: string) => {
@@ -85,7 +85,7 @@ export const CreateRecapScreen: React.FC<CreateRecapScreenProps> = ({ onBack, on
               <span className="text-[10px] font-bold uppercase tracking-wider bg-white/20 backdrop-blur-md px-2 py-0.5 rounded-full font-heading">
                 Ảnh bìa nổi bật
               </span>
-              <p className="text-[15px] font-bold mt-1 font-heading">Bãi Sao, Phú Quốc</p>
+              <p className="text-[15px] font-bold mt-1 font-heading">Bãi Sau, Vũng Tàu</p>
             </div>
           </div>
         </div>
@@ -218,7 +218,7 @@ export const CreateRecapScreen: React.FC<CreateRecapScreenProps> = ({ onBack, on
             <div className="flex items-center justify-between pb-3 border-b border-[#edeef0]">
               <div>
                 <h3 className="font-heading font-bold text-[16px] text-[#191c1e]">Chọn thêm ảnh</h3>
-                <p className="text-[12px] text-slate-500">Thư viện ảnh Phú Quốc ({selectedPhotos.length}/10)</p>
+                <p className="text-[12px] text-slate-500">Thư viện ảnh Vũng Tàu ({selectedPhotos.length}/10)</p>
               </div>
               <button
                 type="button"

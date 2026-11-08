@@ -507,7 +507,7 @@ export const PlaceDetailScreen: React.FC<PlaceDetailScreenProps> = ({
         <div className="space-y-2.5 my-1">
           {[
             { id: 'cafe', title: 'Quán cà phê muốn thử', count: '8 địa điểm', active: true },
-            { id: 'dalat', title: 'Muốn đi Đà Lạt', count: '12 địa điểm', active: false },
+            { id: 'vungtau', title: 'Muốn đi Vũng Tàu', count: '12 địa điểm', active: false },
             { id: 'sunset', title: 'Chill & Ngắm hoàng hôn', count: '5 địa điểm', active: false },
           ].map((col) => (
             <label

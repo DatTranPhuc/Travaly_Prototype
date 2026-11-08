@@ -31,7 +31,7 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
   const [categoryParams,setCategoryParams]=useSearchParams();
   const selectedCategory=categoryParams.get('category')||'Tất cả';
   const setSelectedCategory=(category:string)=>setCategoryParams(category==='Tất cả'?{}:{category},{replace:true});
-  const categoryImages:Record<string,string>={'Cà phê':images.dalatCabin,'Biển':images.beach,'Núi':images.hero,'Check-in':images.town,'Ăn uống':images.food,'Khách sạn':images.room};
+  const categoryImages:Record<string,string>={'Cà phê':images.room2,'Biển':images.beach,'Núi':images.hero,'Check-in':images.town,'Ăn uống':images.food,'Khách sạn':images.room};
   const [searchQuery, setSearchQuery] = useState('');
   const [showVoiceModal, setShowVoiceModal] = useState(false);
   const [showSaveModal, setShowSaveModal] = useState(false);
@@ -409,7 +409,7 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
 
         <div className="space-y-2.5">
           {[
-            { name: 'Muốn đi Đà Lạt', count: 12 },
+            { name: 'Muốn đi Vũng Tàu', count: 12 },
             { name: 'Quán cà phê muốn thử', count: 8 },
             { name: 'Biển tuyệt đẹp', count: 15 },
           ].map((c, idx) => (

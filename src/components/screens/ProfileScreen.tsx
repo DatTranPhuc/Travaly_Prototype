@@ -143,8 +143,8 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
               <p className="text-[11px] text-slate-500 mb-3">Chưa có chuyến hoàn tất. Khám phá bố cục với các chuyến mẫu bên dưới.</p>
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  { id: 'sample-dalat', name: 'Đà Lạt', image: images.dalatCabin, length: '3 ngày 2 đêm', highlights: 'Săn mây · Cà phê · Dạo hồ' },
-                  { id: 'sample-phuquoc', name: 'Phú Quốc', image: images.resort, length: '4 ngày 3 đêm', highlights: 'Ngắm hoàng hôn · Biển đảo · Chợ đêm' },
+                  { id: 'sample-tphcm', name: 'TP. Hồ Chí Minh', image: images.town, length: '3 ngày 2 đêm', highlights: 'Dinh Độc Lập · Cà phê · Bến Bạch Đằng' },
+                  { id: 'sample-vungtau', name: 'Vũng Tàu', image: images.beach, length: '2 ngày 1 đêm', highlights: 'Ngắm hoàng hôn · Hải Đăng · Hải sản' },
                 ].map(trip => (
                   <button type="button" key={trip.id} onClick={()=>navigate(`/trips/${trip.id}/memories`)} aria-label={`Xem kỷ niệm ${trip.name}`} className="rounded-2xl overflow-hidden bg-white border border-slate-100 text-left">
                       <div className="relative">

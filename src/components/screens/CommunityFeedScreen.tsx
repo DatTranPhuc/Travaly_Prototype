@@ -119,7 +119,7 @@ export const CommunityFeedScreen: React.FC<CommunityFeedScreenProps> = ({
                       <span className="font-heading text-xs font-bold text-white drop-shadow-xs">Linh Chi</span>
                       <span className="text-[10px] text-white/80">• 2 giờ</span>
                     </div>
-                    <span className="text-[10px] text-white/90 font-medium">Bãi Sao, Phú Quốc</span>
+                    <span className="text-[10px] text-white/90 font-medium">Bãi Sau, Vũng Tàu</span>
                   </div>
                 </div>
                 <button
@@ -182,8 +182,8 @@ export const CommunityFeedScreen: React.FC<CommunityFeedScreenProps> = ({
             <div className="relative w-full h-[280px] overflow-hidden bg-slate-100">
               <img
                 className="w-full h-full object-cover"
-                alt="Phố cổ Hội An"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqHN6u_i4757cqi53MGWhBzA57aKsWI_0NlYibavulXSkp64gxbz5I_2OiG3u3ifPIhgw_-I_U_iO1n6XvQ-GTeSt-ukDiW9WWaiYIEHh03KJIA7r-txTdxlm-XL3s4fww2RGzz9FIjOOqb9E0-SJ4SCnc2eiNk2RJhNZ9Ee6FQy9GtbtH-xtSy-q3at5JG_LirzGFPGKNT9eGJjw8aMjUDmvzhKZyHlbJhuIUWyp66ltoaLinEA"
+                alt="Phố đi bộ Nguyễn Huệ"
+                src="https://images.unsplash.com/photo-1578922746465-3a80a228f223?auto=format&fit=crop&w=800&q=80"
               />
               <div className="absolute inset-x-0 top-0 p-4 bg-gradient-to-b from-black/60 via-black/20 to-transparent flex items-center justify-between text-white">
                 <div className="flex items-center gap-2.5">
@@ -197,7 +197,7 @@ export const CommunityFeedScreen: React.FC<CommunityFeedScreenProps> = ({
                       <span className="font-heading text-xs font-bold text-white drop-shadow-xs">Minh Khang</span>
                       <span className="text-[10px] text-white/80">• 5 giờ</span>
                     </div>
-                    <span className="text-[10px] text-white/90 font-medium">Phố cổ Hội An, Quảng Nam</span>
+                    <span className="text-[10px] text-white/90 font-medium">Phố đi bộ Nguyễn Huệ, TP.HCM</span>
                   </div>
                 </div>
                 <button
@@ -212,7 +212,7 @@ export const CommunityFeedScreen: React.FC<CommunityFeedScreenProps> = ({
 
             <div className="p-4 flex flex-col gap-2.5 bg-white">
               <p className="text-xs text-slate-800 leading-relaxed line-clamp-2">
-                Phố cổ Hội An lúc nào cũng mang một vẻ đẹp rất riêng. Đèn lồng lung linh, ẩm thực đậm đà.{' '}
+                Phố đi bộ Nguyễn Huệ về đêm lúc nào cũng sôi động và rực rỡ ánh đèn. Gió sông Bạch Đằng mát rượi, ngắm trọn vẹn nhịp sống hiện đại Sài Gòn!{' '}
                 <span className="text-[#0A1680] font-bold cursor-pointer hover:underline">Xem thêm</span>
               </p>
               <div className="flex items-center justify-between pt-2 border-t border-slate-100 text-slate-500 text-xs">
@@ -310,7 +310,7 @@ export const CommunityFeedScreen: React.FC<CommunityFeedScreenProps> = ({
                     <span className="font-heading font-bold text-slate-900">Bảo Nam</span>
                     <span className="text-[10px] text-slate-400">45 phút trước</span>
                   </div>
-                  <p className="text-slate-700 leading-relaxed">Phú Quốc mùa này thời tiết quá lý tưởng luôn, nhìn ảnh muốn xách balo lên đi ngay!</p>
+                  <p className="text-slate-700 leading-relaxed">Vũng Tàu mùa này thời tiết quá lý tưởng luôn, nhìn ảnh muốn xách balo lên đi ngay!</p>
                 </div>
               </div>
             </div>

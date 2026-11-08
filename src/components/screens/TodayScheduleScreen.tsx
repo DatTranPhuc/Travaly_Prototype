@@ -669,7 +669,7 @@ export const TodayScheduleScreen: React.FC<TodayScheduleScreenProps> = ({
 
               <div
                 onClick={() => {
-                  showToast('Chuyển sang chuyến đi Phú Quốc 4N3Đ 🌴');
+                  showToast('Chuyển sang chuyến đi Vũng Tàu 2N1Đ 🌊');
                   setShowDestinationPicker(false);
                 }}
                 className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between cursor-pointer hover:bg-slate-100"
@@ -679,8 +679,8 @@ export const TodayScheduleScreen: React.FC<TodayScheduleScreenProps> = ({
                     📍
                   </div>
                   <div>
-                    <span className="font-bold text-[13px] text-slate-900 font-heading">Phú Quốc 4N3Đ</span>
-                    <p className="text-[11px] text-slate-500">Khởi hành 28/07 • Đã lập kế hoạch</p>
+                    <span className="font-bold text-[13px] text-slate-900 font-heading">Vũng Tàu 2N1Đ</span>
+                    <p className="text-[11px] text-slate-500">Khởi hành cuối tuần • Đã lập kế hoạch</p>
                   </div>
                 </div>
                 <span className="text-xs text-[#0A1680] font-bold">Chọn</span>

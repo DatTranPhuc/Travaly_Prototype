@@ -13,10 +13,10 @@ export const CreatePostScreen: React.FC<CreatePostScreenProps> = ({
 }) => {
   const {setLocalPosts}=useTravel();
   const [postText, setPostText] = useState(
-    'Một ngày đáng nhớ tại Phú Quốc! Biển xanh, nắng ấm, đồ ăn siêu ngon và vô vàn trải nghiệm thú vị! 🌴☀️'
+    'Một ngày đáng nhớ tại Vũng Tàu! Biển xanh, nắng ấm, đồ ăn siêu ngon và vô vàn trải nghiệm thú vị! 🌊🏖️'
   );
-  const [hashtags, setHashtags] = useState(['#PhuQuoc', '#BienDep', '#AmThuc', '#DuLichVietnam']);
-  const [locationName, setLocationName] = useState('Phú Quốc, Kiên Giang');
+  const [hashtags, setHashtags] = useState(['#VungTau', '#BienDep', '#AmThuc', '#SaiGonViVu']);
+  const [locationName, setLocationName] = useState('Bãi Sau, Vũng Tàu');
   const [audience, setAudience] = useState('Công khai');
 
   // Modals state
@@ -292,7 +292,7 @@ export const CreatePostScreen: React.FC<CreatePostScreenProps> = ({
               <button onClick={() => setShowLocationModal(false)} className="w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:bg-slate-100">✕</button>
             </div>
             <div className="space-y-1.5 text-xs">
-              {['Bãi Sao, An Thới', 'Sunset Sanato Beach Club', 'Dinh Cậu, Dương Đông', 'Hòn Thơm, Phú Quốc'].map((loc) => (
+              {['Bãi Sau, Thùy Vân', 'Mũi Nghinh Phong & Cổng Trời', 'Ngọn Hải Đăng Vũng Tàu', 'Bạch Dinh, Vũng Tàu'].map((loc) => (
                 <button
                   key={loc}
                   type="button"
@@ -379,7 +379,7 @@ export const CreatePostScreen: React.FC<CreatePostScreenProps> = ({
             </div>
             <div className="bg-slate-50 border border-slate-200 p-3.5 rounded-2xl text-xs text-slate-700 leading-relaxed">
               <strong className="block text-[#0A1680] font-heading mb-1">Gợi ý từ TravAIy:</strong>
-              "Bỏ lại sau lưng phố xá nhộn nhịp, Phú Quốc chào đón mình bằng bờ cát trắng mịn và biển xanh trong vắt tận đáy. Một ngày dịu dàng để tâm hồn hòa cùng sóng gió ngọc đảo... ✨🏖️"
+              "Bỏ lại sau lưng phố xá nhộn nhịp, Vũng Tàu chào đón mình bằng bờ cát vàng mịn và tiếng sóng biển rì rào. Một ngày dịu dàng để tâm hồn hòa cùng gió biển mát lành... ✨🌊"
             </div>
             <div className="flex gap-2">
               <button
@@ -393,7 +393,7 @@ export const CreatePostScreen: React.FC<CreatePostScreenProps> = ({
                 type="button"
                 onClick={() => {
                   setPostText(
-                    'Bỏ lại sau lưng phố xá nhộn nhịp, Phú Quốc chào đón mình bằng bờ cát trắng mịn và biển xanh trong vắt tận đáy. Một ngày dịu dàng để tâm hồn hòa cùng sóng gió ngọc đảo... ✨🏖️'
+                    'Bỏ lại sau lưng phố xá nhộn nhịp, Vũng Tàu chào đón mình bằng bờ cát vàng mịn và tiếng sóng biển rì rào. Một ngày dịu dàng để tâm hồn hòa cùng gió biển mát lành... ✨🌊'
                   );
                   setShowAIWriteModal(false);
                   showToast('Đã áp dụng bản thảo từ AI!');

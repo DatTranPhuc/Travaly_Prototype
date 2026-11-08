@@ -25,22 +25,22 @@ export const TripRecapFinalScreen: React.FC<TripRecapFinalScreenProps> = ({
 
   const recapSlides = [
     {
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBu23qKE7ytT0HiKJHXejjyg7ERfPC7J4dnTYIAro4qUXz4NgI2hxpQKZ4WIFeDkWjyYMdoZuN56uHh6NYbFz8RCbHZeuQWSJplPDv9DDLQFH7SiZyt73OAxjLDESPiFlzo0NQvlUzMr5fb6FPPbKEd3mD-dtcmMqqzVDUt22VSH2FNZYLVxoxMrdknz4NzGV7aU4X8CTIy9IXOgJBPeBIQDJfyv6CwhZ8u1eOKMnCgdz4zJ-cZ-w',
-      title: 'Hành trình Phú Quốc 3N2Đ',
-      subtitle: 'Khởi đầu với biển xanh Bãi Sao',
+      image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+      title: 'Hành trình Vũng Tàu 2N1Đ',
+      subtitle: 'Khởi đầu với biển xanh Bãi Sau',
       tag: 'Ngày 1',
     },
     {
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCdrDMa6B0vgD_SZQJ9nB95HY9MWdma1TwHE7BqfatoWmdICeVPO-IW31jj8OPElUeA4GkAWGQdppg1zzqR7UscwUJpmjiTN3GZHd76PtzcdKckyaoYCTs3-TaOp7e-MeIW6-0Osimzat6sOJSVVvthWKmXdmzNw8hBJiu7deyXho--c2xwF2AxAyAM5rIe60PMjKFiwyzKSW3nNmkpf4QFhM32lWPvibe09CbF4kyYkuACac7o7A',
-      title: 'Lặn ngắm san hô Hòn Móng Tay',
-      subtitle: 'Thế giới đại dương rực rỡ',
-      tag: 'Ngày 2',
+      image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
+      title: 'Gió biển Mũi Nghinh Phong & Hải Đăng',
+      subtitle: 'Cổng Trời lộng gió & toàn cảnh vịnh biển',
+      tag: 'Ngày 1',
     },
     {
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBVVnBXGRFKepzpuukUx8ccVz9iAPeDKSBVXacpGmMaRWYOW700G12GrNS49d2bFVkp1qf-gz-nEVXz8FTp9YNH8mODDqOArhCrMPvq-84n7bdacGUkrXLgVYUNm0iLSmjoG8HPXc_jDP4WgicenDDjbL5q3OyNkBxZj8l_pFeTyq5jDT9iVZd358Cyqc9LhSxo15bJtZarIDrZnajqnCxrKBB4XLGy9uydMSWLHIkEtIgzRYgRqg',
-      title: 'Hoàng hôn rực rỡ Bãi Trường',
+      image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
+      title: 'Hoàng hôn rực rỡ Bãi Trước',
       subtitle: 'Khoảnh khắc trọn vẹn bên bạn bè',
-      tag: 'Ngày 3',
+      tag: 'Ngày 2',
     },
   ];
 
@@ -142,7 +142,7 @@ export const TripRecapFinalScreen: React.FC<TripRecapFinalScreenProps> = ({
               {recapSlides[activeSlide].tag}
             </span>
             <span className="text-[12px] font-medium text-white/90 drop-shadow-md">
-              Phú Quốc 2026
+              Vũng Tàu 2026
             </span>
           </div>
 
