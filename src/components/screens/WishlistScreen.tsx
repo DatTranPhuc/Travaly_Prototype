@@ -244,11 +244,11 @@ export const WishlistScreen: React.FC<WishlistScreenProps> = ({
             <div className="py-16 text-center flex flex-col items-center justify-center gap-3">
               <img
                 src="/images/mascot-thinking.png"
-                alt="Bé Sao Lumi"
+                alt="Lumi"
                 className="w-11 h-11 object-contain animate-mascot-float"
               />
               <h3 className="text-base font-bold text-[#0A1680] font-heading">Chưa có bộ sưu tập nào</h3>
-              <p className="text-xs text-slate-500 max-w-[240px]">Cùng Bé Sao Lumi tạo bộ sưu tập đầu tiên để gom các điểm đến yêu thích nhé!</p>
+              <p className="text-xs text-slate-500 max-w-[240px]">Cùng Lumi tạo bộ sưu tập đầu tiên để gom các điểm đến yêu thích nhé!</p>
             </div>
           )}
         </div>
@@ -291,11 +291,11 @@ export const WishlistScreen: React.FC<WishlistScreenProps> = ({
             <div className="py-16 text-center flex flex-col items-center justify-center gap-3">
               <img
                 src="/images/mascot-working.png"
-                alt="Bé Sao Lumi"
+                alt="Lumi"
                 className="w-11 h-11 object-contain animate-mascot-float"
               />
               <h3 className="text-base font-bold text-[#0A1680] font-heading">Chưa có địa điểm đã lưu</h3>
-              <p className="text-xs text-slate-500 max-w-[240px]">Khám phá thêm các điểm đến thú vị và thả tim để lưu lại cùng Bé Sao nhé!</p>
+              <p className="text-xs text-slate-500 max-w-[240px]">Khám phá thêm các điểm đến thú vị và thả tim để lưu lại cùng Lumi nhé!</p>
             </div>
           )}
         </div>
@@ -404,7 +404,7 @@ export const WishlistScreen: React.FC<WishlistScreenProps> = ({
             className="absolute inset-0 bg-black/40 backdrop-blur-xs transition-opacity"
             onClick={() => setShowCreateSheet(false)}
           />
-          <div className="relative z-10 w-full bg-[#FCFDFF] rounded-t-[32px] p-5 shadow-2xl flex flex-col animate-in slide-in-from-bottom duration-300 text-left">
+          <div className="relative z-10 w-full bg-[#FCFDFF] modal-surface rounded-[28px] p-5 shadow-2xl flex flex-col animate-in slide-in-from-bottom duration-300 text-left">
             <div className="w-10 h-1 bg-slate-300 rounded-full mx-auto mb-4" />
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-[18px] font-bold text-[#0A1680] tracking-tight font-heading">
@@ -465,7 +465,7 @@ export const WishlistScreen: React.FC<WishlistScreenProps> = ({
             className="absolute inset-0 bg-black/40 backdrop-blur-xs transition-opacity"
             onClick={() => setActiveCollectionAction(null)}
           />
-          <div className="relative z-10 w-full bg-[#FCFDFF] rounded-t-[32px] p-5 shadow-2xl flex flex-col animate-in slide-in-from-bottom duration-300 text-left">
+          <div className="relative z-10 w-full bg-[#FCFDFF] modal-surface rounded-[28px] p-5 shadow-2xl flex flex-col animate-in slide-in-from-bottom duration-300 text-left">
             <div className="w-10 h-1 bg-slate-300 rounded-full mx-auto mb-3" />
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-2">
               <h2 className="text-[16px] font-bold text-[#0A1680] truncate font-heading">
@@ -564,7 +564,7 @@ export const WishlistScreen: React.FC<WishlistScreenProps> = ({
             className="absolute inset-0 bg-black/40 backdrop-blur-xs transition-opacity"
             onClick={() => setShowShareSheet(false)}
           />
-          <div className="relative z-10 w-full bg-[#FCFDFF] rounded-t-[32px] p-5 shadow-2xl flex flex-col gap-4 animate-in slide-in-from-bottom duration-300 text-left">
+          <div className="relative z-10 w-full bg-[#FCFDFF] modal-surface rounded-[28px] p-5 shadow-2xl flex flex-col gap-4 animate-in slide-in-from-bottom duration-300 text-left">
             <div className="w-10 h-1 bg-slate-300 rounded-full mx-auto mb-1" />
             <div className="flex items-center justify-between pb-2 border-b border-slate-100">
               <h2 className="text-[17px] font-bold text-[#0A1680] font-heading">

@@ -325,7 +325,7 @@ export const TripSubscriptionScreen: React.FC<TripSubscriptionScreenProps> = ({
       {/* POPUP 1: Dialog Confirm Plan */}
       {showConfirmModal && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 backdrop-blur-xs">
-          <div className="w-full max-w-[390px] bg-white rounded-t-[28px] p-6 shadow-2xl flex flex-col gap-4 animate-in slide-in-from-bottom duration-200">
+          <div className="w-full max-w-[390px] bg-white modal-surface rounded-[28px] p-6 shadow-2xl flex flex-col gap-4 animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1 bg-slate-300 rounded-full mx-auto -mt-2" />
             <div className="flex items-center justify-between pb-1">
               <div className="flex items-center gap-2">
@@ -391,7 +391,7 @@ export const TripSubscriptionScreen: React.FC<TripSubscriptionScreenProps> = ({
       {showQuotaModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4">
           <div className="w-[342px] bg-white rounded-[28px] p-6 shadow-2xl flex flex-col items-center text-center gap-3 animate-in zoom-in-95 duration-200">
-            <div className="w-12 h-12 rounded-full bg-[#ffdea8] flex items-center justify-center text-[#b9881c] text-2xl">
+            <div className="w-12 h-12 rounded-full bg-[#ffdea8] flex items-center justify-center text-[#79571D] text-2xl">
               🤖
             </div>
             <h3 className="font-heading text-[17px] font-bold text-slate-900 leading-snug">
@@ -421,7 +421,7 @@ export const TripSubscriptionScreen: React.FC<TripSubscriptionScreenProps> = ({
       {/* POPUP 3: More Options Sheet */}
       {showMoreOptions && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 backdrop-blur-xs">
-          <div className="w-full max-w-[390px] bg-white rounded-t-[28px] p-6 shadow-2xl flex flex-col gap-3 animate-in slide-in-from-bottom duration-200">
+          <div className="w-full max-w-[390px] bg-white modal-surface rounded-[28px] p-6 shadow-2xl flex flex-col gap-3 animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1 bg-slate-300 rounded-full mx-auto -mt-2" />
             <div className="flex items-center justify-between pb-1">
               <h3 className="font-heading text-[17px] font-bold text-slate-900">Tùy chọn chuyến đi</h3>
@@ -436,7 +436,7 @@ export const TripSubscriptionScreen: React.FC<TripSubscriptionScreenProps> = ({
               }}
               className="w-full flex items-center gap-3 p-3 rounded-2xl hover:bg-slate-50 text-left cursor-pointer"
             >
-              <div className="w-9 h-9 rounded-xl bg-[#ffdea8] flex items-center justify-center text-[#b9881c] shrink-0 text-base">
+              <div className="w-9 h-9 rounded-xl bg-[#ffdea8] flex items-center justify-center text-[#79571D] shrink-0 text-base">
                 🤖
               </div>
               <div>
@@ -465,7 +465,7 @@ export const TripSubscriptionScreen: React.FC<TripSubscriptionScreenProps> = ({
       {/* POPUP 4: Share Modal */}
       {showShareModal && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 backdrop-blur-xs">
-          <div className="w-full max-w-[390px] bg-white rounded-t-[28px] p-6 shadow-2xl flex flex-col gap-3 animate-in slide-in-from-bottom duration-200">
+          <div className="w-full max-w-[390px] bg-white modal-surface rounded-[28px] p-6 shadow-2xl flex flex-col gap-3 animate-in slide-in-from-bottom duration-200">
             <div className="flex items-center justify-between pb-2 border-b border-slate-100">
               <h3 className="font-heading font-bold text-[16px]">Chia sẻ thông tin gói</h3>
               <button onClick={() => setShowShareModal(false)} className="w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:bg-slate-100">

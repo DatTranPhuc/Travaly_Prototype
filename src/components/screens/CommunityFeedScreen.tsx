@@ -277,7 +277,7 @@ export const CommunityFeedScreen: React.FC<CommunityFeedScreenProps> = ({
             className="absolute inset-0 bg-black/50 backdrop-blur-xs"
             onClick={() => setShowCommentsModal(false)}
           />
-          <div className="relative w-full max-w-[390px] mx-auto bg-white rounded-t-[28px] shadow-2xl flex flex-col max-h-[82vh] z-10 animate-in slide-in-from-bottom duration-200">
+          <div className="relative w-full max-w-[390px] mx-auto bg-white modal-surface rounded-[28px] shadow-2xl flex flex-col max-h-[82vh] z-10 animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto mt-3 mb-1 shrink-0" />
             <div className="px-5 py-3 border-b border-slate-100 flex items-center justify-between shrink-0">
               <div className="flex items-center gap-2">
@@ -346,7 +346,7 @@ export const CommunityFeedScreen: React.FC<CommunityFeedScreenProps> = ({
             className="absolute inset-0 bg-black/50 backdrop-blur-xs"
             onClick={() => setShowShareModal(false)}
           />
-          <div className="relative w-full max-w-[390px] mx-auto bg-white rounded-t-[28px] shadow-2xl p-5 flex flex-col gap-3.5 z-10 animate-in slide-in-from-bottom duration-200">
+          <div className="relative w-full max-w-[390px] mx-auto bg-white modal-surface rounded-[28px] shadow-2xl p-5 flex flex-col gap-3.5 z-10 animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto shrink-0" />
             <div className="flex items-center justify-between">
               <h2 className="font-heading font-bold text-[16px] text-[#0A1680]">Chia sẻ bài viết</h2>
@@ -423,7 +423,7 @@ export const CommunityFeedScreen: React.FC<CommunityFeedScreenProps> = ({
             className="absolute inset-0 bg-black/50 backdrop-blur-xs"
             onClick={() => setShowPostOptionsModal(false)}
           />
-          <div className="relative w-full max-w-[390px] mx-auto bg-white rounded-t-[28px] shadow-2xl p-5 flex flex-col gap-2 z-10 animate-in slide-in-from-bottom duration-200 text-xs">
+          <div className="relative w-full max-w-[390px] mx-auto bg-white modal-surface rounded-[28px] shadow-2xl p-5 flex flex-col gap-2 z-10 animate-in slide-in-from-bottom duration-200 text-xs">
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto shrink-0 mb-1" />
             <button
               type="button"
@@ -469,7 +469,7 @@ export const CommunityFeedScreen: React.FC<CommunityFeedScreenProps> = ({
             className="absolute inset-0 bg-black/50 backdrop-blur-xs"
             onClick={() => setShowReportModal(false)}
           />
-          <div className="relative w-full max-w-[390px] mx-auto bg-white rounded-t-[28px] shadow-2xl p-5 pb-8 flex flex-col gap-3.5 z-10 animate-in slide-in-from-bottom duration-200">
+          <div className="relative w-full max-w-[390px] mx-auto bg-white modal-surface rounded-[28px] shadow-2xl p-5 pb-8 flex flex-col gap-3.5 z-10 animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto shrink-0" />
             <div className="flex items-center justify-between">
               <h3 className="font-heading font-bold text-[16px] text-rose-600">Báo cáo vi phạm</h3>
@@ -501,7 +501,7 @@ export const CommunityFeedScreen: React.FC<CommunityFeedScreenProps> = ({
             className="absolute inset-0 bg-black/50 backdrop-blur-xs"
             onClick={() => setShowNotificationsModal(false)}
           />
-          <div className="relative w-full max-w-[390px] mx-auto bg-white rounded-t-[28px] shadow-2xl flex flex-col max-h-[82vh] z-10 animate-in slide-in-from-bottom duration-200">
+          <div className="relative w-full max-w-[390px] mx-auto bg-white modal-surface rounded-[28px] shadow-2xl flex flex-col max-h-[82vh] z-10 animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto mt-3 mb-1 shrink-0" />
             <div className="px-5 py-3 border-b border-slate-100 flex items-center justify-between shrink-0">
               <div className="flex items-center gap-2">

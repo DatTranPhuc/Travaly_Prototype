@@ -323,7 +323,7 @@ export const TravelDocumentDetailScreen: React.FC<TravelDocumentDetailScreenProp
       {/* Share Modal */}
       {showShareModal && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-xs">
-          <div className="w-full max-w-[390px] bg-white rounded-t-[28px] p-5 shadow-2xl flex flex-col gap-3 animate-in slide-in-from-bottom duration-200">
+          <div className="w-full max-w-[390px] bg-white modal-surface rounded-[28px] p-5 shadow-2xl flex flex-col gap-3 animate-in slide-in-from-bottom duration-200">
             <div className="flex items-center justify-between pb-2 border-b border-slate-100">
               <h3 className="font-heading font-bold text-[16px]">Chia sẻ thẻ lên máy bay</h3>
               <button onClick={() => setShowShareModal(false)} className="w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:bg-slate-100">
@@ -359,7 +359,7 @@ export const TravelDocumentDetailScreen: React.FC<TravelDocumentDetailScreenProp
       {/* More Options Modal */}
       {showMoreOptions && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-xs">
-          <div className="w-full max-w-[390px] bg-white rounded-t-[28px] p-5 shadow-2xl flex flex-col gap-2 animate-in slide-in-from-bottom duration-200">
+          <div className="w-full max-w-[390px] bg-white modal-surface rounded-[28px] p-5 shadow-2xl flex flex-col gap-2 animate-in slide-in-from-bottom duration-200">
             <div className="flex items-center justify-between pb-2 border-b border-slate-100">
               <h3 className="font-heading font-bold text-[16px]">Tùy chọn vé VJ628</h3>
               <button onClick={() => setShowMoreOptions(false)} className="w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:bg-slate-100">

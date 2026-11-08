@@ -303,7 +303,7 @@ export const SavedItemsScreen: React.FC<SavedItemsScreenProps> = ({
       {/* POPUP: Filter Saved Sheet */}
       {showFilterModal && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 backdrop-blur-xs">
-          <div className="w-full max-w-[390px] bg-white rounded-t-[28px] p-5 pb-8 shadow-2xl flex flex-col gap-4 animate-in slide-in-from-bottom duration-200">
+          <div className="w-full max-w-[390px] bg-white modal-surface rounded-[28px] p-5 pb-8 shadow-2xl flex flex-col gap-4 animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto shrink-0" />
             <div className="flex items-center justify-between pb-2 border-b border-slate-100">
               <h3 className="font-heading font-bold text-[17px] text-[#0A1680]">Bộ lọc & Sắp xếp</h3>

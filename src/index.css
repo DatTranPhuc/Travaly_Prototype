@@ -142,8 +142,8 @@ h1, h2, h3, h4, h5, h6, .font-heading, .travaiy-pill-btn, .home-wordmark {
    Palette:
    - #0A1680 (Bleu Océan): Chữ tiêu đề, nút bấm chính, viền active
    - #93B2F8 (Bleu Ciel): Nền thẻ xanh mát, viền phụ, hiệu ứng viền
-   - #FBEDB0 (Butter Yellow): Thân Bé Sao, điểm nhấn ấm, thẻ vàng dịu
-   - #F1B94C (Orange Pastel): Má hồng Bé Sao, điểm nhấn hành động, badge nổi bật
+   - #FBEDB0 (Butter Yellow): Thân Lumi, điểm nhấn ấm, thẻ vàng dịu
+   - #F1B94C (Orange Pastel): Má hồng Lumi, điểm nhấn hành động, badge nổi bật
    - #FCFDFF (Blanc Cassé): Nền canvas sạch sẽ, không mỏi mắt
    ========================================================== */
 
@@ -166,14 +166,13 @@ h1, h2, h3, h4, h5, h6, .font-heading, .travaiy-pill-btn, .home-wordmark {
 
 /* 1. Màn hình & Nền toàn ứng dụng: NỀN LOANG XANH TRẮNG MỊN MÀNG (Amalfi Coastal Gradient) */
 .travel-device,
-.travel-screen:not(.photobooth-screen):not(.booth-screen),
+.travel-screen:not(.photobooth-screen),
 .home-reference,
-.travel-screen:not(.photobooth-screen):not(.booth-screen) .travel-scroll,
-.travel-screen:not(.photobooth-screen):not(.booth-screen) .daily-scroll,
-.travel-screen:not(.photobooth-screen):not(.booth-screen) .wizard-body,
-.travel-screen:not(.photobooth-screen):not(.booth-screen) .polish-stack,
+.travel-screen:not(.photobooth-screen) .travel-scroll,
+.travel-screen:not(.photobooth-screen) .daily-scroll,
+.travel-screen:not(.photobooth-screen) .wizard-body,
+.travel-screen:not(.photobooth-screen) .polish-stack,
 .home-reference .home-scroll,
-.travel-device main:not(.photobooth-screen),
 div[class*="min-h-"][class*="bg-[#FCFDFF]"],
 div[class*="min-h-"][class*="bg-[#F4F8FD]"] {
   --color-primary: #0F2C59;
@@ -258,8 +257,8 @@ div[class*="min-h-"][class*="bg-[#F4F8FD]"] {
 /* 2. Bỏ viền các khối bọc lớn nhưng GIỮ NGUYÊN viền của nút, ô tick chọn (checkbox), radio, input và thẻ được chọn */
 .travel-device header:not(.bordered),
 .travel-device nav:not(.bordered),
-.travel-screen:not(.photobooth-screen):not(.booth-screen) header:not(.bordered),
-.travel-screen:not(.photobooth-screen):not(.booth-screen) nav:not(.bordered) {
+.travel-screen:not(.photobooth-screen) header:not(.bordered),
+.travel-screen:not(.photobooth-screen) nav:not(.bordered) {
   border: none !important;
   outline: none !important;
 }
@@ -306,10 +305,10 @@ button[class*="bg-[#0F2C59]"] svg.lucide-check {
 /* 3. Toàn bộ UI icon (Lucide & Action SVG): Màu Vàng Citrus Zest (#FFA62B) */
 .travel-device .lucide,
 .travel-device svg:not(.leaflet-zoom-animated),
-.travel-screen:not(.photobooth-screen):not(.booth-screen) .lucide,
-.travel-screen:not(.photobooth-screen):not(.booth-screen) svg:not(.leaflet-zoom-animated),
-.travel-screen:not(.photobooth-screen):not(.booth-screen) .travel-icon svg,
-.travel-screen:not(.photobooth-screen):not(.booth-screen) .travel-section-title svg,
+.travel-screen:not(.photobooth-screen) .lucide,
+.travel-screen:not(.photobooth-screen) svg:not(.leaflet-zoom-animated),
+.travel-screen:not(.photobooth-screen) .travel-icon svg,
+.travel-screen:not(.photobooth-screen) .travel-section-title svg,
 nav[aria-label="Thanh điều hướng"] svg {
   color: #FFA62B !important;
   stroke: #FFA62B !important;
@@ -495,7 +494,7 @@ nav[aria-label="Thanh điều hướng"] svg {
 .travel-device .travel-header,
 .travel-device .wizard-header,
 .travel-device .home-top,
-.travel-device header:not(.booth-header):not(.photo-top),
+.travel-device header:not(.booth-header):not(.photo-top):not(.recap-header),
 .travel-screen:not(.photobooth-screen) .travel-header,
 .travel-screen:not(.photobooth-screen) .wizard-header {
   position: relative;
@@ -685,7 +684,7 @@ nav[aria-label="Thanh điều hướng"] span.bg-\[\#FFA62B\] {
 .travel-device textarea::placeholder,
 .travel-screen input::placeholder,
 .travel-screen textarea::placeholder {
-  color: #8C9FB5 !important;
+  color: #526780 !important;
   opacity: 1 !important;
 }
 
@@ -737,46 +736,10 @@ nav[aria-label="Thanh điều hướng"] span.bg-\[\#FFA62B\] {
   box-shadow: 0 4px 16px rgba(15, 44, 89, 0.2) !important;
 }
 
-/* 13. Toàn bộ chữ & Tiêu đề: Amalfi Navy (#0F2C59) & Slate Gray (#4A5F7A) */
-.travel-device h1:not([class*="text-white"]):not(.home-cinematic *):not(.today-hero *):not(.explore-stay-banner *):not(.journal-memory-card *):not(.overview-photo-hero *):not(.proposal-summary *):not(.hotel-budget-summary *):not(button:not(.secondary) *),
-.travel-device h2:not([class*="text-white"]):not(.home-cinematic *):not(.today-hero *):not(.explore-stay-banner *):not(.journal-memory-card *):not(.overview-photo-hero *):not(.proposal-summary *):not(.hotel-budget-summary *):not(button:not(.secondary) *),
-.travel-device h3:not([class*="text-white"]):not(.home-cinematic *):not(.today-hero *):not(.explore-stay-banner *):not(.journal-memory-card *):not(.overview-photo-hero *):not(.proposal-summary *):not(.hotel-budget-summary *):not(button:not(.secondary) *),
-.travel-device h4:not([class*="text-white"]):not(.home-cinematic *):not(.today-hero *):not(.explore-stay-banner *):not(.journal-memory-card *):not(.overview-photo-hero *):not(.proposal-summary *):not(.hotel-budget-summary *):not(button:not(.secondary) *),
-.travel-device h5:not([class*="text-white"]),
-.travel-device h6:not([class*="text-white"]),
-.travel-device b:not([class*="text-white"]):not([class*="text-slate-100"]):not(.home-cinematic *):not(.today-hero *):not(.explore-stay-banner *):not(.journal-memory-card *):not(.overview-photo-hero *):not(.proposal-summary *):not(.hotel-budget-summary *):not(button:not(.secondary) *),
-.travel-device strong:not([class*="text-white"]):not([class*="text-slate-100"]):not(.home-cinematic *):not(.today-hero *):not(.explore-stay-banner *):not(.journal-memory-card *):not(.overview-photo-hero *):not(.proposal-summary *):not(.hotel-budget-summary *):not(button:not(.secondary) *) {
-  color: #0F2C59;
-}
-
-.travel-device p:not([class*="text-white"]):not([class*="text-slate-100"]):not([class*="text-white/"]):not(.home-cinematic *):not(.today-hero *):not(.explore-stay-banner *):not(.journal-memory-card *):not(.overview-photo-hero *):not(.proposal-summary *):not(.hotel-budget-summary *):not(button:not(.secondary) *),
-.travel-device span:not(.font-heading):not([class*="text-white"]):not([class*="text-slate-100"]):not([class*="text-white/"]):not([class*="bg-"]):not(.travel-arrow):not(.home-cinematic *):not(.today-hero *):not(.explore-stay-banner *):not(.journal-memory-card *):not(.overview-photo-hero *):not(.proposal-summary *):not(.hotel-budget-summary *):not(button:not(.secondary) *),
-.travel-device small:not([class*="text-white"]):not([class*="text-slate-100"]):not([class*="text-white/"]):not(.home-cinematic *):not(.today-hero *):not(.explore-stay-banner *):not(.journal-memory-card *):not(.overview-photo-hero *):not(.proposal-summary *):not(.hotel-budget-summary *):not(button:not(.secondary) *) {
-  color: #4A5F7A;
-}
-
-.travel-device .travel-eyebrow {
-  color: #64748B !important;
-  font-weight: 800 !important;
-}
-
 /* ==========================================================
    CHỐNG CHÌM CHỮ (EXPLICIT WHITE TEXT ON DARK SURFACES):
    Mọi chữ, nhãn, số nằm trên nền tối hoặc nút chính đều hiển thị màu TRẮNG tinh khôi
    ========================================================== */
-.travel-device [class*="text-white"],
-.travel-device [class*="text-white/"],
-.travel-device .text-white,
-.travel-device [class*="text-slate-100"],
-.travel-device [class*="text-slate-200"],
-.travel-device [class*="text-[#fff]"],
-.travel-device [class*="text-gray-100"],
-.travel-device [class*="text-gray-200"],
-.travel-device [class*="bg-[#0A1680]"] *:not(svg):not(i):not(img):not(.travel-arrow *):not(button *),
-.travel-device [class*="bg-[#0F2C59]"] *:not(svg):not(i):not(img):not(.travel-arrow *):not(button *),
-.travel-device [class*="bg-slate-900"] *:not(svg):not(i):not(img):not(button *),
-.travel-device [class*="bg-slate-950"] *:not(svg):not(i):not(img):not(button *),
-.travel-device [class*="bg-black"] *:not(svg):not(i):not(img):not(button *),
 .travel-device .travel-pill:not(.secondary) *:not(svg):not(i):not(img):not(.travel-arrow *),
 .travel-device .travaiy-pill-btn:not(.secondary) *:not(svg):not(i):not(img),
 .travel-device .travel-chips > button.active,
@@ -878,23 +841,18 @@ nav[aria-label="Thanh điều hướng"] span.bg-\[\#FFA62B\] {
 }
 
 /* 15. Bảo toàn chế độ chụp ảnh Studio Photobooth (#070D34) */
-.photobooth-screen,
-.booth-screen {
+.photobooth-screen {
   background: #070D34 !important;
   color: #EFF3FF !important;
 }
 
 .photobooth-screen h1,
 .photobooth-screen h2,
-.photobooth-screen p,
-.booth-screen h1,
-.booth-screen h2,
-.booth-screen p {
+.photobooth-screen p {
   color: #EFF3FF !important;
 }
 
-.photobooth-screen .travel-icon,
-.booth-screen .travel-icon {
+.photobooth-screen .travel-icon {
   background: rgba(255, 255, 255, 0.12) !important;
   color: #FFFFFF !important;
 }
@@ -907,3 +865,49 @@ nav[aria-label="Thanh điều hướng"] span.bg-\[\#FFA62B\] {
   outline-offset: 2px;
 }
 
+
+/* Muted text on the app's light canvas must remain readable. */
+.travel-device :is(.text-slate-300,.text-slate-400,.text-gray-300,.text-gray-400,.text-zinc-400) {
+  color: #4A5F7A;
+}
+/* Dark studio/recap labels need a light muted tone, including nested dialogs. */
+.travel-device :is([data-color-scheme="dark"],.photobooth-screen) :is(.text-slate-300,.text-slate-400,.text-slate-500,.text-gray-400,.text-zinc-400) {
+  color: #B8C7DD;
+}
+.leaflet-control-attribution a { color: #0F2C59; }
+
+/* A modal dims the current page without replacing it with a solid brand fill. */
+.modal-sheet-scrim {
+  background: rgba(15, 44, 89, 0.25);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+/* Clip every modal layer, including headers with backdrop filters, to its rounded surface. */
+.modal-surface {
+  --modal-radius: 28px;
+  border-radius: var(--modal-radius) !important;
+  overflow: hidden;
+  isolation: isolate;
+  clip-path: inset(0 round var(--modal-radius));
+}
+/* A small inset exposes all four corners of bottom sheets. */
+.modal-surface[class*="slide-in-from-bottom"] {
+  width: calc(100% - 16px);
+  margin: 0 8px 8px;
+  align-self: center;
+}
+.modal-fullscreen {
+  border-radius: 28px;
+  overflow: hidden;
+  clip-path: inset(0 round 28px);
+}
+/* Older centered dialogs use utility classes rather than ModalSheet. */
+.travel-device :is(.fixed,.absolute).inset-0.z-50 > :is(.rounded-3xl,.rounded-2xl) {
+  border-radius: 28px;
+  overflow: hidden;
+  isolation: isolate;
+  clip-path: inset(0 round 28px);
+}
+.modal-surface.overflow-y-auto { overflow-y: auto; }
+.modal-surface.overflow-y-scroll { overflow-y: scroll; }

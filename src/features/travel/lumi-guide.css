@@ -1,0 +1,20 @@
+.lumi-guide-overlay{z-index:70!important}
+.lumi-guide-card{padding:16px!important;max-width:320px!important;max-height:calc(100% - 32px);overflow-y:auto!important;background:#fff!important;color:#0f2c59}
+.lumi-guide-close{position:absolute;top:14px;right:14px;z-index:2;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#edf3fb;color:#4a5f7a}
+.lumi-guide-art{display:flex;align-items:center;justify-content:center;gap:10px;min-height:0;background:#eef6ff;border-radius:20px;margin:2px 0 10px;padding:6px 12px}
+.lumi-guide-art .lumi-guide-mascot{width:56px;height:56px;flex-shrink:0;background-image:url(/images/lumi-guide-actions-3d.png);background-size:400% 400%;background-repeat:no-repeat;filter:drop-shadow(0 5px 6px #0f2c5915)}
+.lumi-guide-art>span{max-width:100px;font:700 13px/1.5 var(--font-heading);color:#0f2c59}
+.lumi-guide-category{font-size:11px;font-weight:700;color:#526780;margin-bottom:6px}
+.lumi-guide-copy{min-height:0}
+.lumi-guide-copy h2{font:750 18px/1.4 var(--font-heading);margin-bottom:6px;color:#0f2c59}
+.lumi-guide-copy>p{font-size:12px;line-height:1.65;color:#4a5f7a}
+.lumi-guide-progress{display:flex;gap:6px;margin:10px 0 8px}
+.lumi-guide-progress>span{width:7px;height:7px;border-radius:10px;background:#d7e2f1}
+.lumi-guide-progress>span.current{width:24px;background:#0f2c59}
+.lumi-guide-actions{display:flex;align-items:center;gap:8px;justify-content:space-between}
+.lumi-guide-actions button{display:flex;align-items:center;justify-content:center;gap:4px;min-height:38px;padding:8px 5px;font-size:12px;font-weight:700;color:#4a5f7a;border-radius:14px;white-space:nowrap}
+.lumi-guide-actions button:disabled{opacity:.4;cursor:default}
+.lumi-guide-actions .lumi-guide-next{background:#0f2c59;color:white;padding:8px 14px}
+.lumi-guide-card button:focus-visible{outline:3px solid #ffa62b;outline-offset:2px}
+.aly-guide-replay{display:flex;align-items:center;justify-content:center;gap:7px;flex-shrink:0;margin:10px 16px 0;padding:10px 12px;background:#fff4df;border-radius:14px;color:#715020;font-size:12px;font-weight:700}
+@container device (max-width:340px){.lumi-guide-card{padding:16px!important}.lumi-guide-art .lumi-guide-mascot{width:52px;height:52px}.lumi-guide-art{min-height:0}.lumi-guide-copy{min-height:0}.lumi-guide-actions{gap:4px}.lumi-guide-actions button{font-size:11px}}

@@ -8,3 +8,14 @@ Generated originals retained in the Codex generated_images directory. Product al
 
 
 dalat-cabin.png prompt: A premium editorial travel photograph illustration of a small cozy timber homestay in the pine hills of Da Lat, Vietnam. Warm wooden chalet with large glass windows glowing amber at blue hour, a neatly made cream bed visible inside, hydrangeas and a narrow stone garden path in foreground, layers of pine trees and light mountain mist behind. Inviting modest boutique accommodation, no swimming pool or ocean, natural believable scale and sophisticated photographic lighting. Landscape 3:2 composition suitable for a hotel card. Absolutely no text, signs, UI, logos or watermark. This is an illustrative fictional property, not a real hotel's documentary photograph.
+
+## Lumi tutorial pose — 2026-11-08
+
+- `mascot-guiding.png`: generated with the built-in image tool using `mascot-waving.png` as the character reference. Transparent Lumi holding a checklist and pointing right, used on the first step of feature guides.
+
+- `mascot-tour-guide.png`: Lumi holding a small tour-guide flag pole and pointing the way; transparent variation of `mascot-guiding.png`, used in compact feature guide modals.
+
+## Unified Lumi tutorial actions — 2026-11-08
+
+- `lumi-guide-actions-3d.png`: transparent square 4×4 atlas generated from `mascot-tour-guide.png`. All 16 actions share the same yellow 3D character, face, forehead sunglasses, lighting and framing. Tutorial modals now reference only this atlas via typed action names; older mixed-style images are no longer used in feature guides.
+- Cells, row-major: tour flag, map, clock, wave, calculator, hotel key, heart, checklist, laptop, magnifying glass, suitcase, ticket, camera, album, chat, celebration.

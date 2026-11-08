@@ -130,8 +130,8 @@ export const PlaceDetailScreen: React.FC<PlaceDetailScreenProps> = ({
         </button>
       </div>
 
-      {/* DETAIL CONTENT CARD (rounded-t-[32px], -mt-8) */}
-      <div className="relative -mt-8 bg-white rounded-t-[32px] px-5 pt-6 pb-20 shadow-sm flex flex-col gap-5 z-10">
+      {/* DETAIL CONTENT CARD (modal-surface rounded-[28px], -mt-8) */}
+      <div className="relative -mt-8 bg-white modal-surface rounded-[28px] px-5 pt-6 pb-20 shadow-sm flex flex-col gap-5 z-10">
         {/* Title & Rating */}
         <div className="flex flex-col gap-2">
           <div className="flex items-start justify-between gap-3">

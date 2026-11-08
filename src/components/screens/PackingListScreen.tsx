@@ -152,11 +152,11 @@ export const PackingListScreen: React.FC<PackingListScreenProps> = ({
             <div className="flex items-center gap-3">
               <img
                 src="/images/mascot-suitcase.png"
-                alt="Bé Sao Lumi kéo vali"
+                alt="Lumi kéo vali"
                 className="w-9 h-9 object-contain animate-mascot-float drop-shadow-xs shrink-0"
               />
               <div>
-                <span className="text-[11px] text-[#454652] block font-medium">Bé Sao Lumi đồng hành</span>
+                <span className="text-[11px] text-[#454652] block font-medium">Lumi đồng hành</span>
                 <h3 className="text-[15px] font-bold text-[#0A1680] font-heading">
                   {progressPercent === 100 ? 'Sẵn sàng lên đường! 🎉' : `Đã chuẩn bị ${progressPercent}%`}
                 </h3>
@@ -258,11 +258,11 @@ export const PackingListScreen: React.FC<PackingListScreenProps> = ({
             <div className="py-10 text-center flex flex-col items-center justify-center gap-2">
               <img
                 src="/images/mascot-thinking.png"
-                alt="Bé Sao Lumi"
+                alt="Lumi"
                 className="w-11 h-11 object-contain animate-mascot-float opacity-80"
               />
               <p className="text-slate-600 text-xs font-semibold">Chưa có món đồ nào trong danh mục này</p>
-              <span className="text-[11px] text-slate-400">Bấm nút bên dưới để thêm món đồ cùng Bé Sao nhé!</span>
+              <span className="text-[11px] text-slate-400">Bấm nút bên dưới để thêm món đồ cùng Lumi nhé!</span>
             </div>
           )}
         </div>

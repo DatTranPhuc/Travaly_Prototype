@@ -569,7 +569,7 @@ export const AdaptiveScheduleScreen: React.FC<AdaptiveScheduleScreenProps> = ({
             className="absolute inset-0 bg-black/40 backdrop-blur-xs"
             onClick={() => setShowWeatherWarningSheet(false)}
           />
-          <div className="relative bg-white rounded-t-[28px] p-5 w-full max-w-[390px] shadow-2xl z-10 flex flex-col gap-3.5 animate-in slide-in-from-bottom duration-200">
+          <div className="relative bg-white modal-surface rounded-[28px] p-5 w-full max-w-[390px] shadow-2xl z-10 flex flex-col gap-3.5 animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto shrink-0" />
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -630,7 +630,7 @@ export const AdaptiveScheduleScreen: React.FC<AdaptiveScheduleScreenProps> = ({
             className="absolute inset-0 bg-black/40 backdrop-blur-xs"
             onClick={() => setShowAIOptionsSheet(false)}
           />
-          <div className="relative bg-white rounded-t-[28px] p-5 w-full max-w-[390px] shadow-2xl z-10 flex flex-col gap-3.5 animate-in slide-in-from-bottom duration-200">
+          <div className="relative bg-white modal-surface rounded-[28px] p-5 w-full max-w-[390px] shadow-2xl z-10 flex flex-col gap-3.5 animate-in slide-in-from-bottom duration-200">
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto shrink-0" />
             <div className="flex items-center justify-between pb-1 border-b border-slate-100">
               <h3 className="font-bold text-[16px] text-slate-900 font-heading">

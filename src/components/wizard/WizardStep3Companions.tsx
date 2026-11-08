@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { IOSStatusBar } from '../common/IOSStatusBar';
+import { WizardHeader } from '../../features/travel/WizardUI';
 
 interface WizardStep3CompanionsProps {
+  destination?: string;
   companionType: 'solo' | 'group';
   companionCount: number;
   inviteCode: string;
@@ -15,6 +16,7 @@ interface WizardStep3CompanionsProps {
 }
 
 export const WizardStep3Companions: React.FC<WizardStep3CompanionsProps> = ({
+  destination,
   companionType,
   companionCount,
   inviteCode,
@@ -67,30 +69,7 @@ export const WizardStep3Companions: React.FC<WizardStep3CompanionsProps> = ({
   return (
     <div className="relative w-full h-full min-h-0 bg-[#FCFDFF] flex flex-col justify-between overflow-hidden select-none text-slate-800">
       {/* Top Header */}
-      <header className="pt-2 px-5 shrink-0 bg-[#FCFDFF] z-20">
-        <IOSStatusBar light={false} />
-        <div className="flex items-center justify-between pt-1 pb-2">
-          <button
-            onClick={onBack}
-            aria-label="Quay lại"
-            type="button"
-            className="w-9 h-9 -ml-1 flex items-center justify-center rounded-full text-[#0A1680] hover:bg-slate-100 transition-colors cursor-pointer"
-          >
-            <svg className="w-5 h-5 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-            </svg>
-          </button>
-          <span className="plan-header-title">
-            Bước 4/8
-          </span>
-          <div className="w-9" />
-        </div>
-
-        {/* Progress bar (50%) */}
-        <div className="w-full h-[3px] bg-[#E6EAF2] rounded-full overflow-hidden mb-1">
-          <div className="h-full w-[50%] bg-[#0A1680] rounded-full transition-all duration-300" />
-        </div>
-      </header>
+      <WizardHeader step={4} destination={destination} onBack={onBack}/>
 
       {/* Main Content */}
       <main className="flex-1 px-5 pt-2 pb-24 overflow-y-auto no-scrollbar flex flex-col gap-3.5 text-left">
@@ -269,7 +248,7 @@ export const WizardStep3Companions: React.FC<WizardStep3CompanionsProps> = ({
             className="absolute inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity"
             onClick={() => setShowInviteModal(false)}
           />
-          <div className="w-full bg-white rounded-t-[28px] p-5 shadow-2xl z-10 flex flex-col gap-4 animate-in slide-in-from-bottom duration-300 text-left">
+          <div className="w-full bg-white modal-surface rounded-[28px] p-5 shadow-2xl z-10 flex flex-col gap-4 animate-in slide-in-from-bottom duration-300 text-left">
             <div className="w-12 h-1 bg-slate-200 rounded-full mx-auto" />
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5">

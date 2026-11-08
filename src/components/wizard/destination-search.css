@@ -1,0 +1,10 @@
+.destination-search{display:flex;align-items:center;gap:12px;flex-shrink:0;min-height:48px;padding:10px 16px;background:#fff;border:0;border-radius:9999px;box-shadow:0 2px 10px rgba(0,0,0,.06);transition:border-color .18s,box-shadow .18s}
+.destination-search:focus-within{box-shadow:0 0 0 3px #86c5ff35}
+.destination-search-icon{display:grid;place-items:center;flex-shrink:0;width:20px;height:24px;background:transparent}
+.destination-search-icon svg{width:20px;height:20px;margin:0}
+.travel-device .destination-search #wizard-destination-query{flex:1;width:100%;min-width:0;min-height:24px;padding:0!important;border:0!important;border-radius:0!important;font-size:13px!important;line-height:1.5;background:transparent!important;box-shadow:none!important;color:#0f2c59!important;outline:none}
+.destination-search-input::-webkit-search-cancel-button{display:none}
+.destination-search button{display:grid;place-items:center;flex-shrink:0;width:28px;height:28px;padding:0;margin:0;border-radius:50%;color:#4a5f7a;background:#f1f5fa;font-size:12px}
+
+.destination-search-arrow{display:grid;place-items:center;flex-shrink:0;width:24px;height:24px;color:#ffa62b}
+.travel-device .destination-search-input::placeholder{color:#454652!important}

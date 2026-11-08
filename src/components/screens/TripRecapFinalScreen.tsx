@@ -69,9 +69,9 @@ export const TripRecapFinalScreen: React.FC<TripRecapFinalScreenProps> = ({
   };
 
   return (
-    <div className="relative w-full h-full flex flex-col overflow-hidden bg-slate-950 text-white font-body-md antialiased select-none">
+    <div data-color-scheme="dark" className="relative w-full h-full flex flex-col overflow-hidden bg-slate-950 text-white font-body-md antialiased select-none">
       {/* Header */}
-      <header className="shrink-0 z-30 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+      <header className="recap-header shrink-0 z-30 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
         <IOSStatusBar light={true} />
         <div className="h-[52px] px-5 flex items-center justify-between">
           <button
@@ -192,12 +192,12 @@ export const TripRecapFinalScreen: React.FC<TripRecapFinalScreenProps> = ({
         <div className="w-full mt-3 p-3 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-3">
           <img
             src="/images/mascot-camera.png"
-            alt="Bé Sao Lumi chúc mừng"
+            alt="Lumi chúc mừng"
             className="w-9 h-9 object-contain shrink-0 drop-shadow-xs"
           />
           <div className="min-w-0">
             <p className="text-[12px] font-bold text-white font-heading">Chuyến đi đáng nhớ cùng TravAly!</p>
-            <p className="text-[10px] text-slate-300">Bé Sao Lumi chúc bạn lưu giữ trọn vẹn những khoảnh khắc đẹp nhất.</p>
+            <p className="text-[10px] text-slate-300">Lumi chúc bạn lưu giữ trọn vẹn những khoảnh khắc đẹp nhất.</p>
           </div>
         </div>
 
@@ -231,7 +231,7 @@ export const TripRecapFinalScreen: React.FC<TripRecapFinalScreenProps> = ({
             type="button"
             onClick={handleExportVideo}
             disabled={isExporting}
-            className="w-full h-12 rounded-full bg-gradient-to-r from-blue-600 via-indigo-600 to-[#0A1680] text-white font-heading text-[15px] font-bold shadow-lg flex items-center justify-center gap-2 hover:opacity-95 active:scale-[0.98] transition-all cursor-pointer"
+            className="w-full h-12 rounded-full bg-[#0F2C59] text-white font-heading text-[15px] font-bold shadow-lg flex items-center justify-center gap-2 hover:opacity-95 active:scale-[0.98] transition-all cursor-pointer"
           >
             {isExporting ? (
               <>
@@ -273,7 +273,7 @@ export const TripRecapFinalScreen: React.FC<TripRecapFinalScreenProps> = ({
       {/* Share Modal */}
       {showShareModal && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 backdrop-blur-xs">
-          <div className="w-full max-w-[390px] bg-slate-900 rounded-t-[28px] p-5 shadow-2xl flex flex-col gap-3 border-t border-slate-800 text-white animate-in slide-in-from-bottom duration-200">
+          <div className="w-full max-w-[390px] bg-slate-900 modal-surface rounded-[28px] p-5 shadow-2xl flex flex-col gap-3 border-t border-slate-800 text-white animate-in slide-in-from-bottom duration-200">
             <div className="flex items-center justify-between pb-2 border-b border-slate-800">
               <h3 className="font-heading font-bold text-[16px]">Chia sẻ Story Recap</h3>
               <button

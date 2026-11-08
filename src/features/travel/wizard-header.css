@@ -1,0 +1,8 @@
+.plan-step-intro{flex-shrink:0;padding:4px 20px 16px;background:var(--color-canvas,#fcfdff)}
+.plan-step-bars{display:flex;gap:5px;margin-bottom:16px}
+.plan-step-bars>span{height:4px;flex:1;border-radius:5px;background:#e0e7f3}
+.plan-step-bars>span.done{background:#93b2f8}
+.plan-step-bars>span.current{background:#0a1680}
+.plan-step-intro:has(>.plan-step-bars:only-child){padding-bottom:0}
+.plan-step-intro h1{margin:0 0 10px}
+.plan-step-intro>p{font-size:12px;color:var(--color-text-secondary,#4A5F7A);line-height:1.8}
