@@ -1,6 +1,5 @@
-// Exact artwork supplied by the user: two 1536 × 1024 sheets, each 3 columns × 2 rows.
-// Cell coordinates only select an existing pose; no generated or redrawn mascot assets.
-const pose=(sheet:'a'|'b',column:number,row:number,label:string)=>({src:`/images/lumi-guides/poses-${sheet}.png`,column,row,label});
+// Individual padded cutouts from the user-supplied sheets; no generated or redrawn artwork.
+const pose=(sheet:'a'|'b',column:number,row:number,label:string)=>({src:`/images/lumi-guides/pose-${sheet}-${row*3+column}.png`,label});
 export const LUMI_GUIDE_ACTIONS={
  tour:pose('a',0,0,'đeo kính râm và cầm gậy hướng dẫn'),
  map:pose('a',1,0,'cầm bản đồ và gậy hướng dẫn'),
