@@ -12,28 +12,32 @@ export function buildWizardPlan(data:TripWizardData):ActivePlan{
  const sample=data.destination==='TP. Hồ Chí Minh'?SAIGON_PLAN.daysSchedule[index]:data.destination==='Đà Nẵng'?INITIAL_PLAN.daysSchedule[index]:undefined;
  return {dayNumber:index+1,title:sample?.title||`Khám phá ${data.destination}`,dateText,dayCost:sample?.dayCost||'Chưa dự tính',items:sample?sample.items.map(i=>({...i})):[]};
  })};
- if(data.mustVisitPlaces.length){
-  const choices=manualPlacesFor(data.destination);
-  draft.daysSchedule.forEach(day=>{day.items=[];day.dayCost='Chưa dự tính';});
-  [...new Set(data.mustVisitPlaces)].forEach((name,index)=>{
-   const place=choices.find(p=>p.name===name);const day=draft.daysSchedule[index%draft.daysSchedule.length];
-   const slot=Math.floor(index/draft.daysSchedule.length);const minutes=9*60+slot*90;
-   day.items.push({id:`selected-${index}`,time:`${String(Math.floor(minutes/60)).padStart(2,'0')}:${String(minutes%60).padStart(2,'0')}`,placeName:name,category:place?.category||'Tự chọn',duration:place?.duration||'60 phút',cost:'Chưa dự tính',note:'Điểm bạn đã chọn · thời gian sắp xếp mẫu.',image:place?.image||draft.coverImage,location:place?.location,address:place?.address});
-  });
-  return stay?optimizePlan(draft,stay):draft;
- }
- const wanted = MOCK_PLACES.filter(p=>p.city===data.destination&&data.mustVisitPlaces.includes(p.name));
- const used=new Set<string>();
- draft.daysSchedule.forEach((day,index)=>{
-  if(!day.items.length){
-   const cityPlaces=MOCK_PLACES.filter(p=>p.city===data.destination);
-   const place=cityPlaces[index%Math.max(1,cityPlaces.length)];
-   day.items=[{id:`sample-${index}-am`,time:'09:00',placeName:place?.name||`Khám phá ${data.destination} (gợi ý mẫu)`,category:place?.category||'Tham quan',duration:'90 phút',cost:place?.priceRange||'Chưa dự tính',note:'Hoạt động minh họa; cần xác nhận thông tin trước khi đi.',image:place?.images[0]}, {id:`sample-${index}-lunch`,time:'12:00',placeName:'Ăn trưa và nghỉ ngơi',category:'Ẩm thực',duration:'60 phút',cost:'Chưa dự tính',note:'Khung giờ ăn được giữ nguyên.',locked:true}, {id:`sample-${index}-pm`,time:'15:00',placeName:`Dạo quanh ${data.destination} (gợi ý mẫu)`,category:'Ngoài trời',duration:'60 phút',cost:'Chưa dự tính',note:'Gợi ý mẫu để thử lịch trình; chưa có tuyến đường thực tế.'}];
-  }
-  day.items.forEach(i=>used.add(i.placeName));
+ const choices=manualPlacesFor(data.destination);const chosen=[...new Set(data.mustVisitPlaces)];
+ const candidates=[...new Map(choices.filter(p=>!chosen.includes(p.name)&&!/^Ăn|Thưởng thức|Trải nghiệm địa phương/.test(p.name)&&!/Ăn|Ẩm|Cà phê/i.test(p.category)).map(p=>[p.name.trim().toLocaleLowerCase('vi-VN'),p])).values()];
+ draft.placeSelection=chosen;
+ draft.unscheduledPlaces=chosen.slice(count*4);
+ draft.daysSchedule.forEach((day,dayIndex)=>{
+  const pick=(slot:number)=>candidates[(dayIndex*2+slot)%Math.max(1,candidates.length)];
+  const rows=[
+   {time:'08:00',name:`Ăn sáng tại ${data.destination}`,category:'Ăn sáng',cost:'60.000đ',locked:true},
+   {time:'09:30',name:pick(0)?.name||`Khám phá ${data.destination}`,category:'Tham quan',place:pick(0),cost:'Chưa dự tính'},
+   {time:'11:30',name:`Ăn trưa và nghỉ tại ${data.destination}`,category:'Ăn trưa',cost:'100.000đ',locked:true},
+   {time:'14:00',name:`Cà phê tại ${data.destination}`,category:'Cà phê',cost:'50.000đ',locked:true},
+   {time:'16:00',name:pick(1)?.name||`Dạo quanh ${data.destination}`,category:'Tham quan',place:pick(1),cost:'Chưa dự tính'},
+   {time:'18:00',name:`Ăn tối tại ${data.destination}`,category:'Ăn tối',cost:'150.000đ',locked:true},
+  ];
+  day.items=rows.map((r,i)=>({id:`day-${dayIndex+1}-${i}`,time:r.time,placeName:r.name,category:r.category,duration:'60 phút',cost:r.cost,note:r.locked?'Khung giờ ăn/nghỉ · chi phí dự kiến, chưa phải khoản đã chi.':'Gợi ý từ dữ liệu có sẵn; kiểm tra giờ mở cửa trước khi đi.',locked:!!r.locked,image:r.place?.image||(/Ăn|Cà phê/.test(r.category)?images.food:draft.coverImage),location:r.place?.location,address:r.place?.address||data.destination}));
+  day.dayCost='Từ 360.000đ · dự kiến';
  });
- wanted.filter(p=>!used.has(p.name)).forEach((place,index)=>{const day=draft.daysSchedule[index%draft.daysSchedule.length];day.items.push({id:`wanted-${place.id}`,time:'17:00',placeName:place.name,category:place.category,duration:'45 phút',cost:place.priceRange,note:'Địa điểm bạn muốn ghé; giờ minh họa.',image:place.images[0]});day.items.sort((a,b)=>a.time.localeCompare(b.time));});
+ chosen.slice(0,count*4).forEach((name,index)=>{
+  const place=choices.find(p=>p.name===name);const day=draft.daysSchedule[index%count];const slot=Math.floor(index/count);
+  const times=['09:30','16:00','14:00','10:45'];
+  const item={id:`selected-${index}`,time:times[slot],placeName:name,category:place?.category||'Tự chọn',duration:slot===3?'45 phút':'60 phút',cost:'Chưa dự tính',note:'Địa điểm bạn đã chọn · giờ gợi ý, có thể chỉnh.',image:place?.image||draft.coverImage,location:place?.location,address:place?.address};
+  if(slot<3)day.items[[1,4,3][slot]]=item;else day.items.push(item);
+ });
+ draft.daysSchedule.forEach(day=>day.items.sort((a,b)=>a.time.localeCompare(b.time)));
  return stay?optimizePlan(draft,stay):draft;
+
 }
 
 export function wizardDateError(data:TripWizardData){

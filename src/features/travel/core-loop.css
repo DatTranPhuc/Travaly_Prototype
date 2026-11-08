@@ -1,0 +1,5 @@
+.core-members{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}.core-members span{padding:7px 11px;border-radius:12px;color:white;font-size:12px}
+.core-vote-track{height:6px;border-radius:8px;background:#e2eafa;margin:12px 0;overflow:hidden}.core-vote-track>span{display:block;height:100%;background:#0f2c59}
+.polish-card[aria-pressed=true]{outline:2px solid #0f2c59}
+.core-next h1{font:750 24px/1.4 var(--font-heading);color:#0f2c59}.core-next>span{font-size:11px;color:#4a5f7a}.core-next>p{margin:12px 0;font-size:13px;line-height:1.6}
+.core-next .travel-pill{flex:1}.core-backlog{background:#fff4df;padding:16px;border-radius:18px;font-size:12px;line-height:1.7;color:#624613}

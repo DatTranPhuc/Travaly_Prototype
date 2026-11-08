@@ -22,6 +22,7 @@ export const ItineraryEditScreen: React.FC<ItineraryEditScreenProps> = ({
   const [tripPlan, setTripPlan] = useState<TripPlan>(activePlan);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [showAddModal, setShowAddModal] = useState(false);
+  const [editingId,setEditingId]=useState<string|null>(null);
   const [newPlaceName, setNewPlaceName] = useState('');
   const [newPlaceCategory, setNewPlaceCategory] = useState('Tham quan');
   const [newPlaceTime, setNewPlaceTime] = useState('16:00');
@@ -38,8 +39,8 @@ export const ItineraryEditScreen: React.FC<ItineraryEditScreenProps> = ({
     if (index === 0) return;
     const newItems = [...currentDay.items];
     const temp = newItems[index - 1];
-    newItems[index - 1] = newItems[index];
-    newItems[index] = temp;
+    newItems[index - 1] = { ...newItems[index], time: temp.time };
+    newItems[index] = { ...temp, time: newItems[index].time };
 
     updateDayItems(newItems);
     showToast('Đã đổi thứ tự hoạt động');
@@ -49,8 +50,8 @@ export const ItineraryEditScreen: React.FC<ItineraryEditScreenProps> = ({
     if (index === currentDay.items.length - 1) return;
     const newItems = [...currentDay.items];
     const temp = newItems[index + 1];
-    newItems[index + 1] = newItems[index];
-    newItems[index] = temp;
+    newItems[index + 1] = { ...newItems[index], time: temp.time };
+    newItems[index] = { ...temp, time: newItems[index].time };
 
     updateDayItems(newItems);
     showToast('Đã đổi thứ tự hoạt động');
@@ -84,23 +85,29 @@ export const ItineraryEditScreen: React.FC<ItineraryEditScreenProps> = ({
       return;
     }
 
+    if(!/^([01]\d|2[0-3]):[0-5]\d$/.test(newPlaceTime)){showToast('Nhập giờ theo định dạng 24 giờ, ví dụ 16:30.');return;}
+    if(currentDay.items.some(item=>item.id!==editingId&&item.time===newPlaceTime)){
+      showToast('Giờ này đã có hoạt động. Vui lòng chọn giờ khác.');return;
+    }
+    const existing=currentDay.items.find(item=>item.id===editingId);
     const newItem: TripDayItem = {
-      id: `custom-${Date.now()}`,
+      ...existing,
+      id: editingId||`custom-${Date.now()}`,
       time: newPlaceTime,
       placeName: newPlaceName,
       category: newPlaceCategory,
-      note: 'Địa điểm do bạn thêm vào lịch trình',
-      cost: '100.000đ',
-      duration: '1.5 giờ',
-      image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80',
-      address: tripPlan.destination || 'TP. Hồ Chí Minh',
+      note: existing?.note||'Địa điểm do bạn thêm vào lịch trình',
+      cost: existing?.cost||'Chưa dự tính',
+      duration: existing?.duration||'60 phút',
+      image: existing?.image||tripPlan.coverImage,
+      address: existing?.address||tripPlan.destination,
     };
 
-    const newItems = [...currentDay.items, newItem].sort((a, b) => a.time.localeCompare(b.time));
+    const newItems = [...currentDay.items.filter(item=>item.id!==editingId), newItem].sort((a, b) => a.time.localeCompare(b.time));
     updateDayItems(newItems);
     setNewPlaceName('');
     setShowAddModal(false);
-    showToast(`Đã thêm "${newPlaceName}" vào Ngày ${activeDay}! 🎉`);
+    showToast(`${editingId?'Đã cập nhật':'Đã thêm'} "${newPlaceName}" trong Ngày ${activeDay}.`);setEditingId(null);
   };
 
   return (
@@ -209,9 +216,7 @@ export const ItineraryEditScreen: React.FC<ItineraryEditScreenProps> = ({
               {/* Item Info */}
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1.5 mb-0.5">
-                  <span className="px-1.5 py-0.2 rounded bg-slate-100 font-mono text-[10px] font-bold text-slate-700">
-                    {item.time}
-                  </span>
+                  <button type="button" aria-label={`Sửa hoạt động: ${item.placeName}`} onClick={()=>{setEditingId(item.id);setNewPlaceName(item.placeName);setNewPlaceTime(item.time);setNewPlaceCategory(item.category);setShowAddModal(true);}} className="px-1.5 py-0.2 rounded bg-slate-100 font-mono text-[10px] font-bold text-slate-700 underline">{item.time} · Sửa</button>
                   <span className="text-[10px] font-semibold text-amber-700">
                     {item.category}
                   </span>
@@ -242,7 +247,7 @@ export const ItineraryEditScreen: React.FC<ItineraryEditScreenProps> = ({
         {/* Add Activity Button */}
         <button
           type="button"
-          onClick={() => setShowAddModal(true)}
+          onClick={() => {setEditingId(null);setNewPlaceName('');setShowAddModal(true);}}
           className="w-full py-3 rounded-2xl border border-dashed border-[#0A1680]/40 bg-white text-[#0A1680] text-[13px] font-bold font-heading flex items-center justify-center gap-1.5 hover:bg-blue-50/50 transition-colors cursor-pointer"
         >
           <span>+ Thêm địa điểm mới vào Ngày {activeDay}</span>
@@ -253,16 +258,17 @@ export const ItineraryEditScreen: React.FC<ItineraryEditScreenProps> = ({
       <ModalSheet
         isOpen={showAddModal}
         onClose={() => setShowAddModal(false)}
-        title={`Thêm hoạt động vào Ngày ${activeDay}`}
-        ariaLabel={`Thêm hoạt động vào Ngày ${activeDay}`}
+        title={`${editingId?'Sửa':'Thêm'} hoạt động vào Ngày ${activeDay}`}
+        ariaLabel={`${editingId?'Sửa':'Thêm'} hoạt động vào Ngày ${activeDay}`}
       >
-        <div className="space-y-4">
+        <div className="travel-modal-content space-y-4">
           <div>
             <label className="text-[11px] font-bold text-slate-700 block mb-1">
               Tên địa điểm hoặc hoạt động
             </label>
             <input
               type="text"
+              aria-label="Tên địa điểm hoặc hoạt động"
               placeholder="VD: Quán chè Liên, Cà phê Sơn Trà..."
               value={newPlaceName}
               onChange={(e) => setNewPlaceName(e.target.value)}
@@ -277,6 +283,7 @@ export const ItineraryEditScreen: React.FC<ItineraryEditScreenProps> = ({
               </label>
               <input
                 type="text"
+                aria-label="Thời gian bắt đầu"
                 placeholder="16:00"
                 value={newPlaceTime}
                 onChange={(e) => setNewPlaceTime(e.target.value)}
@@ -314,7 +321,7 @@ export const ItineraryEditScreen: React.FC<ItineraryEditScreenProps> = ({
               onClick={handleAddActivity}
               className="flex-1 py-2.5 rounded-xl bg-[#0A1680] text-white font-bold text-xs font-heading hover:bg-[#071060] cursor-pointer"
             >
-              Thêm vào lịch trình
+              {editingId?'Lưu thay đổi':'Thêm vào lịch trình'}
             </button>
           </div>
         </div>

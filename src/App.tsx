@@ -1,3 +1,5 @@
+import {TodayScreen} from './features/travel/TodayScreen';
+import './features/travel/core-loop.css';
 import {AIGeneratingScreen} from './components/wizard/AIGeneratingScreen';
 import {TripMemoriesScreen,TripJourneyMapScreen} from './features/travel/TripMemoriesScreen';
 import {requiredWizardStep,destinationAfterAccess,manualEditorRedirect,type ConfirmedWizardAccess,type AccessPurpose,type PlanningMode} from './features/travel/wizardFlow';
@@ -111,7 +113,7 @@ const SCREEN_ROUTES: Record<ScreenId, string> = {
   'itinerary-edit': '/trip/edit/1',
   'trip-preparation': '/trip/preparation',
   'packing-list': '/trip/packing-list',
-  'today-schedule': '/trip/day/1',
+  'today-schedule': '/trip/today',
   'adaptive-schedule': '/trip/adaptive',
   'group-space': '/trip/group',
   'group-poll': '/trip/group/poll',
@@ -187,7 +189,7 @@ function ItineraryEditWrapper({ onBack }: { onBack: () => void }) {
   const navigate = useNavigate();
   const { dayNumber } = useParams<{ dayNumber: string }>();
   const day = dayNumber ? parseInt(dayNumber, 10) : 1;
-  return <ItineraryEditScreen initialDay={day} onSave={(updatedPlan) => { setPlan(updatedPlan); navigate(`/trip/day/${day}`); }} onCancel={() => navigate(`/trip/day/${day}`)} />;
+  return <ItineraryEditScreen initialDay={day} onSave={(updatedPlan) => { setPlan(previous=>({...previous,...updatedPlan})); navigate(`/trip/day/${day}`); }} onCancel={() => navigate(`/trip/day/${day}`)} />;
 }
 
 function NewTripEntry({onStart}:{onStart:()=>void}){const started=useRef(false);useEffect(()=>{if(!started.current){started.current=true;onStart();}},[onStart]);return null;}
@@ -748,7 +750,7 @@ export default function App() {
               onEditTrip={() => navigate('/trip/edit/1')}
               onOpenPreparation={() => navigate('/trip/preparation')}
               onOpenPackingList={() => navigate('/trip/packing-list')}
-              onOpenTodaySchedule={() => navigate('/trip/day/1')}
+              onOpenTodaySchedule={() => navigate('/trip/today')}
               onOpenGroupSpace={() => navigate('/trip/group')}
               onOpenExpenses={() => navigate('/trip/expenses')}
               onOpenJournal={() => navigate('/trip/journal')}
@@ -801,7 +803,7 @@ export default function App() {
           }
         />
 
-        <Route path="/trip/today" element={<Navigate to="/trip/day/1" replace />} />
+        <Route path="/trip/today" element={<TodayScreen/>} />
 
         <Route path="/trip/adaptive" element={<AdaptiveRouteRedirect />} />
 
