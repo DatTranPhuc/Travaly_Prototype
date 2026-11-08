@@ -19,7 +19,7 @@ export function TripWorkspaceNav() {
     { label: currentTripDay(plan)!==null?'Hôm nay':'Lịch trình', href: currentTripDay(plan)!==null?'/trip/today':'/trip/day/1', matches: path => path === '/trip/today' || path.startsWith('/trip/day/') || path.startsWith('/trip/edit/') || path === '/trip/adaptive' },
     { label: 'Bản đồ', href: '/trip/route', matches: path => path === '/trip/route' },
     { label: 'Chuẩn bị', href: '/trip/preparation', matches: path => path === '/trip/preparation' || path === '/trip/packing-list' || path.startsWith('/wallet') },
-    ...(plan.companionType === 'group' ? [{ label: 'Nhóm', href: '/trip/group', matches: (path: string) => path.startsWith('/trip/group') || path === '/trip/expenses' }] : []),
+    { label: 'Nhóm', href: '/trip/group', matches: path => path.startsWith('/trip/group') || path === '/trip/expenses' },
     { label: 'Kỷ niệm', href: '/trip/journal', matches: path => path === '/trip/journal' || path === '/trip/camera' || path.startsWith('/trip/recap/') },
   ];
 

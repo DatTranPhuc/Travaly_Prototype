@@ -11,8 +11,10 @@ type Message={id:string;role:'user'|'assistant';text:string;link?:{label:string;
 export function AlyAssistant(){
  const {pathname,search}=useLocation();const navigate=useNavigate();const {plan,expenses}=useTravel();
  const guide=lumiGuideFor(pathname);
- const [seenGuides,setSeenGuides]=useStored<Record<string,boolean>>('travaiy-lumi-guides-v1',{});
+ const [seenGuides,setSeenGuides]=useStored<Record<string,boolean>>('travaiy-lumi-guides-v2',{});
  const [guideOpen,setGuideOpen]=useState(()=>!!guide&&!seenGuides[guide.id]);
+ // Re-evaluate on navigation; the assistant stays mounted between pages.
+ useEffect(()=>{setGuideOpen(!!guide&&!seenGuides[guide.id]);},[guide?.id,seenGuides]);
  const closeGuide=useCallback(()=>{if(guide)setSeenGuides(previous=>({...previous,[guide.id]:true}));setGuideOpen(false);},[guide?.id,setSeenGuides]);
  const [open,setOpen]=useState(false);const [draft,setDraft]=useState('');
  const [conversations,setConversations]=useStored<Record<string,Message[]>>('travaiy-aly-conversations-v1',{});
@@ -56,6 +58,6 @@ export function AlyAssistant(){
    <div className="aly-prompts" aria-label="Gợi ý hỏi Lumi">{prompts.map(prompt=><button type="button" key={prompt} onClick={()=>ask(prompt)}>{prompt}</button>)}</div>
    <form className="aly-composer" onSubmit={event=>{event.preventDefault();ask(draft);}}><label className="sr-only" htmlFor="aly-message">Hỏi Lumi</label><input id="aly-message" autoComplete="off" placeholder="Hỏi Lumi về chuyến đi…" maxLength={1000} value={draft} onChange={event=>setDraft(event.target.value)}/><button type="submit" aria-label="Gửi câu hỏi cho Lumi" disabled={!draft.trim()}><ArrowUp size={19}/></button></form>
   </ModalSheet>
-  {guide&&guideOpen&&<LumiGuide guide={guide} onClose={closeGuide}/>}
+  {guide&&guideOpen&&<LumiGuide key={guide.id} guide={guide} onClose={closeGuide}/>}
  </>;
 }

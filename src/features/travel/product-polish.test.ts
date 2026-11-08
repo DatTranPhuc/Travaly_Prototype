@@ -18,8 +18,8 @@ test('group balances include payer outside the split and conserve money',()=>{
  assert.deepEqual(expenseBalances(entries),{you:600,a:-200,b:-400});
  assert.equal(Object.values(expenseBalances(entries)).reduce((n,v)=>n+v,0),0);
 });
-test('manual plan starts with empty days across year boundary and requires accommodation overnight',()=>{
- assert.throws(()=>createManualPlan('Đà Nẵng','2026-12-30','2027-01-02'));
+test('manual plan starts with empty days across year boundary and supports choosing accommodation later',()=>{
+ assert.equal(createManualPlan('Đà Nẵng','2026-12-30','2027-01-02').stayId,undefined);
  const plan=createManualPlan('Đà Nẵng','2026-12-30','2027-01-02','may-bien');
  assert.equal(plan.days,4);assert.equal(plan.planningMode,'manual');assert.equal(plan.stayId,'may-bien');assert.ok(plan.daysSchedule.every(d=>!d.items.length));assert.equal(plan.daysSchedule[3].dateText,'02/01');
  assert.equal(createManualPlan('Đà Lạt','2026-10-18','2026-10-18').days,1);
