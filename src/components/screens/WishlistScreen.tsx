@@ -135,30 +135,30 @@ export const WishlistScreen: React.FC<WishlistScreenProps> = ({
           <button
             type="button"
             onClick={() => setActiveTab('collections')}
-            className={`flex-1 py-2 px-3 rounded-full text-[13px] font-semibold transition-all text-center flex items-center justify-center gap-1.5 cursor-pointer font-heading ${
+            className={`flex-1 py-2 px-3 rounded-full text-[12px] sm:text-[13px] font-semibold transition-all text-center flex items-center justify-center gap-1.5 cursor-pointer font-heading whitespace-nowrap shrink-0 ${
               activeTab === 'collections'
                 ? 'text-[#FCFDFF] bg-[#0A1680] shadow-sm'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
               <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
             </svg>
-            <span>Bộ sưu tập của tôi</span>
+            <span className="whitespace-nowrap">Bộ sưu tập</span>
           </button>
           <button
             type="button"
             onClick={() => setActiveTab('saved')}
-            className={`flex-1 py-2 px-3 rounded-full text-[13px] font-medium transition-all text-center flex items-center justify-center gap-1.5 cursor-pointer font-heading ${
+            className={`flex-1 py-2 px-3 rounded-full text-[12px] sm:text-[13px] font-medium transition-all text-center flex items-center justify-center gap-1.5 cursor-pointer font-heading whitespace-nowrap shrink-0 ${
               activeTab === 'saved'
                 ? 'text-[#FCFDFF] bg-[#0A1680] shadow-sm font-semibold'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
             </svg>
-            <span>Đã lưu (32)</span>
+            <span className="whitespace-nowrap">Đã lưu (32)</span>
           </button>
         </div>
       </div>

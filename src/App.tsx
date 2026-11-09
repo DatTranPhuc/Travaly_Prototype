@@ -367,7 +367,7 @@ export default function App() {
       stayDatesMode: prev.destination === place.city ? prev.stayDatesMode : 'trip',
       mustVisitPlaces: [...new Set([...(prev.destination === place.city ? prev.mustVisitPlaces : []), place.name])],
     }));
-    navigate('/wizard/destination');
+    navigate('/wizard/places');
   };
 
   const handleSelectDestination = (dest: Destination) => navigate(`/destination/${dest.id}`);

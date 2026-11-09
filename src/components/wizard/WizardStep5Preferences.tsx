@@ -41,7 +41,7 @@ export const WizardStep5Preferences: React.FC<WizardStep5PreferencesProps> = ({
   );
   const [isAccordionOpen, setIsAccordionOpen] = useState<boolean>(true);
   const [placesList, setPlacesList] = useState<string[]>(
-    mustVisitPlaces || ['Bưu điện Thành phố', 'Thảo Cầm Viên', 'Phố cổ Hội An']
+    mustVisitPlaces || ['Bưu điện Thành phố', 'Thảo Cầm Viên', 'Bến Bạch Đằng']
   );
   const [noteText, setNoteText] = useState<string>(notes || '');
   const [showAddPlaceSheet, setShowAddPlaceSheet] = useState<boolean>(false);
@@ -57,6 +57,9 @@ export const WizardStep5Preferences: React.FC<WizardStep5PreferencesProps> = ({
     let next: string[];
     if (selectedInterests.includes(item)) {
       next = selectedInterests.filter((i) => i !== item);
+    } else if (selectedInterests.length >= 3) {
+      next = [...selectedInterests.slice(1), item];
+      showToast(`Đã đổi sang "${item}" (Tối đa 3 sở thích)`);
     } else {
       next = [...selectedInterests, item];
     }
@@ -133,7 +136,7 @@ export const WizardStep5Preferences: React.FC<WizardStep5PreferencesProps> = ({
                     key={vibe}
                     type="button"
                     onClick={() => toggleInterest(vibe)}
-                    className={`flex items-center justify-center gap-1.5 min-h-[44px] px-4 rounded-2xl border text-[14px] transition-all cursor-pointer font-heading ${
+                    className={`flex items-center justify-center gap-1.5 min-h-[44px] px-4 rounded-2xl border text-[14px] transition-all cursor-pointer font-heading whitespace-nowrap shrink-0 ${
                       isSelected
                         ? 'bg-[#0F2C59] text-white border-[#0F2C59] font-bold shadow-xs'
                         : 'bg-white text-slate-700 border-slate-300 hover:border-[#93B2F8] font-medium'
@@ -155,7 +158,7 @@ export const WizardStep5Preferences: React.FC<WizardStep5PreferencesProps> = ({
             <h2 className="text-[14px] font-bold text-slate-800 font-heading">Di chuyển</h2>
             <span className="text-[12px] text-slate-400 font-medium">Chọn 1 phương tiện chính</span>
           </div>
-          <div className="grid grid-cols-4 gap-2">
+          <div className="grid grid-cols-4 gap-1.5 sm:gap-2">
             {['Máy bay', 'Ô tô', 'Tàu hỏa', 'Xe khách'].map((trans) => {
               const isSelected = selectedTransport === trans;
               return (
@@ -163,7 +166,7 @@ export const WizardStep5Preferences: React.FC<WizardStep5PreferencesProps> = ({
                   key={trans}
                   type="button"
                   onClick={() => selectTrans(trans)}
-                  className={`min-h-[44px] flex items-center justify-center gap-1 px-1 rounded-xl border text-[13px] transition-all cursor-pointer font-heading ${
+                  className={`min-h-[44px] flex items-center justify-center gap-1 px-1 rounded-xl border text-[12px] sm:text-[13px] transition-all cursor-pointer font-heading whitespace-nowrap shrink-0 ${
                     isSelected
                       ? 'bg-[#0F2C59] text-white border-[#0F2C59] font-bold shadow-xs'
                       : 'bg-white text-slate-700 border-slate-300 hover:border-[#93B2F8]'
@@ -171,7 +174,7 @@ export const WizardStep5Preferences: React.FC<WizardStep5PreferencesProps> = ({
                   style={{ border: isSelected ? '2px solid #0F2C59' : '1.5px solid #cbd5e1' }}
                 >
                   {isSelected && <span className="text-white text-[11px] font-black">✓</span>}
-                  <span>{trans}</span>
+                  <span className="whitespace-nowrap">{trans}</span>
                 </button>
               );
             })}
@@ -185,7 +188,7 @@ export const WizardStep5Preferences: React.FC<WizardStep5PreferencesProps> = ({
             <h2 className="text-[14px] font-bold text-slate-800 font-heading">Ưu tiên chỗ ở</h2>
             <span className="text-[12px] text-slate-400 font-medium">Áp dụng khi chọn chỗ ở sau</span>
           </div>
-          <div className="grid grid-cols-4 gap-2">
+          <div className="grid grid-cols-4 gap-1.5 sm:gap-2">
             {['Khách sạn', 'Homestay', 'Resort', 'Hostel'].map((stay) => {
               const isSelected = selectedAccommodation === stay;
               return (
@@ -193,7 +196,7 @@ export const WizardStep5Preferences: React.FC<WizardStep5PreferencesProps> = ({
                   key={stay}
                   type="button"
                   onClick={() => selectAcc(stay)}
-                  className={`min-h-[44px] flex items-center justify-center gap-1 px-1 rounded-xl border text-[13px] transition-all cursor-pointer font-heading ${
+                  className={`min-h-[44px] flex items-center justify-center gap-1 px-1 rounded-xl border text-[12px] sm:text-[13px] transition-all cursor-pointer font-heading whitespace-nowrap shrink-0 ${
                     isSelected
                       ? 'bg-[#0F2C59] text-white border-[#0F2C59] font-bold shadow-xs'
                       : 'bg-white text-slate-700 border-slate-300 hover:border-[#93B2F8]'
@@ -201,7 +204,7 @@ export const WizardStep5Preferences: React.FC<WizardStep5PreferencesProps> = ({
                   style={{ border: isSelected ? '2px solid #0F2C59' : '1.5px solid #cbd5e1' }}
                 >
                   {isSelected && <span className="text-white text-[11px] font-black">✓</span>}
-                  <span>{stay}</span>
+                  <span className="whitespace-nowrap">{stay}</span>
                 </button>
               );
             })}

@@ -7,7 +7,10 @@ interface Props { onBack:()=>void; onOpenPoll:()=>void; onOpenChat:()=>void; onO
 export function GroupSpaceScreen(p:Props) {
  const {plan,members,expenses,tripVotes}=useTravel();
  const total=expenses.filter(e=>e.tripId===plan.id&&e.scope==='group').reduce((s,e)=>s+e.amount,0);
- const votes=members.filter(m=>tripVotes[m.id]).length;
+ const options=[...new Set(plan.daysSchedule.flatMap(d=>d.items).filter(i=>/Ăn|thực/i.test(i.category)).map(i=>i.placeName))].slice(0,3);
+ const choices=options.length?options:['Ăn tại khu trung tâm','Ăn gần chỗ nghỉ','Tự chọn quán khi đến nơi'];
+ const baseVotes: Record<string, string> = { minhanh: choices[0], linhchi: choices[0], quanghuy: choices[1]||choices[0], ...tripVotes };
+ const votes=members.filter(m=>baseVotes[m.id]).length;
  return <div className="travel-screen core-screen"><TravelHeader title="Nhóm chuyến đi" subtitle={plan.destination} onBack={p.onBack}/><TripWorkspaceNav/>
   <main className="travel-scroll core-stack">
    <section className="core-trip-cover"><Image src={plan.coverImage} alt={plan.destination}/><div><span className="core-photo-tag"><Users size={13}/>{members.length} người đồng hành</span><h2>{plan.title}</h2><p><CalendarDays size={13}/>{plan.dates}</p></div></section>

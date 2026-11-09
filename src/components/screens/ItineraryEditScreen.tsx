@@ -26,6 +26,7 @@ export const ItineraryEditScreen: React.FC<ItineraryEditScreenProps> = ({
   const [newPlaceName, setNewPlaceName] = useState('');
   const [newPlaceCategory, setNewPlaceCategory] = useState('Tham quan');
   const [newPlaceTime, setNewPlaceTime] = useState('16:00');
+  const [formError, setFormError] = useState<string | null>(null);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -81,14 +82,25 @@ export const ItineraryEditScreen: React.FC<ItineraryEditScreenProps> = ({
 
   const handleAddActivity = () => {
     if (!newPlaceName.trim()) {
+      setFormError('Vui lòng nhập tên địa điểm hoặc hoạt động!');
       showToast('Vui lòng nhập tên địa điểm!');
       return;
     }
 
-    if(!/^([01]\d|2[0-3]):[0-5]\d$/.test(newPlaceTime)){showToast('Nhập giờ theo định dạng 24 giờ, ví dụ 16:30.');return;}
-    if(currentDay.items.some(item=>item.id!==editingId&&item.time===newPlaceTime)){
-      showToast('Giờ này đã có hoạt động. Vui lòng chọn giờ khác.');return;
+    if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(newPlaceTime)) {
+      setFormError('Nhập giờ theo định dạng 24 giờ, ví dụ 16:30.');
+      showToast('Nhập giờ theo định dạng 24 giờ, ví dụ 16:30.');
+      return;
     }
+
+    const duplicate = currentDay.items.find((item) => item.id !== editingId && item.time === newPlaceTime);
+    if (duplicate) {
+      setFormError(`Khung giờ ${newPlaceTime} đã có "${duplicate.placeName}". Vui lòng chọn giờ khác!`);
+      showToast(`Trùng giờ: ${newPlaceTime} đã có hoạt động.`);
+      return;
+    }
+
+    setFormError(null);
     const existing=currentDay.items.find(item=>item.id===editingId);
     const newItem: TripDayItem = {
       ...existing,
@@ -144,7 +156,7 @@ export const ItineraryEditScreen: React.FC<ItineraryEditScreenProps> = ({
               key={d.dayNumber}
               type="button"
               onClick={() => setActiveDay(d.dayNumber)}
-              className={`px-3.5 py-1.5 rounded-full text-[12px] font-bold transition-all cursor-pointer font-heading ${
+              className={`px-3.5 py-1.5 rounded-full text-[12px] font-bold transition-all cursor-pointer font-heading whitespace-nowrap shrink-0 ${
                 activeDay === d.dayNumber
                   ? 'bg-[#0A1680] text-white'
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
@@ -159,19 +171,19 @@ export const ItineraryEditScreen: React.FC<ItineraryEditScreenProps> = ({
       {/* Main Edit Body */}
       <main className="flex-1 min-h-0 overflow-y-auto no-scrollbar px-5 pt-3 space-y-3 pb-24">
         {/* AI Auto Optimization Banner */}
-        <div className="p-3 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50/50 border border-blue-200/80 flex items-center justify-between">
-          <div>
-            <span className="text-[12px] font-bold text-[#0A1680] font-heading block">
+        <div className="p-3 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50/50 border border-blue-200/80 flex items-center justify-between gap-2">
+          <div className="min-w-0">
+            <span className="text-[12px] font-bold text-[#0A1680] font-heading block whitespace-nowrap">
               ✦ Gợi ý từ chỗ ở
             </span>
-            <span className="text-[10px] text-slate-500">
+            <span className="text-[10px] text-slate-500 block">
               Gợi ý theo khoảng cách ước tính; giữ giờ ăn.
             </span>
           </div>
           <button
             onClick={handleOptimizeAI}
             type="button"
-            className="px-3 py-1.5 rounded-xl bg-white text-[#0A1680] text-[11px] font-bold font-heading border border-[#0A1680]/20 shadow-xs hover:bg-blue-50 cursor-pointer"
+            className="px-3 py-1.5 rounded-xl bg-white text-[#0A1680] text-[11px] font-bold font-heading border border-[#0A1680]/20 shadow-xs hover:bg-blue-50 cursor-pointer whitespace-nowrap shrink-0"
           >
             Gợi ý thứ tự
           </button>
@@ -257,11 +269,34 @@ export const ItineraryEditScreen: React.FC<ItineraryEditScreenProps> = ({
       {/* Add Modal */}
       <ModalSheet
         isOpen={showAddModal}
-        onClose={() => setShowAddModal(false)}
-        title={`${editingId?'Sửa':'Thêm'} hoạt động vào Ngày ${activeDay}`}
-        ariaLabel={`${editingId?'Sửa':'Thêm'} hoạt động vào Ngày ${activeDay}`}
+        onClose={() => {
+          setShowAddModal(false);
+          setFormError(null);
+        }}
+        title={`${editingId ? 'Sửa' : 'Thêm'} hoạt động vào Ngày ${activeDay}`}
+        ariaLabel={`${editingId ? 'Sửa' : 'Thêm'} hoạt động vào Ngày ${activeDay}`}
+        contentClassName="max-h-[58vh] sm:max-h-[55vh] overflow-y-auto"
       >
-        <div className="travel-modal-content space-y-4">
+        <div className="travel-modal-content space-y-3.5 pt-1">
+          <div className="flex items-center gap-2.5 pb-2 border-b border-slate-100">
+            <img src="/images/mascot-thinking.png" alt="Lumi" className="w-8 h-8 object-contain shrink-0" />
+            <div>
+              <h3 className="font-heading font-bold text-[15px] text-[#0A1680] leading-tight">
+                {editingId ? 'Chỉnh sửa hoạt động' : `Thêm hoạt động mới · Ngày ${activeDay}`}
+              </h3>
+              <p className="text-[11px] text-slate-500">
+                Lumi sẽ tự động sắp xếp lại thứ tự thời gian cho bạn
+              </p>
+            </div>
+          </div>
+
+          {formError && (
+            <div className="p-2.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-1.5 animate-in fade-in duration-150">
+              <span className="shrink-0">⚠️</span>
+              <span>{formError}</span>
+            </div>
+          )}
+
           <div>
             <label className="text-[11px] font-bold text-slate-700 block mb-1">
               Tên địa điểm hoặc hoạt động
@@ -269,10 +304,17 @@ export const ItineraryEditScreen: React.FC<ItineraryEditScreenProps> = ({
             <input
               type="text"
               aria-label="Tên địa điểm hoặc hoạt động"
-              placeholder="VD: Quán chè Liên, Cà phê Sơn Trà..."
+              placeholder="VD: Cơm tấm Ba Ghiền, Bánh khọt Cô Ba Vũng Tàu..."
               value={newPlaceName}
-              onChange={(e) => setNewPlaceName(e.target.value)}
-              className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-[#0A1680]"
+              onChange={(e) => {
+                setNewPlaceName(e.target.value);
+                if (formError) setFormError(null);
+              }}
+              className={`w-full px-3.5 py-2.5 rounded-xl border text-xs focus:outline-none transition-colors ${
+                formError && !newPlaceName.trim()
+                  ? 'border-rose-400 bg-rose-50/20'
+                  : 'border-slate-200 focus:border-[#0A1680]'
+              }`}
             />
           </div>
 
@@ -286,8 +328,15 @@ export const ItineraryEditScreen: React.FC<ItineraryEditScreenProps> = ({
                 aria-label="Thời gian bắt đầu"
                 placeholder="16:00"
                 value={newPlaceTime}
-                onChange={(e) => setNewPlaceTime(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-mono"
+                onChange={(e) => {
+                  setNewPlaceTime(e.target.value);
+                  if (formError) setFormError(null);
+                }}
+                className={`w-full px-3 py-2 rounded-xl border text-xs font-mono focus:outline-none transition-colors ${
+                  formError && formError.includes('giờ')
+                    ? 'border-rose-400 bg-rose-50/20'
+                    : 'border-slate-200 focus:border-[#0A1680]'
+                }`}
               />
             </div>
             <div>
@@ -297,7 +346,7 @@ export const ItineraryEditScreen: React.FC<ItineraryEditScreenProps> = ({
               <select
                 value={newPlaceCategory}
                 onChange={(e) => setNewPlaceCategory(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs bg-white"
+                className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs bg-white focus:outline-none focus:border-[#0A1680]"
               >
                 <option value="Tham quan">Tham quan</option>
                 <option value="Ăn uống">Ăn uống</option>
@@ -311,7 +360,10 @@ export const ItineraryEditScreen: React.FC<ItineraryEditScreenProps> = ({
           <div className="flex items-center gap-2 pt-2">
             <button
               type="button"
-              onClick={() => setShowAddModal(false)}
+              onClick={() => {
+                setShowAddModal(false);
+                setFormError(null);
+              }}
               className="flex-1 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-bold text-xs font-heading hover:bg-slate-200 cursor-pointer"
             >
               Hủy
