@@ -23,7 +23,7 @@ export function GroupPollScreen({onBack}:{onBack:()=>void}) {
  const total = members.filter(m => effectiveVotes[m.id]).length;
 
  return <div className="travel-screen core-screen"><TravelHeader title="Bình chọn ăn uống" subtitle={plan.destination} onBack={onBack}/><TripWorkspaceNav/><main className="travel-scroll core-stack">
-  <section className="core-poll-intro"><span className="core-icon-tile warm"><Utensils size={24}/></span><h1>Cả nhóm muốn ăn gì?</h1><p>Chọn một gợi ý trong lịch trình.<br/>Bạn luôn có thể đổi ý.</p><span className="core-poll-count"><Users size={14}/>{total}/{members.length} người đã chọn</span></section>
+  <section className="core-poll-intro"><img src="/images/mascot-announce.png" alt="Lumi kêu gọi bình chọn" className="w-14 h-14 object-contain animate-mascot-float drop-shadow-sm mb-2" /><h1>Cả nhóm muốn ăn gì?</h1><p>Chọn một gợi ý trong lịch trình.<br/>Bạn luôn có thể đổi ý.</p><span className="core-poll-count"><Users size={14}/>{total}/{members.length} người đã chọn</span></section>
   <div className="core-poll-options">{choices.map((option,index)=>{
    const voters = members.filter(m => effectiveVotes[m.id] === option);
    const selected = effectiveVotes.you === option;

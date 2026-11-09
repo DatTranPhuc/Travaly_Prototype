@@ -321,7 +321,7 @@ export const SearchFilterScreen: React.FC<SearchFilterScreenProps> = ({
             <div className="px-5 flex flex-col gap-4 mt-2 pb-24 overflow-y-auto no-scrollbar flex-1">
               {filteredPlaces.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-14 px-4 text-center">
-                  <img src="/images/mascot-thinking.png" alt="" className="w-16 h-16 object-contain mb-3" />
+                  <img src="/images/mascot-pin.png" alt="Lumi tìm kiếm" className="w-16 h-16 object-contain mb-3 drop-shadow-xs animate-mascot-float" />
                   <h3 className="font-heading font-bold text-slate-800 text-[16px]">Không tìm thấy địa điểm phù hợp</h3>
                   <p className="text-slate-500 text-xs mt-1 max-w-[260px]">Hãy thử tìm từ khóa khác hoặc xóa bộ lọc để xem nhiều gợi ý hơn tại {selectedCity}.</p>
                   <button
