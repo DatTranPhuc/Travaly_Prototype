@@ -14,18 +14,12 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
   const [showSignupPassword, setShowSignupPassword] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  // Interactive Lumi greetings & dynamic poses
+  // Interactive Lumi greetings
   const LUMI_GREETINGS = [
     'Chào bạn! Hôm nay mình đi đâu ta?',
     'Mình đã sẵn sàng lên lịch cho bạn!',
     'Khám phá các điểm check-in cực xịn!',
     'Cùng tạo một chuyến đi đáng nhớ nhé!'
-  ];
-  const LUMI_MASCOTS = [
-    '/images/mascot-tour.png',
-    '/images/mascot-laptop-happy.png',
-    '/images/mascot-camera.png',
-    '/images/mascot-celebrate.png'
   ];
   const [greetingIndex, setGreetingIndex] = useState(0);
   const cycleGreeting = () => {
@@ -152,9 +146,9 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onLoginSu
             
             {/* The Mascot */}
             <img
-              src={LUMI_MASCOTS[greetingIndex] || '/images/mascot-tour.png'}
+              src="/images/mascot-hero.png"
               alt="Lumi - Bạn đồng hành TravAly"
-              className="relative w-52 h-52 sm:w-56 sm:h-56 max-h-[220px] object-contain drop-shadow-2xl animate-mascot-float transition-all duration-300"
+              className="relative w-52 h-52 sm:w-56 sm:h-56 max-h-[220px] object-contain drop-shadow-2xl animate-mascot-float"
             />
 
             {/* Soft 3D Floor Shadow */}

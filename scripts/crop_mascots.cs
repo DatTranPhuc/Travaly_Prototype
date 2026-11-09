@@ -253,7 +253,6 @@ public class MascotExtractor {
                 bmp.Save(Path.Combine(imgDir, "mascot-running.png"), ImageFormat.Png);
                 bmp.Save(Path.Combine(imgDir, "mascot-traveling.png"), ImageFormat.Png);
             } else if (idx == 4) {
-                bmp.Save(Path.Combine(imgDir, "mascot-hero.png"), ImageFormat.Png);
                 bmp.Save(Path.Combine(imgDir, "mascot-celebrate.png"), ImageFormat.Png);
             } else if (idx == 5) {
                 bmp.Save(Path.Combine(imgDir, "mascot-reading.png"), ImageFormat.Png);
