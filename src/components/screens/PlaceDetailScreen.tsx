@@ -467,22 +467,23 @@ export const PlaceDetailScreen: React.FC<PlaceDetailScreenProps> = ({
                 setShowAddToTripModal(false);
                 onCreatePlan(currentPlace);
               }}
-              className="w-full p-3.5 rounded-2xl bg-gradient-to-r from-[#0F2C59] to-[#1E4D8C] text-white flex items-center justify-between shadow-md hover:opacity-95 transition-all cursor-pointer group text-left"
+              style={{ backgroundColor: '#0F2C59' }}
+              className="w-full p-3.5 rounded-2xl bg-[#0F2C59] text-white flex items-center justify-between shadow-md hover:bg-[#1E4D8C] transition-all cursor-pointer group text-left"
             >
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center text-amber-300 shrink-0">
                   <Sparkles size={18} />
                 </div>
                 <div>
-                  <span className="font-bold text-[13px] font-heading block">
+                  <span className="font-bold text-[13px] text-white font-heading block">
                     Tạo chuyến đi mới tại {currentPlace.city}
                   </span>
-                  <span className="text-[11px] text-slate-200">
+                  <span className="text-[11px] text-blue-100/90">
                     Bắt đầu với địa điểm này làm điểm ưu tiên
                   </span>
                 </div>
               </div>
-              <ChevronRight size={16} className="text-white/60 group-hover:translate-x-0.5 transition-transform shrink-0" />
+              <ChevronRight size={16} className="text-white/80 group-hover:translate-x-0.5 transition-transform shrink-0" />
             </button>
           </div>
         </div>

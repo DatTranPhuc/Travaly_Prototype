@@ -203,7 +203,8 @@ export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange }) 
             setShowCreateSheet(false);
             onTabChange('create-trip');
           }}
-          className="w-full text-left p-3.5 rounded-2xl bg-gradient-to-r from-[#0F2C59] to-[#1E4D8C] text-white shadow-md hover:opacity-95 transition-all flex items-center justify-between group active:scale-[0.98] cursor-pointer"
+          style={{ backgroundColor: '#0F2C59' }}
+          className="w-full text-left p-3.5 rounded-2xl bg-[#0F2C59] text-white shadow-md hover:bg-[#1E4D8C] transition-all flex items-center justify-between group active:scale-[0.98] cursor-pointer"
         >
           <div className="flex items-start gap-3">
             <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center shrink-0 mt-0.5">
@@ -211,17 +212,17 @@ export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange }) 
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="font-bold text-[13px] sm:text-[14px] font-heading">Lập lịch trình bằng AI</span>
-                <span className="text-[9px] font-extrabold uppercase bg-[#FFA62B] text-[#0F2C59] px-1.5 py-0.5 rounded-md">
+                <span className="font-bold text-[13px] sm:text-[14px] text-white font-heading">Lập lịch trình bằng AI</span>
+                <span className="text-[9px] font-extrabold uppercase bg-[#FFA62B] text-[#0F2C59] px-1.5 py-0.5 rounded-md shadow-2xs">
                   Gợi ý
                 </span>
               </div>
-              <p className="text-[11px] text-slate-200 mt-0.5 line-clamp-2">
+              <p className="text-[11px] text-blue-100/90 mt-0.5 line-clamp-2">
                 Lumi tự động tối ưu lộ trình, gợi ý khách sạn, quán ăn & điểm check-in phù hợp nhất
               </p>
             </div>
           </div>
-          <ChevronRight size={18} className="text-white/60 group-hover:translate-x-0.5 transition-transform shrink-0 ml-2" />
+          <ChevronRight size={18} className="text-white/80 group-hover:translate-x-0.5 transition-transform shrink-0 ml-2" />
         </button>
 
         {/* Option 2: Manual Plan */}
