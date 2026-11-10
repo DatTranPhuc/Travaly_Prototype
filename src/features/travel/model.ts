@@ -58,6 +58,15 @@ export function lodgingError(start:string,end:string,checkIn:string,checkOut:str
 }
 export function stayAppliesOnDay(plan:ActivePlan,dayNumber:number){
  if(!plan.startDate||!plan.checkIn||!plan.checkOut)return true;
- const date=new Date(isoDate(plan.startDate)+'T12:00:00Z');date.setUTCDate(date.getUTCDate()+dayNumber-1);const key=date.toISOString().slice(0,10);
- return key>=isoDate(plan.checkIn)&&key<=isoDate(plan.checkOut);
+ const iso = isoDate(plan.startDate);
+ if(!iso) return true;
+ const date=new Date(iso+'T12:00:00Z');
+ if(Number.isNaN(date.getTime())) return true;
+ date.setUTCDate(date.getUTCDate()+dayNumber-1);
+ try {
+  const key=date.toISOString().slice(0,10);
+  return key>=isoDate(plan.checkIn)&&key<=isoDate(plan.checkOut);
+ } catch {
+  return true;
+ }
 }
