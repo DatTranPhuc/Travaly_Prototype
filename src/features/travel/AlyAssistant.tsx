@@ -2,7 +2,7 @@ import {LumiGuide} from './LumiGuide';
 import {lumiGuideFor} from './lumiGuides';
 import {useCallback,useEffect,useRef,useState} from 'react';
 import {useLocation,useNavigate} from 'react-router-dom';
-import {ArrowUp,ArrowUpRight,MessageCircle,Minus,Sparkles} from 'lucide-react';
+import {ArrowUp,ArrowUpRight,MessageCircle,Minus,Sparkles, CircleHelp} from 'lucide-react';
 import {ModalSheet} from '../../components/common/ModalSheet';
 import {useStored,useTravel} from './TravelContext';
 import './aly.css';
@@ -46,6 +46,7 @@ export function AlyAssistant(){
   setConversations(previous=>({...previous,[plan.id]:[...(previous[plan.id]||[]),{id:crypto.randomUUID(),role:'user',text:question},{id:crypto.randomUUID(),role:'assistant',...answer}]}));setDraft('');
  };
  return <>
+  {guide&&<button type="button" className="lumi-help-launcher" title="Hướng dẫn trang này" aria-label={`Hướng dẫn trang ${guide.name}`} aria-haspopup="dialog" aria-expanded={guideOpen} onClick={()=>{setOpen(false);setGuideOpen(true);}}><CircleHelp size={18}/></button>}
   <button type="button" className="aly-launcher" aria-label="Hỏi Lumi — trợ lý chuyến đi" aria-haspopup="dialog" aria-expanded={open} onClick={()=>setOpen(true)}><img src="/images/mascot-thinking.png" alt=""/><span>Hỏi Lumi</span><MessageCircle size={14}/></button>
   <ModalSheet isOpen={open} onClose={close} title="Lumi — trợ lý chuyến đi" className="aly-overlay" contentClassName="aly-panel" showHandleBar={false}>
    <header className="aly-header"><img src="/images/mascot-thinking.png" alt=""/><div><h2>Lumi ở đây cùng bạn</h2><p>Trợ lý chuyến đi · Bản trải nghiệm</p></div><button type="button" aria-label="Thu gọn Lumi" onClick={close}><Minus size={21}/></button></header>
