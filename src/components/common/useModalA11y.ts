@@ -18,6 +18,18 @@ export function useModalA11y({
   useEffect(() => {
     if (!isOpen) return;
 
+    // Lock background scroll containers while modal is open
+    const scrollContainers = Array.from(
+      document.querySelectorAll<HTMLElement>('.travel-scroll, .travel-screen, body')
+    );
+    const originalStyles = scrollContainers.map((el) => ({
+      el,
+      overflow: el.style.overflow,
+    }));
+    scrollContainers.forEach((el) => {
+      el.style.overflow = 'hidden';
+    });
+
     // Save the element that had focus before opening the modal
     triggerElementRef.current = document.activeElement as HTMLElement | null;
 
@@ -83,6 +95,12 @@ export function useModalA11y({
     return () => {
       clearTimeout(focusTimer);
       window.removeEventListener('keydown', handleKeyDown);
+
+      // Restore scroll to background containers
+      originalStyles.forEach(({ el, overflow }) => {
+        el.style.overflow = overflow;
+      });
+
       // Restore focus to the trigger element when the modal closes
       if (triggerElementRef.current && typeof triggerElementRef.current.focus === 'function') {
         triggerElementRef.current.focus();

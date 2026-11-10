@@ -51,3 +51,5 @@
   letter-spacing: -0.5px;
   color: var(--color-text-primary);
 }
+
+.home-cinematic.home-collage>img{object-position:50% 68%}

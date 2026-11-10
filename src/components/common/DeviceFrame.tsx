@@ -84,14 +84,16 @@ export const DeviceFrame: React.FC<DeviceFrameProps> = ({
       {/* Top Floating Dev & Navigator Toolbar */}
       <aside
         aria-label="Dev Toolbar"
-        className="w-full max-w-[480px] shrink-0 px-2 py-1.5 sm:mb-2 sm:px-3 flex items-center justify-between gap-2 z-40 bg-white/85 sm:bg-transparent backdrop-blur-xs sm:backdrop-blur-none border-b sm:border-none border-slate-200/80"
+        className={`w-full shrink-0 px-2 py-1.5 sm:mb-2 sm:px-3 flex items-center justify-between gap-2 z-40 bg-white/85 sm:bg-transparent backdrop-blur-xs sm:backdrop-blur-none border-b sm:border-none border-slate-200/80 transition-all duration-300 ${
+          isSimulatorMode ? 'max-w-[390px]' : 'max-w-[700px]'
+        }`}
       >
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-2">
           {/* Brand Tag */}
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white shadow-2xs border border-slate-200">
-            <img src="/images/app-icon-dark.png" alt="TravAly" className="w-4 h-4 rounded-md object-contain" />
-            <span className="text-[11px] sm:text-[12px] font-bold text-[#0F2C59] font-heading">
-              TravAly
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white shadow-xs border border-slate-200">
+            <img src="/images/app-icon-dark.png" alt="TravAIy" className="w-6 h-6 rounded-lg object-contain shadow-2xs" />
+            <span className="text-[13px] sm:text-[14px] font-extrabold text-[#0F2C59] font-heading tracking-tight">
+              TravAIy
             </span>
           </div>
 
@@ -101,7 +103,7 @@ export const DeviceFrame: React.FC<DeviceFrameProps> = ({
             onClick={() => setShowScreenDrawer(!showScreenDrawer)}
             aria-expanded={showScreenDrawer}
             aria-haspopup="dialog"
-            className="px-2.5 py-1 rounded-full bg-[#0F2C59] text-white text-[11px] sm:text-[12px] font-bold shadow-2xs hover:bg-[#153B75] transition-colors flex items-center gap-1 font-heading cursor-pointer active:scale-95"
+            className="px-2.5 py-1.5 rounded-full bg-[#0F2C59] text-white text-[11px] sm:text-[12px] font-bold shadow-xs hover:bg-[#153B75] transition-colors flex items-center gap-1.5 font-heading cursor-pointer active:scale-95"
           >
             <span>📱 {screenList.find((s) => s.id === currentScreen)?.tag || 'Menu'}</span>
             <span className="text-xs">▾</span>
@@ -112,9 +114,9 @@ export const DeviceFrame: React.FC<DeviceFrameProps> = ({
         <button
           type="button"
           onClick={onToggleSimulatorMode}
-          className="px-2.5 py-1 rounded-full bg-white text-slate-700 text-[11px] sm:text-[12px] font-semibold shadow-2xs border border-slate-200 hover:bg-slate-50 transition-colors flex items-center gap-1 font-heading cursor-pointer active:scale-95 shrink-0"
+          className="px-3 py-1.5 rounded-full bg-white text-slate-700 text-[11px] sm:text-[12px] font-bold shadow-xs border border-slate-200 hover:bg-slate-50 transition-colors flex items-center gap-1.5 font-heading cursor-pointer active:scale-95 shrink-0"
         >
-          <span>{isSimulatorMode ? '🔍 Xem to' : '📱 Khung iPhone'}</span>
+          <span>{isSimulatorMode ? '🔍 Phóng to khung' : '📱 Khung iPhone'}</span>
         </button>
       </aside>
 
@@ -184,7 +186,7 @@ export const DeviceFrame: React.FC<DeviceFrameProps> = ({
         className={`w-full flex-1 sm:flex-initial transition-all duration-300 relative [transform:translateZ(0)] isolate travel-device overflow-hidden flex flex-col justify-between ${
           isSimulatorMode
             ? 'sm:w-[390px] sm:max-w-[390px] sm:h-[844px] sm:max-h-[calc(100vh-70px)] bg-[#F4F8FD] sm:rounded-[48px] shadow-2xl sm:border-[8px] sm:border-slate-900'
-            : 'sm:w-[480px] sm:max-w-[480px] sm:h-[844px] sm:max-h-[calc(100vh-70px)] bg-[#F4F8FD] sm:rounded-3xl shadow-xl sm:border sm:border-slate-200'
+            : 'sm:w-[700px] sm:max-w-[700px] sm:h-[860px] sm:max-h-[calc(100vh-65px)] bg-[#F4F8FD] sm:rounded-3xl shadow-2xl sm:border-2 sm:border-slate-300'
         }`}
       >
         {children}

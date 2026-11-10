@@ -185,9 +185,7 @@ export const TravelWalletScreen: React.FC<TravelWalletScreenProps> = ({
               Tự động đồng bộ từ email & quét thông minh với mã hóa bảo vệ cao.
             </p>
           </div>
-          <div className="w-10 h-10 rounded-2xl bg-white flex items-center justify-center text-[#0A1680] shrink-0 shadow-xs border border-blue-100 text-lg">
-            🛡️
-          </div>
+          <img src="/images/mascot-reading.png" alt="Lumi kiểm tra giấy tờ" className="w-12 h-12 object-contain shrink-0 animate-mascot-float drop-shadow-xs" />
         </div>
 
         {/* Search Input Container */}

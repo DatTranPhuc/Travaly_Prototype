@@ -1,9 +1,11 @@
 import {mockReviewsFor} from '../../data/explorePlaceMocks';
 import React, { useState } from 'react';
+import { Plus, Calendar, Sparkles, X, ChevronRight, Check } from 'lucide-react';
 import { IOSStatusBar } from '../common/IOSStatusBar';
 import { ModalSheet } from '../common/ModalSheet';
-import { Place } from '../../types/travel';
+import { Place, TripDayItem } from '../../types/travel';
 import { MOCK_PLACES } from '../../data/mockData';
+import { useTravel } from '../../features/travel/TravelContext';
 
 interface PlaceDetailScreenProps {
   placeId?: string;
@@ -30,6 +32,8 @@ export const PlaceDetailScreen: React.FC<PlaceDetailScreenProps> = ({
   const [galleryIdx, setGalleryIdx] = useState(0);
   const [showShare, setShowShare] = useState(false);
   const [showCollectionPicker, setShowCollectionPicker] = useState(false);
+  const { plan, setPlan } = useTravel();
+  const [showAddToTripModal, setShowAddToTripModal] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const galleryImages = currentPlace.images;
@@ -37,6 +41,37 @@ export const PlaceDetailScreen: React.FC<PlaceDetailScreenProps> = ({
   const showToast = (msg: string) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(null), 2500);
+  };
+
+  const handleAddToDay = (dayNumber: number) => {
+    const targetDay = plan.daysSchedule.find((d) => d.dayNumber === dayNumber);
+    if (!targetDay) return;
+
+    const newItem: TripDayItem = {
+      id: `custom-${Date.now()}`,
+      time: '15:30',
+      placeName: currentPlace.name,
+      category: currentPlace.category || 'Tham quan',
+      note: currentPlace.address || 'Địa điểm thêm từ mục Khám phá',
+      cost: currentPlace.priceRange || 'Miễn phí',
+      duration: '60 phút',
+      image: currentPlace.images?.[0] || plan.coverImage,
+      address: currentPlace.address || plan.destination,
+    };
+
+    const newSchedule = plan.daysSchedule.map((d) => {
+      if (d.dayNumber === dayNumber) {
+        return {
+          ...d,
+          items: [...d.items, newItem].sort((a, b) => a.time.localeCompare(b.time)),
+        };
+      }
+      return d;
+    });
+
+    setPlan({ ...plan, daysSchedule: newSchedule });
+    setShowAddToTripModal(false);
+    showToast(`✅ Đã thêm "${currentPlace.name}" vào Ngày ${dayNumber}!`);
   };
 
   const handleCopyLink = () => {
@@ -174,7 +209,7 @@ export const PlaceDetailScreen: React.FC<PlaceDetailScreenProps> = ({
             <button
               onClick={() => setActiveTab('overview')}
               type="button"
-              className={`flex-1 py-2 rounded-full text-center text-[13px] font-semibold transition-all cursor-pointer font-heading ${
+              className={`flex-1 py-2 rounded-full text-center text-[13px] font-semibold transition-all cursor-pointer font-heading whitespace-nowrap shrink-0 ${
                 activeTab === 'overview'
                   ? 'bg-[#0a1680] text-white shadow-sm'
                   : 'text-slate-600 hover:text-slate-900'
@@ -185,7 +220,7 @@ export const PlaceDetailScreen: React.FC<PlaceDetailScreenProps> = ({
             <button
               onClick={() => setActiveTab('photos')}
               type="button"
-              className={`flex-1 py-2 rounded-full text-center text-[13px] font-semibold transition-all cursor-pointer font-heading ${
+              className={`flex-1 py-2 rounded-full text-center text-[13px] font-semibold transition-all cursor-pointer font-heading whitespace-nowrap shrink-0 ${
                 activeTab === 'photos'
                   ? 'bg-[#0a1680] text-white shadow-sm'
                   : 'text-slate-600 hover:text-slate-900'
@@ -196,7 +231,7 @@ export const PlaceDetailScreen: React.FC<PlaceDetailScreenProps> = ({
             <button
               onClick={() => setActiveTab('reviews')}
               type="button"
-              className={`flex-1 py-2 rounded-full text-center text-[13px] font-semibold transition-all cursor-pointer font-heading ${
+              className={`flex-1 py-2 rounded-full text-center text-[13px] font-semibold transition-all cursor-pointer font-heading whitespace-nowrap shrink-0 ${
                 activeTab === 'reviews'
                   ? 'bg-[#0a1680] text-white shadow-sm'
                   : 'text-slate-600 hover:text-slate-900'
@@ -346,7 +381,7 @@ export const PlaceDetailScreen: React.FC<PlaceDetailScreenProps> = ({
       {/* STICKY BOTTOM BUTTON "Thêm vào chuyến đi" */}
       <div className="absolute bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-xl px-5 pt-3 pb-6 sm:pb-7 shadow-[0_-4px_24px_rgba(0,0,0,0.06)] border-t border-slate-200/60 w-full">
         <button
-          onClick={() => onCreatePlan(currentPlace)}
+          onClick={() => setShowAddToTripModal(true)}
           type="button"
           className="w-full h-12 rounded-full bg-[#0a1680] hover:bg-[#071060] text-white font-semibold text-[15px] flex items-center justify-center gap-2 shadow-lg shadow-[#0a1680]/25 active:scale-98 transition-all cursor-pointer font-heading"
         >
@@ -358,6 +393,101 @@ export const PlaceDetailScreen: React.FC<PlaceDetailScreenProps> = ({
           <span className="tracking-wide">Thêm vào chuyến đi</span>
         </button>
       </div>
+
+      {/* ADD TO TRIP ACTION MODAL */}
+      <ModalSheet
+        isOpen={showAddToTripModal}
+        onClose={() => setShowAddToTripModal(false)}
+        title="Thêm vào chuyến đi"
+        type="bottom-sheet"
+      >
+        <div className="p-5 flex flex-col gap-3 text-left font-sans select-none max-h-[70vh] overflow-y-auto">
+          <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+            <div className="flex items-center gap-2.5">
+              <img src="/images/mascot-map.png" alt="Lumi" className="w-9 h-9 object-contain" />
+              <div>
+                <h3 className="font-heading font-bold text-[16px] text-[#0A1680]">
+                  Thêm vào lịch trình
+                </h3>
+                <p className="text-xs text-slate-500 mt-0.5 truncate max-w-[240px]">
+                  {currentPlace.name} · {currentPlace.city}
+                </p>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => setShowAddToTripModal(false)}
+              className="w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-slate-200 cursor-pointer"
+            >
+              <X size={15} />
+            </button>
+          </div>
+
+          {/* Current Trip Days */}
+          {plan.daysSchedule && plan.daysSchedule.length > 0 && (
+            <div className="space-y-2 mt-1">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                Chuyến đi hiện tại ({plan.destination})
+              </span>
+              <div className="grid grid-cols-1 gap-2">
+                {plan.daysSchedule.map((d) => (
+                  <button
+                    key={d.dayNumber}
+                    type="button"
+                    onClick={() => handleAddToDay(d.dayNumber)}
+                    className="w-full p-3 rounded-2xl bg-white border border-slate-200 hover:border-[#0A1680] hover:bg-blue-50/50 flex items-center justify-between transition-all group cursor-pointer text-left shadow-2xs"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-xl bg-blue-50 text-[#0A1680] flex items-center justify-center font-bold text-xs shrink-0 font-heading">
+                        N{d.dayNumber}
+                      </div>
+                      <div>
+                        <span className="font-bold text-[13px] text-slate-800 font-heading block">
+                          Ngày {d.dayNumber} · {d.dateText}
+                        </span>
+                        <span className="text-[11px] text-slate-400">
+                          {d.items.length} hoạt động đã lên lịch
+                        </span>
+                      </div>
+                    </div>
+                    <span className="text-[11px] font-bold text-[#0A1680] group-hover:translate-x-0.5 transition-transform flex items-center gap-1 font-heading">
+                      Thêm vào <ChevronRight size={14} />
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Create New Trip Option */}
+          <div className="pt-2">
+            <button
+              type="button"
+              onClick={() => {
+                setShowAddToTripModal(false);
+                onCreatePlan(currentPlace);
+              }}
+              style={{ backgroundColor: '#0F2C59' }}
+              className="w-full p-3.5 rounded-2xl bg-[#0F2C59] text-white flex items-center justify-between shadow-md hover:bg-[#1E4D8C] transition-all cursor-pointer group text-left"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center text-amber-300 shrink-0">
+                  <Sparkles size={18} />
+                </div>
+                <div>
+                  <span className="font-bold text-[13px] text-white font-heading block">
+                    Tạo chuyến đi mới tại {currentPlace.city}
+                  </span>
+                  <span className="text-[11px] text-blue-100/90">
+                    Bắt đầu với địa điểm này làm điểm ưu tiên
+                  </span>
+                </div>
+              </div>
+              <ChevronRight size={16} className="text-white/80 group-hover:translate-x-0.5 transition-transform shrink-0" />
+            </button>
+          </div>
+        </div>
+      </ModalSheet>
 
       {/* FULLSCREEN IMAGE GALLERY MODAL */}
       <ModalSheet
