@@ -81,7 +81,7 @@ export const CommunityFeedScreen: React.FC<CommunityFeedScreenProps> = ({
                 type="button"
                 aria-pressed={isActive}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`h-9 px-5 rounded-full font-heading text-xs font-bold shrink-0 transition-all cursor-pointer ${
+                className={`h-9 px-5 rounded-full font-heading text-xs font-bold shrink-0 whitespace-nowrap transition-all cursor-pointer ${
                   isActive
                     ? 'bg-[#0A1680] text-white shadow-xs'
                     : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'

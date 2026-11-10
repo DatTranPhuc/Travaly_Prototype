@@ -2,7 +2,7 @@ import {LumiGuide} from './LumiGuide';
 import {lumiGuideFor} from './lumiGuides';
 import {useCallback,useEffect,useRef,useState} from 'react';
 import {useLocation,useNavigate} from 'react-router-dom';
-import {ArrowUp,ArrowUpRight,MessageCircle,Minus,Sparkles, CircleHelp} from 'lucide-react';
+import {ArrowUp,ArrowUpRight,GripVertical,MessageCircle,Minus,Sparkles,CircleHelp} from 'lucide-react';
 import {ModalSheet} from '../../components/common/ModalSheet';
 import {useStored,useTravel} from './TravelContext';
 import './aly.css';
@@ -19,6 +19,67 @@ export function AlyAssistant(){
  const [open,setOpen]=useState(false);const [draft,setDraft]=useState('');
  const [conversations,setConversations]=useStored<Record<string,Message[]>>('travaiy-aly-conversations-v1',{});
  const messages=conversations[plan.id]||[];const end=useRef<HTMLDivElement>(null);const close=useCallback(()=>setOpen(false),[]);
+
+ // Draggable state for Lumi floating launcher
+ const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+ const [isDragging, setIsDragging] = useState(false);
+ const dragRef = useRef({ startX: 0, startY: 0, initialX: 0, initialY: 0, moved: false });
+ const launcherRef = useRef<HTMLButtonElement>(null);
+
+ const handlePointerDown = (e: React.PointerEvent<HTMLButtonElement>) => {
+  if (e.button !== 0) return;
+  dragRef.current = {
+   startX: e.clientX,
+   startY: e.clientY,
+   initialX: dragOffset.x,
+   initialY: dragOffset.y,
+   moved: false,
+  };
+  setIsDragging(true);
+
+  const onPointerMove = (ev: PointerEvent) => {
+   const dx = ev.clientX - dragRef.current.startX;
+   const dy = ev.clientY - dragRef.current.startY;
+   if (Math.hypot(dx, dy) > 5) {
+    dragRef.current.moved = true;
+   }
+   const container = launcherRef.current?.closest('.travel-device') as HTMLElement | null;
+   let minX = -260;
+   let maxX = 5;
+   let minY = -650;
+   let maxY = 70;
+
+   if (container) {
+    const rect = container.getBoundingClientRect();
+    minX = -(rect.width - 125);
+    maxX = 5;
+    minY = -(rect.height - 170);
+    maxY = 70;
+   }
+
+   const clampedX = Math.min(maxX, Math.max(minX, dragRef.current.initialX + dx));
+   const clampedY = Math.min(maxY, Math.max(minY, dragRef.current.initialY + dy));
+   setDragOffset({ x: clampedX, y: clampedY });
+  };
+
+  const onPointerUp = () => {
+   setIsDragging(false);
+   window.removeEventListener('pointermove', onPointerMove);
+   window.removeEventListener('pointerup', onPointerUp);
+  };
+
+  window.addEventListener('pointermove', onPointerMove);
+  window.addEventListener('pointerup', onPointerUp);
+ };
+
+ const handleLauncherClick = (e: React.MouseEvent) => {
+  if (dragRef.current.moved) {
+   e.preventDefault();
+   e.stopPropagation();
+   return;
+  }
+  setOpen(true);
+ };
  const dayNumber=Number(pathname.match(/\/trip\/(?:day|edit)\/(\d+)/)?.[1]||new URLSearchParams(search).get('day'))||1;
  const day=plan.daysSchedule.find(value=>value.dayNumber===dayNumber)||plan.daysSchedule[0];
  const area=pathname.includes('expenses')?'Chi tiêu':pathname.includes('journal')||pathname.includes('recap')?'Kỷ niệm':pathname.includes('route')||pathname==='/map'?'Bản đồ':pathname.includes('/group')?'Không gian nhóm':pathname.includes('/day')?'Lịch trình':pathname.startsWith('/explore')?'Khám phá':'Chuyến đi';
@@ -47,7 +108,25 @@ export function AlyAssistant(){
  };
  return <>
   {guide&&<button type="button" className="lumi-help-launcher" title="Hướng dẫn trang này" aria-label={`Hướng dẫn trang ${guide.name}`} aria-haspopup="dialog" aria-expanded={guideOpen} onClick={()=>{setOpen(false);setGuideOpen(true);}}><CircleHelp size={18}/></button>}
-  <button type="button" className="aly-launcher" aria-label="Hỏi Lumi — trợ lý chuyến đi" aria-haspopup="dialog" aria-expanded={open} onClick={()=>setOpen(true)}><img src="/images/mascot-thinking.png" alt=""/><span>Hỏi Lumi</span><MessageCircle size={14}/></button>
+  <button
+   ref={launcherRef}
+   type="button"
+   className={`aly-launcher ${isDragging ? 'is-dragging' : ''}`}
+   aria-label="Hỏi Lumi — trợ lý chuyến đi (Kéo thả để di chuyển)"
+   aria-haspopup="dialog"
+   aria-expanded={open}
+   style={{
+     transform: `translate3d(${dragOffset.x}px, ${dragOffset.y}px, 0)`,
+     touchAction: 'none',
+   }}
+   onPointerDown={handlePointerDown}
+   onClick={handleLauncherClick}
+  >
+   <GripVertical size={13} className="text-slate-400 -mr-0.5 opacity-60" />
+   <img src="/images/mascot-thinking.png" alt="" draggable={false} />
+   <span>Hỏi Lumi</span>
+   <MessageCircle size={14}/>
+  </button>
   <ModalSheet isOpen={open} onClose={close} title="Lumi — trợ lý chuyến đi" className="aly-overlay" contentClassName="aly-panel" showHandleBar={false}>
    <header className="aly-header"><img src="/images/mascot-thinking.png" alt=""/><div><h2>Lumi ở đây cùng bạn</h2><p>Trợ lý chuyến đi · Bản trải nghiệm</p></div><button type="button" aria-label="Thu gọn Lumi" onClick={close}><Minus size={21}/></button></header>
    <div className="aly-context"><span/>{plan.destination} · {area}{['Lịch trình','Bản đồ'].includes(area)?` · Ngày ${dayNumber}`:''}</div>

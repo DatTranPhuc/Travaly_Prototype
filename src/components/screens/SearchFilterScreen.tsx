@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { IOSStatusBar } from '../common/IOSStatusBar';
 import { BottomNav } from '../common/BottomNav';
 import { NavTab, Place } from '../../types/travel';
 import { MOCK_PLACES } from '../../data/mockData';
+import { EXPLORE_PLACE_MOCKS } from '../../data/explorePlaceMocks';
 
 interface SearchFilterScreenProps {
   onNavigateTab: (tab: NavTab) => void;
@@ -36,13 +37,79 @@ export const SearchFilterScreen: React.FC<SearchFilterScreenProps> = ({
   const [showSortSheet, setShowSortSheet] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  const categories = [
-    'Tất cả (24)',
-    'Ăn uống (18)',
-    'Cà phê (24)',
-    'Tham quan (6)',
-    'Điểm check-in (12)',
-  ];
+  // Combine all places in TP.HCM & Vũng Tàu
+  const ALL_PLACES: Place[] = useMemo(() => {
+    const combined = [...MOCK_PLACES];
+    EXPLORE_PLACE_MOCKS.forEach((ep) => {
+      if (!combined.some((p) => p.name.toLowerCase() === ep.name.toLowerCase())) {
+        combined.push(ep);
+      }
+    });
+    return combined;
+  }, []);
+
+  const [selectedMapPlace, setSelectedMapPlace] = useState<Place | null>(null);
+
+  // Filter logic
+  const filteredPlaces = useMemo(() => {
+    return ALL_PLACES.filter((p) => {
+      // 1. City filter
+      if (selectedCity !== 'Tất cả') {
+        const isVT = selectedCity.includes('Vũng Tàu');
+        const pVT = p.city.includes('Vũng Tàu');
+        if (isVT !== pVT) return false;
+      }
+
+      // 2. Search query filter
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase().trim();
+        const inName = p.name.toLowerCase().includes(q);
+        const inCat = p.category.toLowerCase().includes(q);
+        const inAddr = p.address?.toLowerCase().includes(q);
+        const inTags = p.tags?.some((t) => t.toLowerCase().includes(q));
+        if (!inName && !inCat && !inAddr && !inTags) return false;
+      }
+
+      // 3. Category horizontal pill
+      if (selectedCategory && !selectedCategory.startsWith('Tất cả')) {
+        const catKey = selectedCategory.replace(/\s*\(\d+\)/, '').trim().toLowerCase();
+        const pCat = p.category.toLowerCase();
+        const inCat = pCat.includes(catKey) || catKey.includes(pCat);
+        const inTags = p.tags?.some((t) => t.toLowerCase().includes(catKey));
+        if (!inCat && !inTags) return false;
+      }
+
+      // 4. Detailed filter categories
+      if (selectedFilterCategories.length > 0) {
+        const match = selectedFilterCategories.some((sc) => {
+          const scKey = sc.toLowerCase();
+          return p.category.toLowerCase().includes(scKey) || p.tags?.some((t) => t.toLowerCase().includes(scKey));
+        });
+        if (!match) return false;
+      }
+
+      return true;
+    }).sort((a, b) => {
+      if (selectedSort === 'Đánh giá cao nhất') return (b.rating || 0) - (a.rating || 0);
+      if (selectedSort === 'Phổ biến') return (b.reviewsCount || 0) - (a.reviewsCount || 0);
+      return 0;
+    });
+  }, [ALL_PLACES, selectedCity, searchQuery, selectedCategory, selectedFilterCategories, selectedSort]);
+
+  const categories = useMemo(() => {
+    const totalCount = ALL_PLACES.filter((p) => {
+      if (selectedCity === 'Tất cả') return true;
+      const isVT = selectedCity.includes('Vũng Tàu');
+      return isVT === p.city.includes('Vũng Tàu');
+    }).length;
+    return [
+      `Tất cả (${totalCount})`,
+      'Ăn uống',
+      'Cà phê',
+      'Tham quan',
+      'Điểm check-in',
+    ];
+  }, [ALL_PLACES, selectedCity]);
 
   const sortOptions = ['Đánh giá cao nhất', 'Gần nhất', 'Phổ biến', 'Giá tốt'];
 
@@ -78,12 +145,11 @@ export const SearchFilterScreen: React.FC<SearchFilterScreenProps> = ({
     }
   };
 
-  // If viewMode switches to map, we can redirect or show MapViewScreen
+  // Inline view mode switch
   const handleViewModeToggle = (mode: 'list' | 'map') => {
-    if (mode === 'map') {
-      onOpenMap();
-    } else {
-      setViewMode('list');
+    setViewMode(mode);
+    if (mode === 'map' && filteredPlaces.length > 0) {
+      setSelectedMapPlace(filteredPlaces[0]);
     }
   };
 
@@ -208,172 +274,213 @@ export const SearchFilterScreen: React.FC<SearchFilterScreenProps> = ({
             </div>
 
             {/* View Mode Switcher Header */}
-            <div className="flex items-center justify-between pt-1">
-              <div className="flex items-baseline gap-1.5">
-                <h1 className="text-[20px] font-bold tracking-tight text-[#0f1d26] font-heading">
+            <div className="flex items-center justify-between gap-1.5 pt-1">
+              <div className="flex items-baseline gap-1 min-w-0 shrink">
+                <h1 className="text-[17px] font-bold tracking-tight text-[#0f1d26] font-heading whitespace-nowrap truncate">
                   Kết quả tìm kiếm
                 </h1>
-                <span className="text-[12px] font-medium text-slate-500">(2 nổi bật)</span>
+                <span className="text-[11px] font-medium text-slate-500 whitespace-nowrap shrink-0">
+                  ({filteredPlaces.length} địa điểm)
+                </span>
               </div>
 
               {/* Segment Switcher */}
-              <div className="flex items-center bg-slate-100 p-1 rounded-full border border-slate-200/50">
+              <div className="flex items-center bg-slate-100 p-0.5 rounded-full border border-slate-200/50 shrink-0">
                 <button
                   type="button"
                   onClick={() => handleViewModeToggle('list')}
-                  className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[12px] font-bold transition-all cursor-pointer font-heading ${
+                  className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold transition-all cursor-pointer font-heading whitespace-nowrap ${
                     viewMode === 'list' ? 'bg-white text-[#0A1680] shadow-xs' : 'text-slate-600'
                   }`}
                 >
-                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0">
                     <line x1="8" x2="21" y1="6" y2="6" />
                     <line x1="8" x2="21" y1="12" y2="12" />
                     <line x1="8" x2="21" y1="18" y2="18" />
                   </svg>
-                  <span>Danh sách</span>
+                  <span className="whitespace-nowrap">Danh sách</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => handleViewModeToggle('map')}
-                  className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[12px] font-medium transition-all cursor-pointer font-heading ${
+                  className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium transition-all cursor-pointer font-heading whitespace-nowrap ${
                     viewMode === 'map' ? 'bg-white text-[#0A1680] shadow-xs' : 'text-slate-600'
                   }`}
                 >
-                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0">
                     <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21" />
                   </svg>
-                  <span>Bản đồ</span>
+                  <span className="whitespace-nowrap">Bản đồ</span>
                 </button>
               </div>
             </div>
           </div>
 
-          {/* Places Vertical Card Feed */}
-          <div className="px-5 flex flex-col gap-4 mt-2 pb-24 overflow-y-auto no-scrollbar flex-1">
-            {/* Large Card 1: Tiệm cà phê Tú Lưng */}
-            <div
-              onClick={() => onOpenPlaceDetail(MOCK_PLACES[0].id)}
-              className="flex flex-col bg-white p-3 shadow-md hover:shadow-lg transition-all cursor-pointer rounded-[28px] border border-slate-100"
-            >
-              <div className="relative w-full h-[230px] rounded-[24px] overflow-hidden bg-slate-100 shrink-0">
-                <img
-                  alt="Tiệm cà phê Tú Lưng"
-                  className="w-full h-full object-cover"
-                  src={MOCK_PLACES[0].images[0]}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
+          {viewMode === 'list' ? (
+            /* Places Vertical Card Feed */
+            <div className="px-5 flex flex-col gap-4 mt-2 pb-24 overflow-y-auto no-scrollbar flex-1">
+              {filteredPlaces.length === 0 ? (
+                <div className="flex flex-col items-center justify-center py-14 px-4 text-center">
+                  <img src="/images/mascot-pin.png" alt="Lumi tìm kiếm" className="w-16 h-16 object-contain mb-3 drop-shadow-xs animate-mascot-float" />
+                  <h3 className="font-heading font-bold text-slate-800 text-[16px]">Không tìm thấy địa điểm phù hợp</h3>
+                  <p className="text-slate-500 text-xs mt-1 max-w-[260px]">Hãy thử tìm từ khóa khác hoặc xóa bộ lọc để xem nhiều gợi ý hơn tại {selectedCity}.</p>
+                  <button
+                    type="button"
+                    onClick={handleResetFilter}
+                    className="mt-4 px-5 py-2.5 rounded-full bg-[#0A1680] text-white text-xs font-bold font-heading shadow-md active:scale-95 cursor-pointer"
+                  >
+                    Đặt lại bộ lọc
+                  </button>
+                </div>
+              ) : (
+                filteredPlaces.map((place) => (
+                  <div
+                    key={place.id}
+                    onClick={() => onOpenPlaceDetail(place.id)}
+                    className="flex flex-col bg-white p-3 shadow-md hover:shadow-lg transition-all cursor-pointer rounded-[28px] border border-slate-100"
+                  >
+                    <div className="relative w-full h-[210px] rounded-[24px] overflow-hidden bg-slate-100 shrink-0">
+                      <img
+                        alt={place.name}
+                        className="w-full h-full object-cover"
+                        src={place.images?.[0] || '/images/vietnam-hero.png'}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
 
-                <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md flex items-center gap-1.5 shadow-xs">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                  <span className="text-[11px] font-bold text-[#0A1680] font-heading">
-                    Mở cửa • 07:00 - 21:00
-                  </span>
+                      <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md flex items-center gap-1.5 shadow-xs">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                        <span className="text-[11px] font-bold text-[#0A1680] font-heading">
+                          {place.openHours || 'Mở cửa • 07:00 - 22:00'}
+                        </span>
+                      </div>
+
+                      <button
+                        type="button"
+                        aria-label={`Lưu ${place.name}`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          showToast(`Đã lưu ${place.name} vào Wishlist ❤️`);
+                        }}
+                        className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-rose-500 shadow-md hover:scale-110 transition-transform cursor-pointer"
+                      >
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                        </svg>
+                      </button>
+
+                      <div className="absolute bottom-3 left-3 flex items-center gap-2 text-white">
+                        <div className="flex items-center gap-1 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full text-[12px] font-medium">
+                          <span>{place.distance || 'Gần bạn'}</span>
+                        </div>
+                        <div className="flex items-center gap-1 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full text-[12px] font-medium">
+                          <span>{place.category}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between pt-3 pb-1 px-1">
+                      <div className="flex items-center gap-2 min-w-0 pr-2">
+                        <h3 className="text-[16px] font-bold text-[#0f1d26] truncate tracking-tight font-heading">
+                          {place.name}
+                        </h3>
+                        <div className="flex items-center gap-1 bg-[#FBEDB0]/50 px-2 py-0.5 rounded-full shrink-0">
+                          <svg className="w-3.5 h-3.5 fill-[#F1B94C] text-[#F1B94C]" viewBox="0 0 24 24">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                          </svg>
+                          <span className="text-[12px] text-[#0f1d26] font-bold">{place.rating || 4.8}</span>
+                        </div>
+                      </div>
+                      <span className="text-[12px] font-bold text-[#0A1680] shrink-0 font-heading">
+                        {place.priceRange || 'Tham khảo'}
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-slate-500 truncate px-1 text-left">{place.address}</p>
+                  </div>
+                ))
+              )}
+            </div>
+          ) : (
+            /* Inline Map View for Filter Results */
+            <div className="relative flex-1 w-full overflow-hidden bg-slate-100 flex flex-col pb-20">
+              <div className="relative w-full h-full min-h-[350px] bg-[#E8EEF5] flex items-center justify-center overflow-hidden">
+                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#0A1680_1px,transparent_1px)] [background-size:16px_16px]" />
+
+                {/* City Label Badge */}
+                <div className="absolute top-3 left-4 z-20 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-md shadow-md border border-slate-200 text-xs font-bold text-[#0A1680] flex items-center gap-1.5 font-heading">
+                  <span>📍 Bản đồ kết quả: {selectedCity}</span>
+                  <span className="text-[10px] text-slate-500">({filteredPlaces.length} điểm)</span>
                 </div>
 
-                <button
-                  type="button"
-                  aria-label="Lưu Tiệm cà phê Tú Lưng"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    showToast('Đã lưu Tiệm cà phê Tú Lưng vào Wishlist ❤️');
-                  }}
-                  className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-rose-500 shadow-md hover:scale-110 transition-transform cursor-pointer"
-                >
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-                  </svg>
-                </button>
+                {/* Pins on map */}
+                <div className="absolute inset-4 sm:inset-8">
+                  {filteredPlaces.slice(0, 8).map((p, idx) => {
+                    const isSelected = selectedMapPlace?.id === p.id;
+                    const left = 20 + ((idx * 37) % 65);
+                    const top = 22 + ((idx * 41) % 55);
 
-                <div className="absolute bottom-3 left-3 flex items-center gap-2 text-white">
-                  <div className="flex items-center gap-1 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full text-[12px] font-medium">
-                    <span>2.1 km</span>
-                  </div>
-                  <div className="flex items-center gap-1 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full text-[12px] font-medium">
-                    <span>Cà phê ngắm mây</span>
-                  </div>
+                    return (
+                      <button
+                        key={p.id}
+                        type="button"
+                        onClick={() => setSelectedMapPlace(p)}
+                        style={{ left: `${left}%`, top: `${top}%` }}
+                        className={`absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center group cursor-pointer transition-transform duration-200 ${
+                          isSelected ? 'scale-115 z-30' : 'hover:scale-110 z-10'
+                        }`}
+                      >
+                        <div
+                          className={`px-2 py-1 rounded-full text-[11px] font-bold shadow-md truncate max-w-[140px] border transition-colors ${
+                            isSelected
+                              ? 'bg-[#0A1680] text-white border-white'
+                              : 'bg-white text-slate-800 border-slate-200 group-hover:bg-blue-50'
+                          }`}
+                        >
+                          {p.name}
+                        </div>
+                        <div
+                          className={`w-3.5 h-3.5 rotate-45 -mt-1.5 border-r border-b ${
+                            isSelected ? 'bg-[#0A1680] border-white' : 'bg-white border-slate-200'
+                          }`}
+                        />
+                      </button>
+                    );
+                  })}
                 </div>
-              </div>
 
-              <div className="flex items-center justify-between pt-3 pb-1 px-1">
-                <div className="flex items-center gap-2 min-w-0 pr-2">
-                  <h3 className="text-[17px] font-bold text-[#0f1d26] truncate tracking-tight font-heading">
-                    Tiệm cà phê Tú Lưng
-                  </h3>
-                  <div className="flex items-center gap-1 bg-[#FBEDB0]/50 px-2 py-0.5 rounded-full shrink-0">
-                    <svg className="w-3.5 h-3.5 fill-[#F1B94C] text-[#F1B94C]" viewBox="0 0 24 24">
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                    </svg>
-                    <span className="text-[12px] text-[#0f1d26] font-bold">4.8</span>
+                {/* Selected Place Card Float */}
+                {selectedMapPlace && (
+                  <div className="absolute bottom-4 left-4 right-4 z-30 bg-white/95 backdrop-blur-xl p-3.5 rounded-2xl shadow-xl border border-slate-200 flex items-center gap-3 animate-in slide-in-from-bottom duration-200">
+                    <img
+                      src={selectedMapPlace.images?.[0] || '/images/vietnam-hero.png'}
+                      alt={selectedMapPlace.name}
+                      className="w-16 h-16 rounded-xl object-cover shrink-0 shadow-xs"
+                    />
+                    <div className="flex-1 min-w-0 text-left">
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-[10px] font-bold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded">
+                          ★ {selectedMapPlace.rating || 4.8}
+                        </span>
+                        <span className="text-[10px] text-slate-500 font-medium">
+                          {selectedMapPlace.category}
+                        </span>
+                      </div>
+                      <h4 className="font-heading font-bold text-[14px] text-slate-900 truncate mt-0.5">
+                        {selectedMapPlace.name}
+                      </h4>
+                      <p className="text-[11px] text-slate-500 truncate">{selectedMapPlace.address}</p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => onOpenPlaceDetail(selectedMapPlace.id)}
+                      className="px-3 py-2 rounded-xl bg-[#0A1680] text-white text-[11px] font-bold shrink-0 hover:bg-[#071060] transition-colors cursor-pointer"
+                    >
+                      Chi tiết →
+                    </button>
                   </div>
-                </div>
-                <span className="text-[13px] font-bold text-[#0A1680] shrink-0 font-heading">
-                  50.000đ - 100.000đ
-                </span>
+                )}
               </div>
             </div>
-
-            {/* Large Card 2: Kong Coffee */}
-            <div
-              onClick={() => onOpenPlaceDetail(MOCK_PLACES[3].id)}
-              className="flex flex-col bg-white p-3 shadow-md hover:shadow-lg transition-all cursor-pointer rounded-[28px] border border-slate-100"
-            >
-              <div className="relative w-full h-[230px] rounded-[24px] overflow-hidden bg-slate-100 shrink-0">
-                <img
-                  alt="Kong Coffee"
-                  className="w-full h-full object-cover"
-                  src={MOCK_PLACES[3].images[0]}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
-
-                <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md flex items-center gap-1.5 shadow-xs">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                  <span className="text-[11px] font-bold text-[#0A1680] font-heading">
-                    Mở cửa • 07:00 - 22:00
-                  </span>
-                </div>
-
-                <button
-                  type="button"
-                  aria-label="Lưu Kong Coffee"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    showToast('Đã lưu Kong Coffee vào Wishlist ❤️');
-                  }}
-                  className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-slate-400 hover:text-rose-500 shadow-md hover:scale-110 transition-transform cursor-pointer"
-                >
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8">
-                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-                  </svg>
-                </button>
-
-                <div className="absolute bottom-3 left-3 flex items-center gap-2 text-white">
-                  <div className="flex items-center gap-1 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full text-[12px] font-medium">
-                    <span>2.8 km</span>
-                  </div>
-                  <div className="flex items-center gap-1 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full text-[12px] font-medium">
-                    <span>Hoàng hôn &amp; acoustic</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between pt-3 pb-1 px-1">
-                <div className="flex items-center gap-2 min-w-0 pr-2">
-                  <h3 className="text-[17px] font-bold text-[#0f1d26] truncate tracking-tight font-heading">
-                    Kong Coffee
-                  </h3>
-                  <div className="flex items-center gap-1 bg-[#FBEDB0]/50 px-2 py-0.5 rounded-full shrink-0">
-                    <svg className="w-3.5 h-3.5 fill-[#F1B94C] text-[#F1B94C]" viewBox="0 0 24 24">
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                    </svg>
-                    <span className="text-[12px] text-[#0f1d26] font-bold">4.7</span>
-                  </div>
-                </div>
-                <span className="text-[13px] font-bold text-[#0A1680] shrink-0 font-heading">
-                  50.000đ - 120.000đ
-                </span>
-              </div>
-            </div>
-          </div>
+          )}
 
           <BottomNav activeTab="explore" onTabChange={onNavigateTab} />
         </div>

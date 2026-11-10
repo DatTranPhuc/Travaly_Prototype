@@ -71,14 +71,14 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
               onClick={onOpenMap}
               aria-label="Xem bản đồ"
               type="button"
-              className="px-3 h-9 rounded-full bg-slate-100 hover:bg-[#0A1680]/10 text-[#0A1680] text-[12px] font-bold flex items-center gap-1 transition-all cursor-pointer"
+              className="px-3 h-9 rounded-full bg-slate-100 hover:bg-[#0A1680]/10 text-[#0A1680] text-[12px] font-bold flex items-center gap-1 transition-all cursor-pointer whitespace-nowrap shrink-0"
             >
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21" />
                 <line x1="9" y1="3" x2="9" y2="18" />
                 <line x1="15" y1="6" x2="15" y2="21" />
               </svg>
-              <span>Bản đồ</span>
+              <span className="whitespace-nowrap">Bản đồ</span>
             </button>
 
             {/* Wishlist Button */}
@@ -161,12 +161,12 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
       {/* Main Stream Content */}
       <main className="flex-1 overflow-y-auto no-scrollbar px-5 pt-3 pb-28 space-y-4">
         {/* Tabs Row: Thịnh hành / Gần bạn / Gợi ý AI */}
-        <div className="flex items-center justify-between border-b border-gray-100 pb-2">
-          <div className="flex items-center gap-4">
+        <div className="flex items-center justify-between border-b border-gray-100 pb-2 gap-2">
+          <div className="flex items-center gap-3 sm:gap-4 overflow-x-auto no-scrollbar shrink min-w-0">
             <button
               type="button"
               onClick={() => setActiveTab('trending')}
-              className={`text-[15px] font-heading cursor-pointer relative pb-1 ${
+              className={`text-[14px] sm:text-[15px] font-heading cursor-pointer relative pb-1 whitespace-nowrap shrink-0 ${
                 activeTab === 'trending' ? 'font-bold text-[#0a1680]' : 'font-medium text-gray-400 hover:text-gray-700'
               }`}
             >
@@ -178,7 +178,7 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
             <button
               type="button"
               onClick={() => setActiveTab('nearby')}
-              className={`text-[15px] font-heading cursor-pointer relative pb-1 ${
+              className={`text-[14px] sm:text-[15px] font-heading cursor-pointer relative pb-1 whitespace-nowrap shrink-0 ${
                 activeTab === 'nearby' ? 'font-bold text-[#0a1680]' : 'font-medium text-gray-400 hover:text-gray-700'
               }`}
             >
@@ -190,7 +190,7 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
             <button
               type="button"
               onClick={() => setActiveTab('ai')}
-              className={`text-[15px] font-heading cursor-pointer relative pb-1 ${
+              className={`text-[14px] sm:text-[15px] font-heading cursor-pointer relative pb-1 whitespace-nowrap shrink-0 ${
                 activeTab === 'ai' ? 'font-bold text-[#0a1680]' : 'font-medium text-gray-400 hover:text-gray-700'
               }`}
             >
@@ -202,7 +202,7 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
           </div>
           <span
             onClick={onOpenMap}
-            className="text-[12px] font-semibold text-[#0a1680] flex items-center gap-0.5 cursor-pointer"
+            className="text-[12px] font-semibold text-[#0a1680] flex items-center gap-0.5 cursor-pointer whitespace-nowrap shrink-0"
           >
             Xem bản đồ <span className="text-xs font-bold text-[#F1B94C]">›</span>
           </span>
@@ -210,7 +210,7 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
 
         {activeTab === 'ai' && (
           <div className="bg-gradient-to-r from-[#FFFDF2] via-[#FFF9E6] to-[#EFF3FF] border border-[#F1B94C]/45 rounded-2xl p-3.5 flex items-center gap-3.5 shadow-xs">
-            <img src="/images/mascot-working.png" alt="Lumi" className="w-10 h-10 object-contain animate-mascot-float shrink-0 drop-shadow-xs" />
+            <img src="/images/mascot-idea.png" alt="Lumi" className="w-11 h-11 object-contain animate-mascot-float shrink-0 drop-shadow-xs" />
             <div className="text-left flex-1 min-w-0">
               <span className="text-[10px] font-bold tracking-wider uppercase text-[#D97706] font-heading flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#F1B94C] animate-pulse" /> GỢI Ý TỪ Lumi

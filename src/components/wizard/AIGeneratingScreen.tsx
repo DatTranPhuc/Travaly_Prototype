@@ -74,9 +74,9 @@ export const AIGeneratingScreen: React.FC<AIGeneratingScreenProps> = ({
             <div className="absolute w-20 h-20 rounded-full border-2 border-[#0A1680] border-t-transparent animate-spin" />
             <div className="relative w-16 h-16 rounded-full bg-[#FBEDB0]/70 flex items-center justify-center shadow-xs border border-[#F1B94C]/40 overflow-hidden p-1">
               <img
-                src={currentStep === 5 ? '/images/mascot-laptop-happy.png' : '/images/mascot-working.png'}
+                src={currentStep === 5 ? '/images/mascot-celebrate.png' : '/images/mascot-working.png'}
                 alt="TravAly AI Mascot"
-                className="w-10 h-10 object-contain animate-mascot-float"
+                className="w-11 h-11 object-contain animate-mascot-float"
               />
             </div>
           </div>

@@ -105,9 +105,7 @@ export const TripPreparationScreen: React.FC<TripPreparationScreenProps> = ({
         >
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg">
-                🎒
-              </div>
+              <img src="/images/mascot-safari.png" alt="Lumi chuẩn bị hành lý" className="w-11 h-11 object-contain shrink-0 animate-mascot-float drop-shadow-xs" />
               <div>
                 <h3 className="font-bold text-[14px] text-slate-900 font-heading group-hover:text-[#0A1680] transition-colors">
                   Danh sách hành lý thông minh
